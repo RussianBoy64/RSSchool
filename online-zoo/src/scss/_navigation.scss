@@ -1,0 +1,32 @@
+.nav {
+  flex: 1;
+
+  &__list {
+    @extend %flex;
+    justify-content: start;
+    gap: 43px;
+
+    .item__link {
+      padding: 10px 15px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+
+      @extend %transition;
+
+      &:hover {
+        color: $orange;
+        cursor: pointer;
+      }
+
+      &.active {
+        color: $orange;
+      }
+    }
+
+    :last-child {
+      margin-left: auto;
+      padding-right: 0;
+    }
+  }
+}

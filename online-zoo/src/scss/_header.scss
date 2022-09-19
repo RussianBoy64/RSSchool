@@ -1,0 +1,12 @@
+.header {
+  width: 100%;
+  height: 80px;
+  color: $primaty-white;
+  background-color: #111115;
+
+  &__inner {
+    @extend %flex;
+    gap: 47px;
+    padding: 14px 0;
+  }
+}

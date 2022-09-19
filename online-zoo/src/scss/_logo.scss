@@ -1,0 +1,35 @@
+.logo {
+  position: relative;
+  @extend %flex-centered;
+  width: 82px;
+  height: 52px;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+
+  @extend %transition;
+
+  &__link {
+    position: relative;
+    z-index: 10;
+    font-size: 19.5px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  svg {
+    position: absolute;
+    z-index: 1;
+    left: 10px;
+    bottom: 7px;
+  }
+
+  &:hover {
+    border: 1px solid $orange;
+  }
+
+  &:active {
+    border: 1px solid $gray;
+  }
+}
