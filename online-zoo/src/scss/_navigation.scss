@@ -4,13 +4,14 @@
   &__list {
     @extend %flex;
     justify-content: start;
-    gap: 43px;
+    gap: 28px;
 
     .item__link {
       padding: 10px 15px;
       font-weight: 500;
       font-size: 16px;
       line-height: 22px;
+      white-space: nowrap;
 
       @extend %transition;
 
@@ -23,10 +24,12 @@
         color: $orange;
       }
     }
+  }
+}
 
-    :last-child {
-      margin-left: auto;
-      padding-right: 0;
-    }
+.copyright {
+  margin-left: auto;
+  .item__link {
+    padding-right: 0;
   }
 }

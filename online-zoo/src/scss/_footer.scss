@@ -1,0 +1,11 @@
+.footer {
+  width: 100%;
+  color: $primaty-white;
+  background-color: #111115;
+
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    padding: 40px 0;
+  }
+}
