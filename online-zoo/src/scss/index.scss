@@ -4,9 +4,12 @@
 // STYLES
 @import './normalize';
 @import './variables';
-
 @import './basics';
+
 @import './header';
 @import './logo';
 @import './navigation';
 @import './footer';
+
+// MAIN ABOUT
+@import './about/watch';

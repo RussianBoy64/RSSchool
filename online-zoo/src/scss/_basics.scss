@@ -15,6 +15,12 @@ body {
 
 .main {
   flex: 1;
+  width: 100%;
+}
+
+.h1 {
+  position: absolute;
+  visibility: hidden;
 }
 
 // FLEX
