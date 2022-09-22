@@ -8,8 +8,10 @@
 
 @import './header';
 @import './logo';
-@import './navigation';
 @import './footer';
+
+// UI
+@import './UI/UI';
 
 // MAIN ABOUT
 @import './about/watch';

@@ -1,0 +1,40 @@
+.btn {
+  position: relative;
+  width: 298px;
+  height: 54px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  text-transform: uppercase;
+  color: $primary-white;
+  border: none;
+  background-color: $orange-dark;
+  background-image: $orange-grad;
+  overflow: hidden;
+
+  @extend %transition;
+
+  &:hover {
+    background: $orange-dark;
+  }
+
+  &:active {
+    background: $green;
+  }
+
+  &:disabled {
+    background: $gray;
+  }
+
+  &_round {
+    border-radius: 25px;
+  }
+
+  &_sqrt {
+    border-radius: 5px;
+  }
+}
+
+.watch__btn {
+  margin-right: 98px;
+}
