@@ -38,3 +38,26 @@
 .watch__btn {
   margin-right: 98px;
 }
+
+.arrow-btn {
+  @extend %flex-centered;
+  width: 62px;
+  height: 62px;
+  font-size: 18px;
+  color: $primary-white;
+  border: none;
+  border-radius: 50%;
+  background-color: $orange-dark;
+  background-image: $orange-grad;
+  cursor: pointer;
+
+  @extend %transition;
+
+  &:hover {
+    background: $orange-dark;
+  }
+
+  &:active {
+    background: $green;
+  }
+}
