@@ -10,7 +10,7 @@
   border: none;
   background-color: $orange-dark;
   background-image: $orange-grad;
-  overflow: hidden;
+  cursor: pointer;
 
   @extend %transition;
 

@@ -1,8 +1,11 @@
 .watch {
   position: relative;
   height: 700px;
-
   background-color: $primary-dark;
+  background-image: url('../assets/img/panda-bg.jpg');
+  background-repeat: no-repeat;
+
+  background-position: center -80px;
 
   &__inner {
     @extend %flex-column;
@@ -37,5 +40,11 @@
     span {
       color: $yellow;
     }
+  }
+}
+
+@media (min-width: 1601px) {
+  .watch {
+    background-size: cover;
   }
 }
