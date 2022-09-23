@@ -1,0 +1,46 @@
+.feed {
+  padding-top: 69px;
+  padding-bottom: 100px;
+  background: $orange-light-grad;
+
+  &__inner {
+    padding: 40px 50px 50px 100px;
+    background: $frosted-white;
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+  }
+
+  &__title {
+    margin-bottom: 28px;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 120%;
+    text-align: center;
+    color: $orange;
+  }
+
+  &__text_1 {
+    margin-bottom: 42px;
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  &__text_2 {
+    margin-bottom: 9px;
+    font-weight: 500;
+    line-height: 21px;
+  }
+
+  &__text_3 {
+    line-height: 21px;
+  }
+
+  &__subtitle {
+    margin-top: 59px;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 47px;
+    text-align: center;
+    transform: translateX(-25px);
+  }
+}

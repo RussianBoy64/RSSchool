@@ -32,6 +32,7 @@
           background-size: 110%;
           .item__discription {
             top: 0;
+            background-color: rgba(0, 0, 0, 0.7);
           }
         }
       }
@@ -63,15 +64,18 @@
       position: absolute;
       top: 100%;
       @extend %flex-column;
+      gap: 15px;
       align-items: center;
       justify-content: center;
       width: 100%;
       height: 100%;
       color: $primary-white;
       font-size: 2em;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0);
 
       @extend %transition;
+      transition: top 300ms ease-in-out,
+        background-color 300ms ease-in-out 300ms;
     }
   }
 
