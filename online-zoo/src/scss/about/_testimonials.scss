@@ -1,0 +1,137 @@
+.testimonials {
+  background: url('../assets/img/leav_foto.png') no-repeat 100% 126%;
+
+  &__inner {
+    @extend %flex-column;
+    align-items: center;
+    padding-top: 140px;
+    padding-bottom: 180px;
+  }
+
+  &__title {
+    margin-bottom: 45px;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 47px;
+    text-align: center;
+  }
+
+  &__slider-container {
+  }
+
+  &__slider {
+    @extend %flex;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .slider {
+    &__item {
+      width: 267px;
+      height: 391px;
+      padding: 2px;
+      background: $pink-grad;
+      border-radius: 20px;
+      overflow: hidden;
+
+      .item {
+        &__bg {
+          width: 100%;
+          height: 100%;
+          padding: 15px 11px 19px 15px;
+          background: $light-gray;
+          border-radius: 20px;
+        }
+
+        &__header {
+          display: grid;
+          grid-template-columns: 37px 1fr;
+          align-items: center;
+          grid-template-areas:
+            'icon name'
+            'icon location';
+          grid-column-gap: 9px;
+          margin-bottom: 10px;
+        }
+
+        &__icon {
+          grid-area: icon;
+          border-radius: 50%;
+        }
+
+        &__user-name {
+          grid-area: name;
+          font-weight: 500;
+          line-height: 19px;
+          color: $primary-dark;
+        }
+
+        &__user-location {
+          font-weight: 300;
+          font-size: 15px;
+          line-height: 18px;
+          color: #bdbdbd;
+        }
+
+        &__text {
+          height: calc(100% - 50px);
+          font-weight: 300;
+          font-size: 15px;
+          line-height: 18px;
+          color: $gray;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  &__input {
+    position: relative;
+    margin-top: 22px;
+    margin-bottom: 32px;
+    width: 599px;
+    border-radius: 5px;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
+      background: $pink-grad;
+      border-radius: 5px;
+    }
+
+    &::-webkit-slider-runnable-track {
+      position: relative;
+      height: 6px;
+      background: $light-gray;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    &::-webkit-slider-thumb {
+      width: 10px;
+      height: 10px;
+      background: $orange;
+      border-radius: 50%;
+      appearance: none;
+      cursor: pointer;
+      outline: none;
+      transform: translateY(-2px);
+      box-shadow: -602px 0 0 600px $orange;
+    }
+  }
+
+  &__input:hover {
+    &::-webkit-slider-thumb {
+      background: $orange-dark;
+      box-shadow: -602px 0 0 600px $orange-dark;
+    }
+  }
+}

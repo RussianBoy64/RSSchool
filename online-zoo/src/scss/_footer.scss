@@ -5,7 +5,131 @@
 
   &__inner {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    padding: 40px 0;
+    grid-template-areas:
+      'logo . subscribe'
+      'btn . .'
+      'socials nav author';
+    padding: 40px 0 43px;
+
+    .logo {
+      grid-area: logo;
+    }
+
+    .subscribe {
+      grid-area: subscribe;
+      justify-self: end;
+      width: 367px;
+
+      label {
+        display: block;
+        margin-bottom: 14px;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+      }
+
+      input {
+        width: 228px;
+        height: 42px;
+        padding: 10px;
+        color: $gray;
+        line-height: 22px;
+        border: 1px solid $orange;
+        border-radius: 2px;
+        background: transparent;
+        outline: none;
+      }
+
+      &:active {
+        input {
+          color: $green;
+          border: 1px solid $green;
+        }
+
+        button {
+          color: $green;
+          border: 1px solid $green;
+        }
+      }
+
+      &:invalid {
+        input {
+          color: $red;
+          border: 1px solid $red;
+        }
+
+        button {
+          color: $red;
+          border: 1px solid $red;
+        }
+      }
+    }
+
+    .socials-list {
+      grid-area: socials;
+      @extend %flex-column;
+      gap: 3px;
+      margin-top: 43px;
+
+      &__item {
+        &:nth-child(1) {
+          i {
+            background-image: url(../assets/icons/facebook.svg);
+          }
+        }
+        &:nth-child(2) {
+          i {
+            background-image: url(../assets/icons/twitter.svg);
+          }
+        }
+        &:nth-child(3) {
+          i {
+            background-image: url(../assets/icons/insta.svg);
+          }
+        }
+        &:nth-child(4) {
+          i {
+            background-image: url(../assets/icons/youtube.svg);
+          }
+        }
+      }
+
+      &__link {
+        display: inline-flex;
+        align-items: center;
+        color: $primary-white;
+        line-height: 22px;
+        @extend %transition;
+
+        i {
+          display: inline-block;
+          width: 26px;
+          height: 26px;
+          margin-right: 13px;
+          background: rgba(196, 196, 196, 0.5);
+          background-repeat: no-repeat;
+          background-position: center;
+          border-radius: 50%;
+
+          @extend %transition;
+        }
+
+        &:hover {
+          color: $orange;
+
+          i {
+            background-color: $orange;
+          }
+        }
+
+        &:active {
+          color: $green;
+
+          i {
+            background-color: $green;
+          }
+        }
+      }
+    }
   }
 }

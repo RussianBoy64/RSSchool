@@ -1,0 +1,23 @@
+.feed__link {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    width: 100%;
+    height: 1px;
+    background-color: $orange;
+    @extend %transition;
+  }
+
+  &:hover {
+    &::before {
+      background-color: $green;
+    }
+  }
+
+  &:active {
+    color: $green;
+  }
+}

@@ -4,14 +4,16 @@
   background: $orange-light-grad;
 
   &__inner {
-    padding: 40px 50px 50px 100px;
+    margin-bottom: 11px;
+    padding: 40px 50px 50px 50px;
+    text-align: center;
     background: $frosted-white;
     backdrop-filter: blur(2px);
     border-radius: 20px;
   }
 
   &__title {
-    margin-bottom: 28px;
+    margin-bottom: 31px;
     font-size: 48px;
     font-weight: 400;
     line-height: 120%;
@@ -19,28 +21,95 @@
     color: $orange;
   }
 
-  &__text_1 {
-    margin-bottom: 42px;
-    font-size: 24px;
-    line-height: 29px;
-  }
+  &__text {
+    transform: translateX(48px);
 
-  &__text_2 {
-    margin-bottom: 9px;
-    font-weight: 500;
-    line-height: 21px;
-  }
+    &_1 {
+      text-align: left;
+      margin-bottom: 40px;
+      font-size: 24px;
+      line-height: 29px;
+    }
 
-  &__text_3 {
-    line-height: 21px;
+    &_2 {
+      text-align: left;
+      margin-bottom: 10px;
+      font-weight: 500;
+      line-height: 21px;
+    }
+
+    &_3 {
+      text-align: left;
+      line-height: 21px;
+    }
   }
 
   &__subtitle {
-    margin-top: 59px;
+    margin-top: 61px;
+    margin-bottom: 41px;
     font-size: 36px;
     font-weight: 400;
     line-height: 47px;
     text-align: center;
-    transform: translateX(-25px);
+  }
+
+  &__steps {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+
+  &__step {
+    width: 168px;
+    text-align: left;
+
+    &:nth-child(1) {
+      .step__icon {
+        background-image: url('../assets/img/pay.png');
+      }
+    }
+
+    &:nth-child(3) {
+      .step__icon {
+        background-image: url('../assets/img/zoo.png');
+      }
+    }
+
+    &:nth-child(5) {
+      .step__icon {
+        background-image: url('../assets/img/monkey.png');
+      }
+    }
+  }
+}
+
+.step {
+  &__icon-border {
+    margin-bottom: 30px;
+    padding: 2px;
+    height: 168px;
+    border-radius: 5px;
+    background: $orange-grad;
+  }
+
+  &__icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: $primary-white;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__text {
+    line-height: 22px;
+  }
+
+  &__arrow {
+    width: 69px;
+    background-image: url('../assets/img/Vector.png');
+    background-repeat: no-repeat;
+    background-position: center 59px;
   }
 }

@@ -2,9 +2,11 @@
   position: relative;
   width: 298px;
   height: 54px;
+  padding: 16px 0;
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
+  text-align: center;
   text-transform: uppercase;
   color: $primary-white;
   border: none;
@@ -33,6 +35,27 @@
   &_sqrt {
     border-radius: 5px;
   }
+
+  &[type='submit'] {
+    width: 129px;
+    height: 42px;
+    padding: initial;
+    color: $primary-dark;
+    text-transform: initial;
+    background: $light-gray;
+    border: 1px solid $blk-blue;
+    border-radius: 5px;
+
+    &:active {
+      color: $green;
+      border: 1px solid $green;
+    }
+
+    &:invalid {
+      color: $red;
+      border: 1px solid $red;
+    }
+  }
 }
 
 .watch__btn {
@@ -60,4 +83,17 @@
   &:active {
     background: $green;
   }
+}
+
+.testimonails_btn {
+  align-self: flex-start;
+}
+
+.footer_btn {
+  margin-left: 6px;
+}
+
+.footer_btn-donate {
+  grid-area: btn;
+  margin-top: 37px;
 }
