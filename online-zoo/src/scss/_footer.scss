@@ -5,6 +5,7 @@
 
   &__inner {
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
       'logo . subscribe'
       'btn . .'
@@ -13,56 +14,6 @@
 
     .logo {
       grid-area: logo;
-    }
-
-    .subscribe {
-      grid-area: subscribe;
-      justify-self: end;
-      width: 367px;
-
-      label {
-        display: block;
-        margin-bottom: 14px;
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 29px;
-      }
-
-      input {
-        width: 228px;
-        height: 42px;
-        padding: 10px;
-        color: $gray;
-        line-height: 22px;
-        border: 1px solid $orange;
-        border-radius: 2px;
-        background: transparent;
-        outline: none;
-      }
-
-      &:active {
-        input {
-          color: $green;
-          border: 1px solid $green;
-        }
-
-        button {
-          color: $green;
-          border: 1px solid $green;
-        }
-      }
-
-      &:invalid {
-        input {
-          color: $red;
-          border: 1px solid $red;
-        }
-
-        button {
-          color: $red;
-          border: 1px solid $red;
-        }
-      }
     }
 
     .socials-list {
@@ -130,6 +81,12 @@
           }
         }
       }
+    }
+
+    .nav {
+      grid-area: nav;
+      align-self: flex-end;
+      margin-bottom: 2px;
     }
   }
 }

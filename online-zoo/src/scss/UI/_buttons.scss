@@ -85,6 +85,10 @@
   }
 }
 
+.feed_btn {
+  display: inline-block;
+}
+
 .testimonails_btn {
   align-self: flex-start;
 }
@@ -96,4 +100,9 @@
 .footer_btn-donate {
   grid-area: btn;
   margin-top: 37px;
+}
+
+.diet__btn {
+  margin-top: 30px;
+  transform: translateX(3px);
 }

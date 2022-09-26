@@ -1,0 +1,283 @@
+.subscribe {
+  grid-area: subscribe;
+  justify-self: end;
+  width: 367px;
+
+  label {
+    display: block;
+    margin-bottom: 14px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  input {
+    width: 228px;
+    height: 42px;
+    padding: 10px;
+    color: $gray;
+    line-height: 22px;
+    border: 1px solid $orange;
+    border-radius: 2px;
+    background: transparent;
+    outline: none;
+  }
+
+  &:active {
+    input {
+      color: $green;
+      border: 1px solid $green;
+    }
+
+    button {
+      color: $green;
+      border: 1px solid $green;
+    }
+  }
+
+  &:invalid {
+    input {
+      color: $red;
+      border: 1px solid $red;
+    }
+
+    button {
+      color: $red;
+      border: 1px solid $red;
+    }
+  }
+}
+
+.diet__form {
+  margin-top: 47px;
+
+  &__title {
+    margin: 0 0 17px;
+    padding: 0 4px;
+    color: $primary-dark;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  &__price-input {
+    position: relative;
+    @extend %flex;
+    justify-content: space-between;
+    height: 27px;
+    padding: 0 30px 0 26px;
+    background: #404950;
+    border-radius: 2px;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 93%;
+      height: 2px;
+      background: #72828e;
+
+      transform: translate(-50%, -50%);
+    }
+
+    .amount {
+      appearance: none;
+
+      &:hover {
+        & + label {
+          &:before {
+            animation: fade 1500ms linear infinite;
+          }
+
+          &:after {
+            animation: fade 1500ms linear infinite;
+          }
+        }
+      }
+
+      &:checked {
+        & + label {
+          &:before {
+            opacity: 1;
+            animation: bounce 2000ms linear infinite;
+          }
+
+          &:after {
+            opacity: 1;
+            animation: bounce 2000ms linear infinite;
+          }
+        }
+      }
+    }
+
+    label {
+      position: relative;
+      z-index: 100;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: $yellow;
+      cursor: pointer;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 22px;
+        height: 22px;
+        border: 1px solid $orange;
+        border-radius: 50%;
+        opacity: 0;
+
+        transform: translate(-50%, -50%) scale(1);
+        @extend %transition;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        border: 1px solid $orange;
+        border-radius: 50%;
+        opacity: 0;
+
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  }
+
+  &__prices {
+    @extend %flex;
+    justify-content: space-between;
+    margin-top: 11px;
+    margin-bottom: 50px;
+    padding-right: 24px;
+
+    .price {
+      font-weight: 500;
+      font-size: 26px;
+      line-height: 36px;
+      text-transform: uppercase;
+
+      &:nth-child(2) {
+        transform: translateX(-11px);
+      }
+      &:nth-child(3) {
+        transform: translateX(-21px);
+      }
+      &:nth-child(4) {
+        transform: translateX(-32px);
+      }
+      &:nth-child(5) {
+        transform: translateX(-28px);
+      }
+      &:nth-child(6) {
+        transform: translateX(-24px);
+      }
+      &:nth-child(7) {
+        transform: translateX(-20px);
+      }
+
+      .dollar {
+        font-size: 22px;
+      }
+    }
+  }
+
+  .amount-label {
+    position: relative;
+    color: #929699;
+
+    span {
+      position: absolute;
+      top: 50%;
+      right: 9px;
+      font-size: 24px;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__amount-input {
+    width: 268px;
+    height: 54px;
+    padding: 9px;
+    line-height: 22px;
+    border: 1px solid #929699;
+    border-radius: 2px;
+    background: transparent;
+    outline: none;
+
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &:invalid {
+      color: $red;
+      border: 1px solid $red;
+
+      & + span {
+        color: $red;
+      }
+    }
+  }
+
+  .payment {
+    position: relative;
+    @extend %flex;
+    justify-content: center;
+    gap: 76px;
+    margin-top: 25px;
+    transform: translateX(5px);
+
+    input[type='radio'] {
+      appearance: none;
+
+      &:hover {
+        & + label:before {
+          background-color: $orange;
+        }
+      }
+
+      &:checked {
+        & + label:before {
+          background-color: $green;
+          border: 1px solid $green;
+        }
+      }
+    }
+
+    label {
+      position: relative;
+      line-height: 22px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -27px;
+        width: 16px;
+        height: 16px;
+        border: 1px solid $orange;
+        border-radius: 50%;
+
+        @extend %transition;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  &__share {
+    margin-top: 29px;
+    line-height: 22px;
+  }
+}

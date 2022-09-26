@@ -1,0 +1,125 @@
+.bg {
+  width: 100%;
+  height: 386px;
+  background-color: $primary-dark;
+  background-image: url('../assets/img/panda-bg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.donate {
+  padding: 40px 0 180px;
+  background: $orange-light-grad;
+
+  &__title {
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 47px;
+    color: $primary-white;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    margin-bottom: 45px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    color: $primary-white;
+  }
+
+  &__info {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 47px;
+    color: $orange;
+  }
+
+  &__inner {
+    margin-top: 61px;
+    padding: 40px 92px 62px;
+    text-align: center;
+    background: $frosted-white;
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+
+    &__title {
+      margin-bottom: 20px;
+      font-size: 48px;
+      font-weight: 400;
+      line-height: 120%;
+      text-align: center;
+      color: $orange;
+      transform: translateX(-7px);
+    }
+
+    &__text {
+      font-size: 24px;
+      line-height: 29px;
+      text-align: left;
+    }
+  }
+}
+
+.diet {
+  margin-top: 61px;
+
+  &__info {
+    @extend %flex;
+    justify-content: center;
+
+    &__days {
+      @extend %flex-column;
+      transform: translateY(28px);
+      margin-right: 11px;
+
+      .day {
+        margin-bottom: 11px;
+        color: $primary-dark;
+        font-weight: 500;
+        font-size: 72px;
+        line-height: 58px;
+        text-transform: uppercase;
+      }
+
+      .text {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+      }
+    }
+
+    .x_icon {
+      transform: translateY(14px);
+    }
+
+    .animal {
+      margin-left: 76px;
+      transform: translateX(-13px);
+    }
+  }
+}
+
+@keyframes bounce {
+  33% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

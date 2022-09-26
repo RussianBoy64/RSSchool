@@ -21,3 +21,47 @@
     color: $green;
   }
 }
+
+.author__link {
+  grid-area: author;
+  align-self: flex-end;
+  justify-self: flex-end;
+  font-weight: 100;
+  font-size: 16px;
+  line-height: 30px;
+
+  span {
+    position: relative;
+    @extend %transition;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0%;
+      height: 1px;
+      background: $primary-white;
+
+      @extend %transition;
+    }
+  }
+
+  &:hover {
+    color: $orange;
+
+    span::after {
+      left: 0;
+      width: 100%;
+      background: $orange;
+    }
+  }
+
+  &:active {
+    color: $green;
+
+    span::after {
+      background: $green;
+    }
+  }
+}
