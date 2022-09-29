@@ -102,3 +102,39 @@
     }
   }
 }
+
+@media (max-width: 950px) {
+  .footer {
+    &__inner {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas:
+        'logo subscribe'
+        'btn socials'
+        'nav author';
+
+      .socials-list {
+        margin-top: 20px;
+        justify-self: flex-end;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .footer {
+    &__inner {
+      grid-template-areas:
+        'logo socials'
+        'btn socials'
+        'nav author';
+    }
+
+    .socials-list {
+      margin-top: 0;
+    }
+  }
+
+  .subscribe {
+    display: none;
+  }
+}
