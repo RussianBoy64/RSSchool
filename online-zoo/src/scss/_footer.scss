@@ -7,7 +7,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
-      'logo . subscribe'
+      'logo subscribe subscribe'
       'btn . .'
       'socials nav author';
     padding: 40px 0 43px;
@@ -87,6 +87,18 @@
       grid-area: nav;
       align-self: flex-end;
       margin-bottom: 2px;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .footer {
+    .socials-list {
+      margin-top: 47px;
+    }
+
+    .nav {
+      transform: translate(-9px, -4px);
     }
   }
 }

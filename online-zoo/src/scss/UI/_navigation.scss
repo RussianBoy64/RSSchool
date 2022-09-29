@@ -37,3 +37,11 @@
     padding-right: 0;
   }
 }
+
+@media (max-width: 1100px) {
+  .nav {
+    &__list {
+      gap: 18px;
+    }
+  }
+}

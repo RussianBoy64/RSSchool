@@ -281,3 +281,37 @@
     line-height: 22px;
   }
 }
+
+@media (max-width: 1100px) {
+  .diet__form {
+    &__title {
+      padding: 0 16px;
+    }
+
+    &__price-input {
+      margin: 0 17px;
+      padding: 0 10px;
+
+      input[id='5000'] {
+        display: none;
+        & + label {
+          display: none;
+        }
+      }
+    }
+
+    &__prices {
+      padding: 0 5px 0 26px;
+    }
+
+    .price {
+      &:nth-child(1) {
+        display: none;
+      }
+    }
+  }
+
+  .subscribe {
+    margin-right: 33px;
+  }
+}

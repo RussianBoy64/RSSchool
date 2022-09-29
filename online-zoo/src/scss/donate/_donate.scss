@@ -124,3 +124,29 @@
     opacity: 0;
   }
 }
+
+@media (max-width: 1100px) {
+  .bg {
+    height: 391px;
+    background-position: -171px center;
+    background-size: initial;
+  }
+
+  .donate {
+    padding: 40px 0 31px;
+
+    &__title {
+      width: 90%;
+      margin-bottom: 29px;
+    }
+
+    &__inner {
+      margin-top: 43px;
+      padding: 19px 48px 46px;
+
+      &__title {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
