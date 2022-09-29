@@ -10,3 +10,11 @@
     padding: 14px 0;
   }
 }
+
+@media (max-width: 800px) {
+  .header {
+    &__inner {
+      gap: 10px;
+    }
+  }
+}

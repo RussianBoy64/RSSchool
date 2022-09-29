@@ -124,3 +124,70 @@
     opacity: 0;
   }
 }
+
+@media (max-width: 1100px) {
+  .bg {
+    height: 391px;
+    background-position: -171px center;
+    background-size: initial;
+  }
+
+  .donate {
+    padding: 40px 0 31px;
+
+    &__title {
+      width: 90%;
+      margin-bottom: 29px;
+    }
+
+    &__inner {
+      margin-top: 43px;
+      padding: 19px 48px 46px;
+
+      &__title {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .bg {
+    height: 335px;
+    background-position: -288px center;
+    background-size: 220%;
+  }
+
+  .donate {
+    padding: 31px 0 46px;
+
+    &__title {
+      width: 100%;
+      margin-bottom: 20px;
+      font-size: 24px;
+      line-height: 29px;
+    }
+
+    &__description {
+      margin-bottom: 30px;
+    }
+
+    &__inner {
+      margin-top: 30px;
+      padding: 27px 0 30px;
+
+      &__title {
+        margin-bottom: 23px;
+        transform: translateX(0);
+      }
+
+      &__text {
+        text-align: center;
+      }
+
+      .diet {
+        margin-top: 50px;
+      }
+    }
+  }
+}
