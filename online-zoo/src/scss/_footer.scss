@@ -123,6 +123,7 @@
 @media (max-width: 800px) {
   .footer {
     &__inner {
+      padding: 13px 0 43px;
       grid-template-areas:
         'logo socials'
         'btn socials'
@@ -131,6 +132,10 @@
 
     .socials-list {
       margin-top: 0;
+      gap: 13px;
+
+      &__item {
+      }
     }
   }
 

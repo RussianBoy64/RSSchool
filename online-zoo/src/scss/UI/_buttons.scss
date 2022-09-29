@@ -112,3 +112,13 @@
     margin-top: 34px;
   }
 }
+
+@media (max-width: 800px) {
+  .diet__btn {
+    transform: translateX(1px);
+  }
+
+  .footer_btn-donate {
+    margin-top: 32px;
+  }
+}

@@ -292,6 +292,10 @@
       margin: 0 17px;
       padding: 0 10px;
 
+      &:after {
+        width: 97%;
+      }
+
       input[id='5000'] {
         display: none;
         & + label {
@@ -319,5 +323,81 @@
 @media (max-width: 950px) {
   .subscribe {
     margin-right: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .diet__form {
+    margin-top: 41px;
+
+    &__title {
+      margin: 0 0 7px;
+      padding: 0 10px;
+    }
+
+    &__price-input {
+      margin: 0;
+      padding: 0 35px;
+
+      &:after {
+        width: 85%;
+      }
+
+      input[id='2000'] {
+        display: none;
+        & + label {
+          display: none;
+        }
+      }
+
+      input[id='1000'] {
+        display: none;
+        & + label {
+          display: none;
+        }
+      }
+    }
+
+    &__prices {
+      padding: 0 22px 0 26px;
+
+      .price {
+        &:nth-child(2),
+        &:nth-child(3) {
+          display: none;
+        }
+
+        &:nth-child(4) {
+          transform: translateX(-10px);
+        }
+
+        &:nth-child(5) {
+          transform: translateX(-11px);
+        }
+
+        &:nth-child(6) {
+          transform: translateX(-11px);
+        }
+
+        &:nth-child(7) {
+          transform: translateX(-13px);
+        }
+      }
+    }
+
+    &__amount-input {
+      width: 180px;
+      height: 42px;
+      padding: 5px;
+    }
+
+    .payment {
+      margin-top: 29px;
+      transform: translateX(3px);
+    }
+
+    &__share {
+      margin-top: 31px;
+    }
   }
 }
