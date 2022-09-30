@@ -33,3 +33,24 @@
     border: 1px solid $gray;
   }
 }
+
+@media (max-width: 640px) {
+  .header__inner {
+    .logo {
+      width: 47px;
+      height: 29px;
+      border: none;
+
+      &__link {
+        font-size: 12px;
+        line-height: 15px;
+      }
+
+      img {
+        width: 8px;
+        left: 3px;
+        bottom: 3px;
+      }
+    }
+  }
+}

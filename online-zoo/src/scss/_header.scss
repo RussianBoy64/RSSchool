@@ -18,3 +18,17 @@
     }
   }
 }
+
+@media (max-width: 640px) {
+  .header {
+    position: fixed;
+    z-index: 1000;
+    height: 34px;
+
+    &__inner {
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 2px 0;
+    }
+  }
+}
