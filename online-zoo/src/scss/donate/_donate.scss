@@ -191,3 +191,81 @@
     }
   }
 }
+
+@media (max-width: 581px) {
+  .diet {
+    &__info {
+      .animal {
+        width: 160px;
+        height: 139px;
+        margin-left: 36px;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .bg {
+    height: 187px;
+    background-position: -147px center;
+    background-size: 240%;
+  }
+
+  .donate {
+    padding: 31px 0 20px;
+
+    &__info {
+      font-size: 24px;
+      line-height: 29px;
+    }
+
+    &__inner {
+      padding: 21px 0 19px;
+
+      &__title {
+        margin-bottom: 8px;
+        font-size: 24px;
+        line-height: 29px;
+      }
+
+      &__text {
+        font-size: 16px;
+        line-height: 22px;
+      }
+
+      .diet {
+        margin-top: 9px;
+
+        &__info {
+          gap: 6px;
+
+          &__days {
+            margin-right: 0;
+            transform: translateY(16px);
+
+            .day {
+              margin-bottom: 8px;
+              font-size: 40px;
+              line-height: 32px;
+            }
+
+            .text {
+              font-size: 9px;
+              line-height: 13px;
+            }
+          }
+          .x_icon {
+            width: 8px;
+            height: 8px;
+            transform: translateY(9px);
+          }
+
+          .animal {
+            margin-left: 30px;
+            transform: translateX(0);
+          }
+        }
+      }
+    }
+  }
+}

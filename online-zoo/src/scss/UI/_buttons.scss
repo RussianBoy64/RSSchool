@@ -123,3 +123,15 @@
     margin-top: 2px;
   }
 }
+
+@media (max-width: 400px) {
+  .footer_btn-donate {
+    justify-self: center;
+    margin-top: 0;
+    transform: translate(-4px, -6px);
+  }
+
+  .diet__btn {
+    margin-top: 27px;
+  }
+}

@@ -54,3 +54,21 @@
     }
   }
 }
+
+@media (max-width: 400px) {
+  .footer__inner {
+    .logo {
+      width: 128px;
+      height: 23px;
+      border: none;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+      transform: translateX(-1px);
+
+      img {
+        left: 72px;
+        bottom: 5px;
+      }
+    }
+  }
+}

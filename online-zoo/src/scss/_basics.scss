@@ -64,3 +64,9 @@ body {
     margin-top: 34px;
   }
 }
+
+@media (max-width: 581px) {
+  .wrapper {
+    padding: 0 10px;
+  }
+}
