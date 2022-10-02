@@ -39,6 +39,7 @@
     }
 
     &_3 {
+      width: 82%;
       text-align: left;
       line-height: 21px;
     }
@@ -111,5 +112,44 @@
     background-image: url('../assets/img/Vector.png');
     background-repeat: no-repeat;
     background-position: center 59px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .feed {
+    padding-top: 29px;
+    padding-bottom: 38px;
+
+    &__inner {
+      padding: 30px 48px 53px 48px;
+    }
+
+    &__title {
+      margin-bottom: 21px;
+    }
+
+    &__text {
+      transform: translateX(0);
+
+      &_1 {
+        margin-bottom: 19px;
+      }
+
+      &_2 {
+        width: 96%;
+      }
+
+      &_3 {
+        width: 100%;
+      }
+    }
+
+    &__subtitle {
+      margin-top: 39px;
+    }
+
+    &__steps {
+      margin-bottom: 70px;
+    }
   }
 }
