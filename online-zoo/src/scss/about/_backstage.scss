@@ -3,6 +3,8 @@
   background-position: 100% 12px;
   background-repeat: no-repeat;
 
+  @extend %transition;
+
   &__inner {
     @extend %flex-centered;
     gap: 72px;
@@ -41,5 +43,63 @@
   }
   &__description {
     line-height: 22px;
+  }
+}
+
+@media (max-width: 1599px) {
+  .backstage__inner {
+    gap: 31px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .backstage {
+    &__inner {
+      padding: 100px 20px;
+    }
+
+    &__img {
+      width: 40%;
+      height: 408px;
+    }
+  }
+}
+
+@media (max-width: 1350px) {
+  .backstage {
+    background-position: 105% 12px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .backstage {
+    background-image: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .backstage {
+    &__inner {
+      gap: 6px;
+      height: 627px;
+      padding: 110px 20px;
+    }
+
+    &__img {
+      width: 455px;
+    }
+
+    &__text {
+      padding-left: 25px;
+    }
+
+    &__title {
+      font-size: 48px;
+      line-height: 58px;
+    }
+
+    &__description {
+      width: 97%;
+    }
   }
 }

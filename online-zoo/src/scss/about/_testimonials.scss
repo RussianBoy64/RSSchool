@@ -17,17 +17,20 @@
   }
 
   &__slider-container {
+    overflow: hidden;
   }
 
   &__slider {
+    $gap: 30px;
     @extend %flex;
     justify-content: space-between;
-    gap: 30px;
+    gap: $gap;
+    width: fit-content;
   }
 
   .slider {
     &__item {
-      width: 267px;
+      min-width: 267px;
       height: 391px;
       padding: 2px;
       background: $pink-grad;
@@ -132,6 +135,20 @@
     &::-webkit-slider-thumb {
       background: $orange-dark;
       box-shadow: -602px 0 0 600px $orange-dark;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .testimonials {
+    &__slider {
+      .slider__item {
+        min-width: calc((100% - 30px * 2) / 3);
+
+        &:nth-child(2) {
+          order: 1;
+        }
+      }
     }
   }
 }

@@ -18,6 +18,11 @@
                     #header">PetStory online</a>
                     <img src="./assets/bamboo.svg" alt="Logo">
                 </h1>
+                <div class="burger-menu">
+                    <div class="burger-menu__item"></div>
+                    <div class="burger-menu__item"></div>
+                    <div class="burger-menu__item"></div>
+                </div>
                 <nav class="nav">
                     <ul class="nav__list">
                         <li class="list__item"><a href="#header" class="item__link nav__link active">About</a>
@@ -61,78 +66,224 @@
         <section class="pets">
             <h3 class="hidden">Pets</h3>
             <div class="wrapper pets__inner">
-                <div class="slider">
-                    <div class="slider-controls"><button class="arrow-btn">&larr;</button><button
-                            class="arrow-btn">&rarr;</button></div>
-                    <div class="slider-container">
-                        <div class="slider__item">
-                            <div class="item__img pandas">
+                <div class="slider-controls"><button class="arrow-btn">&larr;</button><button
+                        class="arrow-btn">&rarr;</button></div>
+                <div class="slider__wrapper">
+                    <div class="slider">
+                        <div class="slider-container slider-container_left">
+                            <div class="slider__item">
+                                <div class="item__img pandas">
+                                    <div class="item__discription"><span class="petName">Giant pandas</span><span
+                                            class="petPlace">Native to Southwest China</span>
+                                    </div>
+                                </div>
                                 <div class="item__discription"><span class="petName">Giant pandas</span><span
                                         class="petPlace">Native to Southwest China</span>
+                                    <div class="petDiet herbivore"></div>
                                 </div>
                             </div>
-                            <div class="item__discription"><span class="petName">Giant pandas</span><span
-                                    class="petPlace">Native to Southwest China</span>
-                                <div class="petDiet herbivore"></div>
-                            </div>
-                        </div>
-                        <div class="slider__item">
-                            <div class="item__img eagles">
+                            <div class="slider__item">
+                                <div class="item__img eagles">
+                                    <div class="item__discription"><span class="petName">Eagles</span><span
+                                            class="petPlace">Native to South America</span>
+                                    </div>
+                                </div>
                                 <div class="item__discription"><span class="petName">Eagles</span><span
                                         class="petPlace">Native to South America</span>
+                                    <div class="petDiet predator"></div>
                                 </div>
                             </div>
-                            <div class="item__discription"><span class="petName">Eagles</span><span
-                                    class="petPlace">Native to South America</span>
-                                <div class="petDiet predator"></div>
-                            </div>
-                        </div>
-                        <div class="slider__item">
-                            <div class="item__img gorillas">
-                                <div class="item__discription"><span class="petName">Gorillas</span><span
-                                        class="petPlace">Native to Congo</span>
+                            <div class="slider__item">
+                                <div class="item__img cheetah">
+                                    <div class="item__discription"><span class="petName">Cheetahs</span><span
+                                            class="petPlace">Native to Africa</span>
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item__discription"><span class="petName">Gorillas</span><span
-                                    class="petPlace">Native to Congo</span>
-                                <div class="petDiet herbivore"></div>
-                            </div>
-                        </div>
-                        <div class="slider__item">
-                            <div class="item__img twoToed">
-                                <div class="item__discription"><span class="petName">Two-toed Sloth</span><span
-                                        class="petPlace">Mesoamerica, South America</span>
-
-                                </div>
-                            </div>
-                            <div class="item__discription"><span class="petName">Two-toed Sloth</span><span
-                                    class="petPlace">Mesoamerica, South America</span>
-                                <div class="petDiet herbivore"></div>
-                            </div>
-                        </div>
-                        <div class="slider__item">
-                            <div class="item__img cheetah">
                                 <div class="item__discription"><span class="petName">Cheetahs</span><span
                                         class="petPlace">Native to Africa</span>
-
+                                    <div class="petDiet predator"></div>
                                 </div>
                             </div>
-                            <div class="item__discription"><span class="petName">Cheetahs</span><span
-                                    class="petPlace">Native to Africa</span>
-                                <div class="petDiet predator"></div>
+                            <div class="slider__item">
+                                <div class="item__img gorillas">
+                                    <div class="item__discription"><span class="petName">Gorillas</span><span
+                                            class="petPlace">Native to Congo</span>
+
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Gorillas</span><span
+                                        class="petPlace">Native to Congo</span>
+                                    <div class="petDiet herbivore"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="slider__item">
-                            <div class="item__img penguins">
+                            <div class="slider__item">
+                                <div class="item__img alligator">
+                                    <div class="item__discription"><span class="petName">Alligators</span><span
+                                            class="petPlace">Native to Southeastern U. S.</span>
+
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Alligators</span><span
+                                        class="petPlace">Native to Southeastern U. S.</span>
+                                    <div class="petDiet predator"></div>
+                                </div>
+                            </div>
+                            <div class="slider__item">
+                                <div class="item__img penguins">
+                                    <div class="item__discription"><span class="petName">Penguins</span><span
+                                            class="petPlace">Native to Antarctica</span>
+
+                                    </div>
+                                </div>
                                 <div class="item__discription"><span class="petName">Penguins</span><span
                                         class="petPlace">Native to Antarctica</span>
-
+                                    <div class="petDiet predator"></div>
                                 </div>
                             </div>
-                            <div class="item__discription"><span class="petName">Penguins</span><span
-                                    class="petPlace">Native to Antarctica</span>
-                                <div class="petDiet predator"></div>
+                        </div>
+                        <div class="slider-container slider-container_middle">
+                            <div class="slider__item">
+                                <div class="item__img pandas">
+                                    <div class="item__discription"><span class="petName">Giant pandas</span><span
+                                            class="petPlace">Native to Southwest China</span>
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Giant pandas</span><span
+                                        class="petPlace">Native to Southwest China</span>
+                                    <div class="petDiet herbivore"></div>
+                                </div>
+                            </div>
+                            <div class="slider__item">
+                                <div class="item__img eagles">
+                                    <div class="item__discription"><span class="petName">Eagles</span><span
+                                            class="petPlace">Native to South America</span>
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Eagles</span><span
+                                        class="petPlace">Native to South America</span>
+                                    <div class="petDiet predator"></div>
+                                </div>
+                            </div>
+                            <div class="slider__item">
+                                <div class="item__img gorillas">
+                                    <div class="item__discription"><span class="petName">Gorillas</span><span
+                                            class="petPlace">Native to Congo</span>
+
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Gorillas</span><span
+                                        class="petPlace">Native to Congo</span>
+                                    <div class="petDiet herbivore"></div>
+                                </div>
+                            </div>
+                            <div class="slider__item">
+                                <div class="item__img twoToed">
+                                    <div class="item__discription"><span class="petName">Two-toed Sloth</span><span
+                                            class="petPlace">Mesoamerica, South America</span>
+
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Two-toed Sloth</span><span
+                                        class="petPlace">Mesoamerica, South America</span>
+                                    <div class="petDiet herbivore"></div>
+                                </div>
+                            </div>
+                            <div class="slider__item">
+                                <div class="item__img cheetah">
+                                    <div class="item__discription"><span class="petName">Cheetahs</span><span
+                                            class="petPlace">Native to Africa</span>
+
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Cheetahs</span><span
+                                        class="petPlace">Native to Africa</span>
+                                    <div class="petDiet predator"></div>
+                                </div>
+                            </div>
+                            <div class="slider__item">
+                                <div class="item__img penguins">
+                                    <div class="item__discription"><span class="petName">Penguins</span><span
+                                            class="petPlace">Native to Antarctica</span>
+
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Penguins</span><span
+                                        class="petPlace">Native to Antarctica</span>
+                                    <div class="petDiet predator"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slider-container slider-container_right">
+                            <div class="slider__item">
+                                <div class="item__img pandas">
+                                    <div class="item__discription"><span class="petName">Giant pandas</span><span
+                                            class="petPlace">Native to Southwest China</span>
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Giant pandas</span><span
+                                        class="petPlace">Native to Southwest China</span>
+                                    <div class="petDiet herbivore"></div>
+                                </div>
+                            </div>
+                            <div class="slider__item">
+                                <div class="item__img eagles">
+                                    <div class="item__discription"><span class="petName">Eagles</span><span
+                                            class="petPlace">Native to South America</span>
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Eagles</span><span
+                                        class="petPlace">Native to South America</span>
+                                    <div class="petDiet predator"></div>
+                                </div>
+                            </div>
+                            <div class="slider__item">
+                                <div class="item__img gorillas">
+                                    <div class="item__discription"><span class="petName">Gorillas</span><span
+                                            class="petPlace">Native to Congo</span>
+
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Gorillas</span><span
+                                        class="petPlace">Native to Congo</span>
+                                    <div class="petDiet herbivore"></div>
+                                </div>
+                            </div>
+                            <div class="slider__item">
+                                <div class="item__img twoToed">
+                                    <div class="item__discription"><span class="petName">Two-toed Sloth</span><span
+                                            class="petPlace">Mesoamerica, South America</span>
+
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Two-toed Sloth</span><span
+                                        class="petPlace">Mesoamerica, South America</span>
+                                    <div class="petDiet herbivore"></div>
+                                </div>
+                            </div>
+                            <div class="slider__item">
+                                <div class="item__img cheetah">
+                                    <div class="item__discription"><span class="petName">Cheetahs</span><span
+                                            class="petPlace">Native to Africa</span>
+
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Cheetahs</span><span
+                                        class="petPlace">Native to Africa</span>
+                                    <div class="petDiet predator"></div>
+                                </div>
+                            </div>
+                            <div class="slider__item">
+                                <div class="item__img penguins">
+                                    <div class="item__discription"><span class="petName">Penguins</span><span
+                                            class="petPlace">Native to Antarctica</span>
+
+                                    </div>
+                                </div>
+                                <div class="item__discription"><span class="petName">Penguins</span><span
+                                        class="petPlace">Native to Antarctica</span>
+                                    <div class="petDiet predator"></div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,22 +1,38 @@
 .pets {
   padding: 38px 0 100px;
-  background: url('../assets/img/palm_foto.png') no-repeat 0 100%,
+  background: url('../assets/img/palm_foto.png') no-repeat -150px 100%,
     url('../assets/img/strelitzia 1.png') no-repeat 100% 100%;
+  background-size: auto 460px, auto;
+  @extend %transition;
 
   &__inner {
+    position: relative;
     text-align: center;
   }
 
   .slider {
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    width: fit-content;
     margin-bottom: 78px;
-    text-align-last: left;
+    text-align: left;
+
+    @extend %transition;
+
+    &__wrapper {
+      overflow: hidden;
+
+      @extend %transition;
+    }
 
     &-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       column-gap: 28px;
       row-gap: 20px;
+      min-width: 100%;
     }
 
     &__item {
@@ -40,12 +56,12 @@
 
     &-controls {
       position: absolute;
-      top: 50%;
+      top: 43%;
       left: 50%;
-      transform: translate(-50%, -54%);
+      transform: translate(-50%, -50%);
       @extend %flex;
       justify-content: space-between;
-      width: 114%;
+      width: 110%;
     }
   }
 }
@@ -135,6 +151,10 @@
   background-image: url('../assets/img/penguins.jpg');
 }
 
+.alligator {
+  background-image: url('../assets/img/alligator.jpg');
+}
+
 .herbivore {
   margin-right: 5px;
   width: 33px;
@@ -146,4 +166,44 @@
   width: 48px;
   height: 38px;
   background-image: url('../assets/img/meet-fish_icon.png');
+}
+
+@media (max-width: 1599px) {
+  .pets {
+    padding: 38px 0 140px;
+    background: url('../assets/img/palm_foto.png') no-repeat 0 100%,
+      url('../assets/img/strelitzia 1.png') no-repeat 100% 100%;
+    background-size: auto 202px, auto 180px;
+
+    .slider {
+      &-container {
+        row-gap: 92px;
+      }
+
+      &-controls {
+        top: 44%;
+        width: 354px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .pets {
+    padding: 43px 0 140px;
+
+    .item__img {
+      width: 294px;
+      height: 294px;
+    }
+
+    .slider-controls {
+      top: 43%;
+      width: 296px;
+    }
+
+    .slider {
+      transform: translateX(calc(100% + 28px));
+    }
+  }
 }

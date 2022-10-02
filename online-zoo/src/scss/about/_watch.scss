@@ -48,3 +48,29 @@
     background-size: cover;
   }
 }
+
+@media (max-width: 1000px) {
+  .watch {
+    height: 503px;
+    background-position: 50% 90%;
+    background-size: 120%;
+
+    &__inner {
+      gap: 43px;
+      padding-top: 45px;
+    }
+
+    &__title {
+      margin-right: 5px;
+      font-size: 85px;
+      line-height: 63px;
+
+      &:before {
+        top: -57px;
+        left: -10px;
+        width: 367px;
+        height: 367px;
+      }
+    }
+  }
+}
