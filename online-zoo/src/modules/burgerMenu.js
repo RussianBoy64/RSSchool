@@ -22,4 +22,11 @@ menuLinks.forEach((link) => {
   link.addEventListener('click', menuClose)
 })
 
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 640) {
+    menuClose()
+    hideBackdrop()
+  }
+})
+
 export { menuToggle, menuClose }

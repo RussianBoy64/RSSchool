@@ -56,6 +56,7 @@
 
     &-controls {
       position: absolute;
+      z-index: 10;
       top: 43%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -73,6 +74,7 @@
     height: 365px;
     background-position: center;
     background-size: 100%;
+    background-repeat: no-repeat;
 
     @extend %transition;
 
