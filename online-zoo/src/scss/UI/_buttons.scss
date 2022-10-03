@@ -121,6 +121,20 @@
   }
 }
 
+@media (max-width: 999px) {
+  .watch__btn {
+    margin-right: 0;
+    align-self: flex-start;
+    transform: translateY(-5px);
+  }
+
+  .testimonails_btn {
+    align-self: center;
+    width: 239px;
+    margin-top: 40px;
+  }
+}
+
 @media (max-width: 800px) {
   .diet__btn {
     transform: translateX(1px);
@@ -128,6 +142,16 @@
 
   .footer_btn-donate {
     margin-top: 2px;
+  }
+}
+
+@media (max-width: 639px) {
+  .watch__btn {
+    margin-top: 65px;
+  }
+
+  .testimonails_btn {
+    margin-top: 30px;
   }
 }
 

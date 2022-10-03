@@ -122,6 +122,12 @@
         margin-top: 20px;
         justify-self: flex-end;
       }
+
+      .nav {
+        &.nav_main-footer {
+          transform: translate(0, 0);
+        }
+      }
     }
   }
 }
@@ -262,6 +268,10 @@
               padding-left: 10px;
             }
           }
+        }
+
+        &.nav_main-footer {
+          transform: translate(0, -5px);
         }
       }
     }

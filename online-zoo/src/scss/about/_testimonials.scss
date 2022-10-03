@@ -158,7 +158,7 @@
         min-width: calc((100% - 30px * 2) / 3);
 
         .item__bg {
-          padding: 15px 23px 19px 15px;
+          padding: 15px 23px 32px 15px;
         }
 
         &:nth-child(1) {
@@ -167,6 +167,13 @@
 
         &:nth-child(5) {
           order: -1;
+          .item__icon {
+            transform: translateY(-5px);
+          }
+
+          .item__user-name {
+            transform: translate(-5px, -4px);
+          }
         }
 
         &:nth-child(6) {
@@ -180,6 +187,125 @@
       margin-bottom: 53px;
       width: 390px;
       transform: translateX(-6px);
+    }
+  }
+}
+
+@media (max-width: 999px) {
+  .testimonials {
+    background: url(../assets/img/leav_foto.png) no-repeat 102% 117%;
+    background-size: auto 213px;
+
+    &__inner {
+      padding-top: 59px;
+      padding-bottom: 80px;
+    }
+
+    &__slider-container {
+      height: 357px;
+    }
+
+    &__slider {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .slider {
+      &__item {
+        min-width: 100%;
+        height: 109px;
+
+        &:nth-child(5) {
+          order: 0;
+          .item__icon {
+            transform: translateY(-5px);
+          }
+
+          .item__user-name {
+            transform: translate(-5px, -4px);
+          }
+        }
+
+        &:nth-child(6) {
+          order: 0;
+        }
+
+        &:nth-child(7) {
+          order: -1;
+          .item__icon {
+            transform: translateY(-5px);
+          }
+
+          .item__user-name {
+            transform: translate(-5px, -4px);
+          }
+
+          .item__text {
+            transform: translate(1px, -4px);
+          }
+        }
+
+        &:nth-child(8) {
+          order: -1;
+        }
+
+        .item__bg {
+          padding: 15px 23px 8px 10px;
+        }
+
+        .item__text {
+          padding-left: 5px;
+        }
+      }
+    }
+
+    &__input {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .testimonials {
+    background: url(../assets/img/leav_foto_320.png) no-repeat 100% 106%;
+    background-size: auto;
+
+    &__inner {
+      padding-top: 31px;
+      padding-bottom: 60px;
+    }
+
+    &__title {
+      margin-bottom: 19px;
+      font-size: 24px;
+      line-height: 29px;
+    }
+
+    &__slider {
+      .slider__item {
+        &:nth-child(7) {
+          .item__icon {
+            transform: translateY(0);
+          }
+
+          .item__user-name {
+            transform: translate(-2px, 0);
+          }
+
+          .item__text {
+            transform: translateY(1px);
+          }
+        }
+        .item {
+          &__bg {
+            padding: 9px 23px 8px 10px;
+          }
+
+          &__user-name {
+            transform: translateX(-2px);
+          }
+        }
+      }
     }
   }
 }

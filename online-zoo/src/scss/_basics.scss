@@ -5,6 +5,10 @@ body {
   align-items: center;
   font-family: 'Roboto', sans-serif;
   color: $blk-blue;
+
+  &.block {
+    overflow: hidden;
+  }
 }
 
 .wrapper {
@@ -21,6 +25,22 @@ body {
 .hidden {
   position: absolute;
   visibility: hidden;
+}
+
+.backdrop {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0);
+
+  @extend %transition;
+
+  &.show {
+    z-index: 101;
+    background: rgba(0, 0, 0, 0.5);
+  }
 }
 
 // FLEX

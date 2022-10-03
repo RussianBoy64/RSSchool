@@ -1,4 +1,6 @@
 .burger-menu {
+  position: relative;
+  z-index: 101;
   display: none;
   gap: 2px;
   width: 20px;
@@ -18,12 +20,14 @@
   &.open {
     .burger-menu__item:nth-child(1) {
       transform: translateY(3px) rotate(40deg);
+      background-color: $orange;
     }
     .burger-menu__item:nth-child(2) {
       min-height: 0;
     }
     .burger-menu__item:nth-child(3) {
       transform: translateY(-3px) rotate(-40deg);
+      background-color: $orange;
     }
   }
 }

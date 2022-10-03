@@ -192,11 +192,6 @@
   .pets {
     padding: 43px 0 140px;
 
-    .item__img {
-      width: 294px;
-      height: 294px;
-    }
-
     .slider-controls {
       top: 43%;
       width: 296px;
@@ -204,6 +199,113 @@
 
     .slider {
       transform: translateX(calc(100% + 28px));
+
+      &__item {
+        height: 356px;
+
+        .item__img {
+          width: 100%;
+          height: 100%;
+          background-position: center;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 999px) {
+  .pets {
+    padding: 43px 0 83px;
+    background: url('../assets/img/palm_foto.png') no-repeat -60px 100%,
+      url('../assets/img/strelitzia 1.png') no-repeat 100% 100%;
+    background-size: auto 202px, auto 131px;
+
+    &__inner {
+      .slider {
+        transform: translateX(calc(-100% - 28px));
+
+        &-controls {
+          top: 42.4%;
+          width: 154px;
+        }
+
+        &-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        &__item {
+          height: 332px;
+
+          .item__discription {
+            padding: 8px 8px 5px 12px;
+
+            .petName {
+              font-size: 12px;
+              line-height: 10px;
+            }
+
+            .petPlace {
+              font-size: 11.6901px;
+              line-height: 14px;
+            }
+
+            .herbivore {
+              width: 26px;
+              height: 29px;
+              margin-right: 0;
+              background-size: contain;
+            }
+
+            .predator {
+              width: 37px;
+              height: 30px;
+              background-size: contain;
+            }
+          }
+
+          &:nth-child(5),
+          &:nth-child(6) {
+            display: none;
+          }
+        }
+      }
+
+      a {
+        transform: translateY(-17px);
+      }
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .pets {
+    padding: 25px 0 60px;
+    background: url('../assets/img/palm_foto.png') no-repeat -12px 100%,
+      url('../assets/img/strelitzia 1.png') no-repeat 110% 100.3%;
+    background-size: auto 73px, auto 71px;
+
+    &__inner {
+      padding: 0 16px;
+
+      a {
+        margin-top: 19px;
+        transform: translate(-7px, 0);
+      }
+    }
+
+    .slider {
+      &__wrapper {
+        height: 1390px;
+      }
+
+      &-controls {
+        display: none;
+      }
+
+      &-container {
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+      }
     }
   }
 }

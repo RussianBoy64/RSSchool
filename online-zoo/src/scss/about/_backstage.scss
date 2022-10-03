@@ -103,3 +103,76 @@
     }
   }
 }
+
+@media (max-width: 999px) {
+  .backstage {
+    background-image: url('../assets/img/flower_foto1.png');
+    background-position: 106% -3px;
+    background-size: auto 480px;
+
+    &__inner {
+      display: block;
+      height: auto;
+      padding: 58px 20px 36px;
+    }
+
+    &__img {
+      display: none;
+    }
+
+    &__text {
+      width: 100%;
+      max-width: 500px;
+      padding-left: 3px;
+    }
+
+    &__title {
+      margin-bottom: 22px;
+    }
+
+    &__siteInfo {
+      width: 90%;
+      margin-bottom: 31px;
+    }
+
+    &__subtitle {
+      margin-bottom: 18px;
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .backstage {
+    background-position: 116% 38px;
+    background-size: auto 218px;
+
+    &__inner {
+      padding: 105px 10px 15px;
+    }
+
+    &__text {
+      padding: 0;
+    }
+
+    &__title {
+      margin-bottom: 9px;
+      font-size: 24px;
+      line-height: 29px;
+    }
+
+    &__siteInfo {
+      width: 100%;
+      margin-bottom: 20px;
+      padding-left: 2px;
+    }
+
+    &__subtitle {
+      margin-bottom: 9px;
+      padding-left: 2px;
+    }
+
+    &__description {
+      width: 100%;
+    }
+  }
+}
