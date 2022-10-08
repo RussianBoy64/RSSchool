@@ -1,3 +1,5 @@
+import { menuClose } from './burgerMenu'
+
 const backDrop = document.querySelector('.backdrop')
 const body = document.querySelector('body')
 
@@ -10,5 +12,7 @@ function hideBackdrop() {
   backDrop.classList.remove('show')
   body.classList.remove('block')
 }
+
+backDrop.addEventListener('click', menuClose)
 
 export { toggleBackdrop, hideBackdrop }
