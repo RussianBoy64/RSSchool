@@ -42,7 +42,13 @@ function hidePopUp() {
 }
 
 sliderInput.addEventListener('input', testimonialsMove)
-testimonialsSlider.addEventListener('click', showPopUp)
 cross.addEventListener('click', hidePopUp)
 
-export { sliderInput, testimonialsSlider, testimonialsMove, popUp, header }
+export {
+  sliderInput,
+  testimonialsSlider,
+  testimonialsMove,
+  popUp,
+  header,
+  showPopUp,
+}

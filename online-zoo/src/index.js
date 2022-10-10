@@ -6,7 +6,12 @@ import {
   sliderInput,
   testimonialsSlider,
   testimonialsMove,
+  showPopUp,
 } from './modules/testimonialsSlider'
+
+if (window.innerWidth < 998) {
+  testimonialsSlider.addEventListener('click', showPopUp)
+}
 
 if (window.innerWidth < 1201) {
   sliderInput.max = 8
@@ -27,5 +32,11 @@ window.addEventListener('resize', () => {
     sliderInput.max = 8
   } else {
     sliderInput.max = 7
+  }
+
+  if (window.innerWidth < 998) {
+    testimonialsSlider.addEventListener('click', showPopUp)
+  } else {
+    testimonialsSlider.removeEventListener('click', showPopUp)
   }
 })
