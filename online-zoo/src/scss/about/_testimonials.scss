@@ -26,6 +26,7 @@
     @extend %flex;
     justify-content: space-between;
     gap: $gap;
+    @extend %transition;
   }
 
   .slider {
@@ -119,22 +120,20 @@
     }
 
     &::-webkit-slider-thumb {
-      width: 10px;
+      width: 19%;
       height: 10px;
       background: $orange;
-      border-radius: 50%;
+      border-radius: 5px;
       appearance: none;
       cursor: pointer;
       outline: none;
       transform: translateY(-2px);
-      box-shadow: -602px 0 0 600px $orange;
     }
   }
 
   &__input:hover {
     &::-webkit-slider-thumb {
       background: $orange-dark;
-      box-shadow: -602px 0 0 600px $orange-dark;
     }
   }
 }
@@ -203,6 +202,10 @@
 
     &__slider-container {
       height: 357px;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
 
     &__slider {

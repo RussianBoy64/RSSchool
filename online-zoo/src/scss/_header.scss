@@ -5,6 +5,7 @@
   height: 80px;
   color: $primary-white;
   background-color: #111115;
+  @extend %transition;
 
   &__inner {
     @extend %flex;
@@ -25,12 +26,17 @@
   .header {
     position: fixed;
     z-index: 1000;
+    top: 0;
     height: 34px;
 
     &__inner {
       justify-content: space-between;
       flex-wrap: wrap;
       padding: 2px 0;
+    }
+
+    &.hide {
+      top: -100%;
     }
   }
 }
