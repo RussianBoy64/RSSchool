@@ -18,7 +18,7 @@ function setAmout() {
 function setInput(event) {
   let value = event.target.value
   if (value.length > 4) {
-    value = value.slice(0, 4)
+    event.target.value = value.slice(0, 4)
   } else {
     amountRadio.forEach((input) => {
       if (value === input.id) {
