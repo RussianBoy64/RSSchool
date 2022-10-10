@@ -17,6 +17,10 @@ function setAmout() {
 
 function setInput(event) {
   let value = event.target.value
+  if (value == '' || value == '-') {
+    event.target.value = value.slice(0, 0)
+  }
+
   if (value.length > 4) {
     event.target.value = value.slice(0, 4)
   } else {
