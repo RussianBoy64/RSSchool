@@ -40,9 +40,10 @@ function hidePopUp() {
   popUp.classList.remove('show')
   toggleBackdrop()
 }
-
-sliderInput.addEventListener('input', testimonialsMove)
-cross.addEventListener('click', hidePopUp)
+if (sliderInput && cross) {
+  sliderInput.addEventListener('input', testimonialsMove)
+  cross.addEventListener('click', hidePopUp)
+}
 
 export {
   sliderInput,
