@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gem-puzzle</title>
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/7413ca59d2.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="wrapper">
+            <div class="header__inner">
+                <div class="header__logo"><img src="./assets/logo.png" alt="app logo">
+                    <h1>Gem-puzzle</h1>
+                </div>
+                <i class="fa-solid fa-gear settings__btn"></i>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="wrapper gameboard">
+            <div class="gameboard__controls">
+                <button class="btn shuffle__btn">Shuffle</button>
+                <button class="btn start__btn">Start</button>
+                <button class="btn results__btn">Results</button>
+                <button class="btn save__btn">Save</button>
+                <button class="btn load__btn" disabled>Load</button>
+            </div>
+            <span class="gameboard__stats">
+                <span><span class="span stats__name">Moves:</span><span class="stats__moves">00</span></span>
+                <span><span class="span stats__name">Time:</span><span class="stats__time"><span
+                            class="stats__time_minutes">00</span>:<span
+                            class="stats__time_seconds">00</span></span></span>
+            </span>
+            <div class="gameboard__gamefield">
+                <div class="gamefield__tile">63</div>
+                <div class="gamefield__tile">10</div>
+                <div class="gamefield__tile">1</div>
+                <div class="gamefield__tile">1</div>
+                <div class="gamefield__tile">1</div>
+                <div class="gamefield__tile">1</div>
+                <div class="gamefield__tile">1</div>
+                <div class="gamefield__tile">1</div>
+                <div class="gamefield__tile empty"></div>
+            </div>
+        </div>
+        <div class="settings">
+            <form action="#" class="settings__form"><span class="settings__title">Frame size:</span><input type="radio"
+                    name="frame-size" id="3x3" class="settings__input" value="3"><label for="3x3"
+                    class="settings__label">3x3</label><input type="radio" name="frame-size" id="4x4"
+                    class="settings__input" value="4" checked><label for="4x4" class="settings__label">4x4</label><input
+                    type="radio" name="frame-size" id="5x5" class="settings__input" value="5"><label for="5x5"
+                    class="settings__label">5x5</label>
+                <input type="radio" name="frame-size" id="6x6" class="settings__input" value="6"><label for="6x6"
+                    class="settings__label">6x6</label>
+                <input type="radio" name="frame-size" id="7x7" class="settings__input" value="7"><label for="7x7"
+                    class="settings__label">7x7</label>
+                <input type="radio" name="frame-size" id="8x8" class="settings__input" value="8"><label for="8x8"
+                    class="settings__label">8x8</label>
+                <button type="submit" class="btn shuffle__btn">Shuffle</button>
+            </form>
+            <input type="checkbox" name="sound" id="switch" class='sound__input' checked /><label for="switch"
+                class='sound__label'>Sound</label>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="wrapper">
+            <div class="author-info">
+                <div class="author-info__item">
+                    <a href="https://rs.school/js/"><img src="https://rs.school/images/rs_school_js.svg"
+                            alt="RS School" /></a>
+                </div>
+                <div class="author-info__item">
+                    <span>2022</span>
+                </div>
+                <div class="author-info__item">
+                    <div class="github-link">
+                        <a href="https://github.com/RussianBoy64"><i
+                                class="fa-brands fa-github github-icon"></i>RussianBoy64</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    <div class="backdrop">
+    </div>
+    <div class="results">
+        <h3 class="results__title">Top 10</h3>
+        <div class="row">
+            <span class="position">1.</span>
+            <span class="name">Alex</span>
+            <span class="moves">M: 14</span>
+            <span class="moves">T: 14:10</span>
+        </div>
+        <div class="row">
+            <span class="position">2.</span>
+            <span class="name">Vladimir</span>
+            <span class="moves">M: 14</span>
+            <span class="moves">T: 14:10</span>
+        </div>
+        <div class="row">
+            <span class="position">3.</span>
+            <span class="name">Anton</span>
+            <span class="moves">M: 14</span>
+            <span class="moves">T: 14:10</span>
+        </div>
+        <div class="row">
+            <span class="position">3.</span>
+            <span class="name">Anton</span>
+            <span class="moves">M: 14</span>
+            <span class="moves">T: 14:10</span>
+        </div>
+        <div class="row">
+            <span class="position">3.</span>
+            <span class="name">Anton</span>
+            <span class="moves">M: 14</span>
+            <span class="moves">T: 14:10</span>
+        </div>
+        <div class="row">
+            <span class="position">3.</span>
+            <span class="name">Anton</span>
+            <span class="moves">M: 14</span>
+            <span class="moves">T: 14:10</span>
+        </div>
+        <div class="row">
+            <span class="position">3.</span>
+            <span class="name">Anton</span>
+            <span class="moves">M: 14</span>
+            <span class="moves">T: 14:10</span>
+        </div>
+        <div class="row">
+            <span class="position">3.</span>
+            <span class="name">Anton</span>
+            <span class="moves">M: 14</span>
+            <span class="moves">T: 14:10</span>
+        </div>
+        <div class="row">
+            <span class="position">3.</span>
+            <span class="name">Anton</span>
+            <span class="moves">M: 14</span>
+            <span class="moves">T: 14:10</span>
+        </div>
+        <div class="row">
+            <span class="position">3.</span>
+            <span class="name">Anton</span>
+            <span class="moves">M: 14</span>
+            <span class="moves">T: 14:10</span>
+        </div>
+    </div>
+</body>
+
+</html>

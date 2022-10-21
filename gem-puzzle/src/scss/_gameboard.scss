@@ -1,0 +1,111 @@
+.gameboard {
+  @extend %flex-centered;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  padding: 0.5rem 1rem !important;
+
+  &__controls {
+    @extend %flex-centered;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__stats {
+    @extend %flex-centered;
+    gap: 2rem;
+
+    .stats__name {
+      display: inline-block;
+      margin-right: 0.5rem;
+      font-weight: 600;
+    }
+  }
+
+  &__gamefield {
+    position: relative;
+    @extend %flex;
+    flex-wrap: wrap;
+    width: 80vw;
+    height: 80vw;
+    max-width: 400px;
+    max-height: 400px;
+    box-shadow: 0 0 10px 2px $bg-accent;
+    border-radius: 10px;
+
+    .gamefield__tile {
+      @extend %flex-centered;
+      width: 33.3%;
+      height: 33.3%;
+      font-weight: 600;
+      border: 2px solid $dark;
+      border-radius: 10px;
+      cursor: pointer;
+
+      @extend %transitionSlow;
+
+      &:hover {
+        background: $accent;
+        border: 2px solid $accent;
+      }
+
+      &.empty {
+        border: none;
+        cursor: initial;
+        background: none;
+      }
+
+      &.moveTop {
+        animation: moveTop 800ms ease;
+      }
+
+      &.moveDown {
+        animation: moveDown 800ms ease;
+      }
+
+      &.moveLeft {
+        animation: moveLeft 800ms ease;
+      }
+
+      &.moveRight {
+        animation: moveRight 800ms ease;
+      }
+    }
+  }
+}
+
+@keyframes moveTop {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes moveDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes moveLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes moveRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
