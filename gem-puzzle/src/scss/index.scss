@@ -77,3 +77,9 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+
+@media (min-width: 1400px) {
+  body {
+    font-size: 18px;
+  }
+}

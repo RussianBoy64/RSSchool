@@ -1,4 +1,4 @@
-import { backdrop, backdropShow } from './backdrop'
+import { backdropShow } from './backdrop'
 
 const resultsBtn = document.querySelector('.results__btn')
 const results = document.querySelector('.results')

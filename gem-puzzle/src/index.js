@@ -1,3 +1,4 @@
 import './scss/index.scss'
+import renderApp from './modules/app'
 
-import * as settings from './modules/settings'
+document.addEventListener('DOMContentLoaded', renderApp)
