@@ -10,9 +10,7 @@ export default async function createStatsNode() {
   <span>
       <span class="span stats__name">Time:</span>
       <span class="stats__time">
-          <span class="stats__time_minutes">00</span>
-          :
-          <span class="stats__time_seconds">00</span>
+        00: 00
       </span>
   </span>
   `

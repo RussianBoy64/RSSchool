@@ -64,7 +64,7 @@ export default async function createMainNode() {
 
   // addListeners
   shuffleBtn.addEventListener('click', Game.shuffle)
-  // startBtn.addEventListener('click', Game.startGame)
+  startBtn.addEventListener('click', Game.startGame)
   gamefield.addEventListener('click', Game.boardClickHandler)
 
   return main

@@ -1,4 +1,5 @@
 import getSolvableArr from './helpers/getSolvableArr'
+import timeFormatter from './helpers/timeFormatter'
 
 class Game {
   constructor() {
@@ -12,6 +13,7 @@ class Game {
     }
     this.savedGameState = null
     this.isGameStarted = false
+    this.timer = null
     this.isSound = true
     this.results = [
       { position: 1, name: 'Vladimir', moves: 15, seconds: 123 },
@@ -113,7 +115,7 @@ class Game {
     }
   }
 
-  boardClickHandler = (event) => {
+  startGame = () => {
     if (this.isGameStarted === false) {
       const startBtn = document.querySelector('.start__btn')
       const saveBtn = document.querySelector('.save__btn')
@@ -121,7 +123,20 @@ class Game {
       this.isGameStarted = true
       startBtn.disabled = true
       saveBtn.disabled = false
+
+      this.timer = setInterval(this.updateTime, 1000)
     }
+  }
+
+  updateTime = () => {
+    const timeDisplay = document.querySelector('.stats__time')
+
+    this.currentGameState.seconds++
+    timeDisplay.innerHTML = timeFormatter(this.currentGameState.seconds)
+  }
+
+  boardClickHandler = (event) => {
+    this.startGame()
 
     const clickedTile = event.target
     const gameBoard = event.currentTarget
@@ -171,6 +186,7 @@ class Game {
     const tileIdx = this.currentGameState.currentState.indexOf(+tile.innerText)
     const nullIdx = this.currentGameState.currentState.indexOf(null)
     const temp = this.currentGameState.currentState[tileIdx]
+    const moves = document.querySelector('.stats__moves')
 
     this.currentGameState.currentState[tileIdx] =
       this.currentGameState.currentState[nullIdx]
@@ -178,10 +194,15 @@ class Game {
 
     this.renderGameBoard()
 
+    //update stats
+    this.currentGameState.moves++
+    moves.innerHTML = String(this.currentGameState.moves).padStart(2, 0)
+
     // reset classname
     tile.className = 'gamefield__tile'
     gameBoard.addEventListener('click', this.boardClickHandler)
 
+    // check for solved
     const isSolved = this.isSolved()
     if (isSolved) {
       gameBoard.classList.remove('show')
