@@ -11,6 +11,7 @@ class Game {
       isChanged: false,
     }
     this.savedGameState = null
+    this.isGameStarted = false
     this.isSound = true
     this.results = [
       { position: 1, name: 'Vladimir', moves: 15, seconds: 123 },
@@ -26,7 +27,32 @@ class Game {
     ]
   }
 
-  shuffle() {
+  setFrameSize() {
+    const frameSize = document.querySelector(
+      '.settings__input[name="frame-size"]:checked'
+    ).value
+
+    this.currentGameState.frameSize = frameSize
+  }
+
+  shuffle(event) {
+    event.preventDefault()
+
+    this.isGameStarted = false
+
+    this.setFrameSize()
+
+    // hide backdrop and settings bar if open
+    const backdrop = document.querySelector('.backdrop')
+    const settings = document.querySelector('.settings')
+    const settingsBtn = document.querySelector('.settings__btn')
+
+    if (settingsBtn.classList.contains('active')) {
+      settingsBtn.classList.remove('active')
+      settings.classList.remove('show')
+      backdrop.classList.remove('show')
+    }
+
     // create solvedState
     const solvedArr = []
     const tilesCount = this.currentGameState.frameSize ** 2
@@ -45,15 +71,20 @@ class Game {
     this.currentGameState.solvedState = solvedArr
     this.currentGameState.currentState = shuffledArr
 
-    console.log(this)
+    // render gameBoard
+    const startBtn = document.querySelector('.start__btn')
+
     this.renderGameBoard()
+
+    if (startBtn.disabled) startBtn.removeAttribute('disabled')
   }
 
   renderGameBoard() {
     const gameField = document.querySelector('.gameboard__gamefield')
-    const startBtn = document.querySelector('.start__btn')
 
-    if (gameField.classList.contains('show')) gameField.classList.remove('show')
+    if (this.isGameStarted === false && gameField.classList.contains('show')) {
+      gameField.classList.remove('show')
+    }
 
     gameField.innerHTML = ''
 
@@ -75,11 +106,16 @@ class Game {
       gameField.append(tile)
     })
 
-    setTimeout(() => {
-      gameField.classList.add('show')
-    }, 0)
+    if (this.isGameStarted === false) {
+      setTimeout(() => {
+        gameField.classList.add('show')
+      }, 0)
+    }
+  }
 
-    if (startBtn.disabled) startBtn.removeAttribute('disabled')
+  startGame() {
+    this.isGameStarted = true
+    console.log(this)
   }
 }
 
