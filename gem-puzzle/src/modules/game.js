@@ -35,7 +35,7 @@ class Game {
     this.currentGameState.frameSize = frameSize
   }
 
-  shuffle(event) {
+  shuffle = (event) => {
     event.preventDefault()
 
     this.isGameStarted = false
@@ -79,7 +79,7 @@ class Game {
     if (startBtn.disabled) startBtn.removeAttribute('disabled')
   }
 
-  renderGameBoard() {
+  renderGameBoard = () => {
     const gameField = document.querySelector('.gameboard__gamefield')
 
     if (this.isGameStarted === false && gameField.classList.contains('show')) {
@@ -113,9 +113,76 @@ class Game {
     }
   }
 
-  startGame() {
-    this.isGameStarted = true
-    console.log(this)
+  boardClickHandler = (event) => {
+    if (this.isGameStarted === false) {
+      const startBtn = document.querySelector('.start__btn')
+      const saveBtn = document.querySelector('.save__btn')
+
+      this.isGameStarted = true
+      startBtn.disabled = true
+      saveBtn.disabled = false
+    }
+
+    const clickedTile = event.target
+    const gameBoard = event.currentTarget
+    const nullIdx = this.currentGameState.currentState.indexOf(null)
+    const isNullOnRightSide =
+      nullIdx % this.currentGameState.frameSize !==
+      this.currentGameState.frameSize - 1
+    const isNullOnLeftSide = nullIdx % this.currentGameState.frameSize !== 0
+    const isClickedAfterNull =
+      gameBoard.children[nullIdx].nextSibling === clickedTile
+    const isClickedBeforeNull =
+      gameBoard.children[nullIdx].previousSibling === clickedTile
+    const isClickedOverNull =
+      gameBoard.children[nullIdx - this.currentGameState.frameSize] ===
+      clickedTile
+    const isClickedUnderNull =
+      gameBoard.children[nullIdx + Number(this.currentGameState.frameSize)] ===
+      clickedTile
+
+    // move Tile
+    if (isNullOnRightSide && isClickedAfterNull) {
+      clickedTile.classList.add('moveLeft')
+
+      gameBoard.removeEventListener('click', this.boardClickHandler)
+      gameBoard.addEventListener('animationend', this.changeGameState)
+    } else if (isNullOnLeftSide && isClickedBeforeNull) {
+      clickedTile.classList.add('moveRight')
+
+      gameBoard.removeEventListener('click', this.boardClickHandler)
+      gameBoard.addEventListener('animationend', this.changeGameState)
+    } else if (isClickedOverNull) {
+      clickedTile.classList.add('moveDown')
+
+      gameBoard.removeEventListener('click', this.boardClickHandler)
+      gameBoard.addEventListener('animationend', this.changeGameState)
+    } else if (isClickedUnderNull) {
+      clickedTile.classList.add('moveTop')
+
+      gameBoard.removeEventListener('click', this.boardClickHandler)
+      gameBoard.addEventListener('animationend', this.changeGameState)
+    }
+  }
+
+  changeGameState = (event) => {
+    const tile = event.target
+    const gameBoard = event.currentTarget
+    const tileIdx = this.currentGameState.currentState.indexOf(+tile.innerText)
+    const nullIdx = this.currentGameState.currentState.indexOf(null)
+    const temp = this.currentGameState.currentState[tileIdx]
+    console.log('before ' + this.currentGameState.currentState)
+    this.currentGameState.currentState[tileIdx] =
+      this.currentGameState.currentState[nullIdx]
+    this.currentGameState.currentState[nullIdx] = temp
+
+    this.renderGameBoard()
+
+    console.log('after ' + this.currentGameState.currentState)
+
+    // reset classname
+    tile.className = 'gamefield__tile'
+    gameBoard.addEventListener('click', this.boardClickHandler)
   }
 }
 

@@ -21,7 +21,7 @@ export default async function createSettingsNode() {
   const shuffleBtn = await createBtn('shuffle__btn', 'Shuffle')
 
   form.classList.add('settings__form')
-  form.action = '#'
+  form.action = '/'
 
   formTitle.classList.add('settings__title')
   formTitle.textContent = 'Frame size:'
