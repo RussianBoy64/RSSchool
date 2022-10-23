@@ -171,18 +171,29 @@ class Game {
     const tileIdx = this.currentGameState.currentState.indexOf(+tile.innerText)
     const nullIdx = this.currentGameState.currentState.indexOf(null)
     const temp = this.currentGameState.currentState[tileIdx]
-    console.log('before ' + this.currentGameState.currentState)
+
     this.currentGameState.currentState[tileIdx] =
       this.currentGameState.currentState[nullIdx]
     this.currentGameState.currentState[nullIdx] = temp
 
     this.renderGameBoard()
 
-    console.log('after ' + this.currentGameState.currentState)
-
     // reset classname
     tile.className = 'gamefield__tile'
     gameBoard.addEventListener('click', this.boardClickHandler)
+
+    const isSolved = this.isSolved()
+    if (isSolved) {
+      gameBoard.classList.remove('show')
+      alert('you solved it')
+    }
+  }
+
+  isSolved = () => {
+    const solvedStr = this.currentGameState.solvedState.join(' ')
+    const currentStr = this.currentGameState.currentState.join(' ')
+
+    return solvedStr === currentStr
   }
 }
 
