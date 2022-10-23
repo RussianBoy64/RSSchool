@@ -155,26 +155,31 @@ class Game {
     const isClickedUnderNull =
       gameBoard.children[nullIdx + Number(this.currentGameState.frameSize)] ===
       clickedTile
+    const moveSound = document.querySelector('audio')
 
     // move Tile
     if (isNullOnRightSide && isClickedAfterNull) {
       clickedTile.classList.add('moveLeft')
 
+      if (this.isSound) moveSound.play()
       gameBoard.removeEventListener('click', this.boardClickHandler)
       gameBoard.addEventListener('animationend', this.changeGameState)
     } else if (isNullOnLeftSide && isClickedBeforeNull) {
       clickedTile.classList.add('moveRight')
 
+      if (this.isSound) moveSound.play()
       gameBoard.removeEventListener('click', this.boardClickHandler)
       gameBoard.addEventListener('animationend', this.changeGameState)
     } else if (isClickedOverNull) {
       clickedTile.classList.add('moveDown')
 
+      if (this.isSound) moveSound.play()
       gameBoard.removeEventListener('click', this.boardClickHandler)
       gameBoard.addEventListener('animationend', this.changeGameState)
     } else if (isClickedUnderNull) {
       clickedTile.classList.add('moveTop')
 
+      if (this.isSound) moveSound.play()
       gameBoard.removeEventListener('click', this.boardClickHandler)
       gameBoard.addEventListener('animationend', this.changeGameState)
     }
@@ -208,6 +213,11 @@ class Game {
       gameBoard.classList.remove('show')
       alert('you solved it')
     }
+  }
+
+  soundHandler = (event) => {
+    const soundInput = event.target
+    this.isSound = soundInput.checked
   }
 
   isSolved = () => {

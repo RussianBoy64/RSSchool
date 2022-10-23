@@ -53,6 +53,15 @@ export default async function createMainNode() {
   //create settings
   const settings = await createSettingsNode()
 
+  //create sound
+  const tileSound = document.createElement('audio')
+  const tileSoundSrc = document.createElement('source')
+
+  tileSoundSrc.src = './assets/moveTile.mp3'
+  tileSoundSrc.type = 'audio/mpeg'
+
+  tileSound.append(tileSoundSrc)
+
   // collect main
 
   wrapper.append(gameControls)
@@ -61,6 +70,7 @@ export default async function createMainNode() {
 
   main.append(wrapper)
   main.append(settings)
+  main.append(tileSound)
 
   // addListeners
   shuffleBtn.addEventListener('click', Game.shuffle)

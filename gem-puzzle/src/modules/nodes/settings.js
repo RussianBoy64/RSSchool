@@ -71,7 +71,8 @@ export default async function createSettingsNode() {
   settings.append(soundLabel)
 
   // addListeners
-  shuffleBtn.addEventListener('click', (e) => Game.shuffle(e))
+  shuffleBtn.addEventListener('click', Game.shuffle)
+  soundInput.addEventListener('change', Game.soundHandler)
 
   return settings
 }
