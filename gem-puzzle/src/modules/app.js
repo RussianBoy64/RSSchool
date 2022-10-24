@@ -1,36 +1,44 @@
+// classes
 import createGame from './game'
+import createPopUp from './popUp'
+import createBackdropNode from './backdrop'
+import createSettings from './settings'
 
 // DOM
 import createHeaderNode from './nodes/header'
 import createMainNode from './nodes/main'
 import createFooterNode from './nodes/footer'
-import createBackdropNode from './nodes/backdrop'
-import createResultsNode from './nodes/results'
 
 let Game = null
+let PopUp = null
+let Backdrop = null
+let Settings = null
 const app = document.querySelector('.app')
 
 export default async function renderApp() {
   // load game
   Game = await createGame()
+  PopUp = createPopUp()
+  Backdrop = createBackdropNode()
+  Settings = createSettings()
 
   //create DOM
   const headerNode = await createHeaderNode()
-  const mainNode = await createMainNode()
-  const footerNode = await createFooterNode()
-  const backdropNode = await createBackdropNode()
-  const resultsNode = await createResultsNode()
-
   app.append(headerNode)
+
+  const mainNode = await createMainNode()
   app.append(mainNode)
+
+  const footerNode = await createFooterNode()
   app.append(footerNode)
+
+  const backdropNode = await Backdrop.createBackdrop()
   app.append(backdropNode)
-  app.append(resultsNode)
 
-  let initApp = await import('../modules/settings')
+  const popUpWrapper = await PopUp.createPopUpWrapper()
+  app.append(popUpWrapper)
 
-  // Game.shuffle()
-  // console.log(Game)
+  window.addEventListener('beforeunload', Game.saveGameData)
 }
 
-export { Game }
+export { Game, PopUp, Backdrop, Settings }

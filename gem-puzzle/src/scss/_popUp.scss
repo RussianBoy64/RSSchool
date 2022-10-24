@@ -1,0 +1,55 @@
+.popUp {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  @extend %flex-centered;
+  flex-direction: column;
+  gap: 0.5em;
+
+  padding: 1rem 1.5rem;
+  background-color: $accent;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+
+  @extend %transitionSlow;
+
+  .results {
+    width: 100%;
+    max-width: 300px;
+
+    &__title {
+      font-weight: 600;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 20px 95px 50px 65px;
+      gap: 5px;
+      white-space: nowrap;
+      opacity: 0;
+
+      @extend %transitionSlow;
+    }
+  }
+
+  &.show {
+    z-index: 20;
+    opacity: 1;
+
+    .results {
+      .row {
+        opacity: 1;
+
+        @for $i from 0 to 10 {
+          &:nth-child(#{$i + 2}) {
+            transition-delay: #{$i * 150}ms;
+          }
+        }
+      }
+    }
+  }
+}

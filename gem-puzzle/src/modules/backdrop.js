@@ -1,22 +1,38 @@
-import { settingsMenuHide } from './settings'
-import { resultsHide } from './results'
+import { PopUp, Settings } from './app'
 
-const backdrop = document.querySelector('.backdrop')
+class Backdrop {
+  constructor() {
+    this.backdrop = null
+  }
 
-function backdropToggle() {
-  backdrop.classList.toggle('show')
+  createBackdrop = async () => {
+    const backdrop = document.createElement('div')
+    backdrop.classList.add('backdrop')
+
+    backdrop.addEventListener('click', this.backdropHide)
+
+    this.backdrop = backdrop
+
+    return backdrop
+  }
+
+  backdropToggle = () => {
+    this.backdrop.classList.toggle('show')
+  }
+
+  backdropShow = () => {
+    this.backdrop.classList.add('show')
+  }
+
+  backdropHide = () => {
+    this.backdrop.classList.remove('show')
+    Settings.settingsMenuHide()
+    PopUp.popUpHide()
+  }
 }
 
-function backdropShow() {
-  backdrop.classList.add('show')
+export default function createBackdropNode() {
+  const backdrop = new Backdrop()
+
+  return backdrop
 }
-
-function backdropHide() {
-  backdrop.classList.remove('show')
-  settingsMenuHide()
-  resultsHide()
-}
-
-backdrop.addEventListener('click', backdropHide)
-
-export { backdrop, backdropToggle, backdropShow, backdropHide }

@@ -1,9 +1,8 @@
-import { Game } from '../app'
+import { Game, PopUp, Settings } from '../app'
 
 import createWrapper from './wrapper'
 import createBtn from './button'
 import createStatsNode from './stats'
-import createSettingsNode from './settings'
 
 export default async function createMainNode() {
   // create main
@@ -51,16 +50,27 @@ export default async function createMainNode() {
   gamefield.classList.add('gameboard__gamefield')
 
   //create settings
-  const settings = await createSettingsNode()
+  const settings = await Settings.renderSettings()
 
-  //create sound
+  //create moveSound
   const tileSound = document.createElement('audio')
   const tileSoundSrc = document.createElement('source')
 
+  tileSound.classList.add('moveSound')
   tileSoundSrc.src = './assets/moveTile.mp3'
   tileSoundSrc.type = 'audio/mpeg'
 
   tileSound.append(tileSoundSrc)
+
+  //create victorySound
+  const victorySound = document.createElement('audio')
+  const victorySoundSrc = document.createElement('source')
+
+  victorySound.classList.add('victorySound')
+  victorySoundSrc.src = './assets/victory.mp3'
+  victorySoundSrc.type = 'audio/mpeg'
+
+  victorySound.append(victorySoundSrc)
 
   // collect main
 
@@ -71,10 +81,14 @@ export default async function createMainNode() {
   main.append(wrapper)
   main.append(settings)
   main.append(tileSound)
+  main.append(victorySound)
 
   // addListeners
   shuffleBtn.addEventListener('click', Game.shuffle)
   startBtn.addEventListener('click', Game.startGame)
+  resultsBtn.addEventListener('click', PopUp.renderResults)
+  saveBtn.addEventListener('click', Game.saveGame)
+  loadBtn.addEventListener('click', Game.loadGame)
   gamefield.addEventListener('click', Game.boardClickHandler)
 
   return main

@@ -31,12 +31,9 @@ function checkSolvability(shuffledArr) {
           inv++
         }
       }
-
-      console.log(inv)
     }
   })
 
-  console.log('total ' + numberInverions)
   if (
     (solvableArr.length % 2 !== 0 && numberInverions % 2 == 0) ||
     (solvableArr.length % 2 === 0 &&
@@ -45,8 +42,8 @@ function checkSolvability(shuffledArr) {
   ) {
     return solvableArr
   } else {
-    console.log('before' + solvableArr)
     let temp = null
+
     if (solvableArr[0] !== null && solvableArr[1] !== null) {
       temp = solvableArr[1]
       solvableArr[1] = solvableArr[0]
@@ -56,7 +53,7 @@ function checkSolvability(shuffledArr) {
       solvableArr[solvableArr.length - 1] = solvableArr[solvableArr.length - 2]
       solvableArr[solvableArr.length - 2] = temp
     }
-    console.log('after' + solvableArr)
+
     return solvableArr
   }
 
