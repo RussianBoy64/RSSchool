@@ -6,8 +6,8 @@
   @extend %flex-centered;
   flex-direction: column;
   gap: 0.5em;
-
-  padding: 1rem 1.5rem;
+  max-width: 90%;
+  padding: 1rem;
   background-color: $accent;
   border-radius: 10px;
   transform: translate(-50%, -50%);
@@ -16,8 +16,11 @@
   @extend %transitionSlow;
 
   .results {
+    @extend %flex-centered;
+    flex-direction: column;
+    gap: 0.5em;
     width: 100%;
-    max-width: 300px;
+    min-width: 300px;
 
     &__title {
       font-weight: 600;
@@ -33,6 +36,36 @@
       opacity: 0;
 
       @extend %transitionSlow;
+    }
+  }
+
+  .win {
+    @extend %flex-centered;
+    flex-direction: column;
+    gap: 0.5em;
+    min-width: 270px;
+    text-align: center;
+
+    &__title {
+      font-weight: 600;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    &__text {
+    }
+
+    &__form {
+      @extend %flex-centered;
+      gap: 0.5rem;
+    }
+
+    &__input {
+      display: inline-block;
+      max-width: 160px;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 10px;
+      outline: none;
     }
   }
 

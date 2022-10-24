@@ -38,6 +38,10 @@ export default async function renderApp() {
   const popUpWrapper = await PopUp.createPopUpWrapper()
   app.append(popUpWrapper)
 
+  setTimeout(() => {
+    PopUp.renderWin()
+  }, 10000)
+
   window.addEventListener('beforeunload', Game.saveGameData)
 }
 

@@ -1,5 +1,6 @@
 import getSolvableArr from './helpers/getSolvableArr'
 import timeFormatter from './helpers/timeFormatter'
+import { PopUp, Backdrop } from './app'
 
 class Game {
   constructor() {
@@ -16,16 +17,16 @@ class Game {
     this.timer = null
     this.isSound = true
     this.results = [
-      { position: 1, name: 'Vladimir', moves: 15, seconds: 123 },
-      { position: 2, name: 'Semen', moves: 19, seconds: 131 },
-      { position: 3, name: 'Arkadiy', moves: 21, seconds: 142 },
-      { position: 4, name: 'Vika', moves: 23, seconds: 145 },
-      { position: 5, name: 'Vitaliy', moves: 29, seconds: 232 },
-      { position: 6, name: null, moves: null, seconds: null },
-      { position: 7, name: null, moves: null, seconds: null },
-      { position: 8, name: null, moves: null, seconds: null },
-      { position: 9, name: null, moves: null, seconds: null },
-      { position: 10, name: null, moves: null, seconds: null },
+      { name: 'Vladimir', moves: 15, seconds: 123 },
+      { name: 'Semen', moves: 19, seconds: 131 },
+      { name: 'Arkadiy', moves: 21, seconds: 142 },
+      { name: 'Vika', moves: 23, seconds: 145 },
+      { name: 'Vitaliy', moves: 29, seconds: 232 },
+      { name: null, moves: null, seconds: null },
+      { name: null, moves: null, seconds: null },
+      { name: null, moves: null, seconds: null },
+      { name: null, moves: null, seconds: null },
+      { name: null, moves: null, seconds: null },
     ]
   }
 
@@ -38,7 +39,7 @@ class Game {
   }
 
   shuffle = (event) => {
-    event.preventDefault()
+    if (event) event.preventDefault()
 
     this.stopGame()
 
@@ -156,6 +157,40 @@ class Game {
     localStorage.setItem('results', JSON.stringify(this.results))
   }
 
+  addResults = (event) => {
+    event.preventDefault()
+    const winInput = document.querySelector('.win__input')
+    const playerName = winInput.value
+    const moves = this.currentGameState.moves
+    const seconds = this.currentGameState.seconds
+    const result = {
+      position: null,
+      name: playerName,
+      moves: moves,
+      seconds: seconds,
+    }
+    const resultsLength = this.results.length
+
+    for (let i = 0; i < resultsLength; i++) {
+      if (this.results[i].moves === null) {
+        result.position = i
+        this.results[i] = result
+        break
+      } else if (
+        moves < this.results[i].moves ||
+        (moves === this.results[i].moves && seconds < this.results[i].seconds)
+      ) {
+        result.position = i - 1
+        this.results.splice(i, 0, result)
+        this.results.pop()
+        break
+      }
+    }
+
+    Backdrop.backdropHide()
+    this.shuffle()
+  }
+
   loadGame = async () => {
     const startBtn = document.querySelector('.start__btn')
     const moves = document.querySelector('.stats__moves')
@@ -215,25 +250,25 @@ class Game {
         clickedTile.classList.add('moveLeft')
 
         if (this.isSound) moveSound.play()
-        gameBoard.removeEventListener('click', this.boardClickHandler)
+        this.removeEventListeners()
         gameBoard.addEventListener('animationend', this.changeGameState)
       } else if (isNullOnLeftSide && isClickedBeforeNull) {
         clickedTile.classList.add('moveRight')
 
         if (this.isSound) moveSound.play()
-        gameBoard.removeEventListener('click', this.boardClickHandler)
+        this.removeEventListeners()
         gameBoard.addEventListener('animationend', this.changeGameState)
       } else if (isClickedOverNull) {
         clickedTile.classList.add('moveDown')
 
         if (this.isSound) moveSound.play()
-        gameBoard.removeEventListener('click', this.boardClickHandler)
+        this.removeEventListeners()
         gameBoard.addEventListener('animationend', this.changeGameState)
       } else if (isClickedUnderNull) {
         clickedTile.classList.add('moveTop')
 
         if (this.isSound) moveSound.play()
-        gameBoard.removeEventListener('click', this.boardClickHandler)
+        this.removeEventListeners()
         gameBoard.addEventListener('animationend', this.changeGameState)
       }
     }
@@ -257,13 +292,13 @@ class Game {
 
     // reset classname
     tile.className = 'gamefield__tile'
-    gameBoard.addEventListener('click', this.boardClickHandler)
+    this.addEventListeners()
 
     // check for solved
     const isSolved = this.isSolved()
     if (isSolved) {
       gameBoard.classList.remove('show')
-      alert('you solved it')
+      PopUp.renderWin()
     }
   }
 
@@ -283,6 +318,26 @@ class Game {
     }
 
     return isSolved
+  }
+
+  removeEventListeners = () => {
+    const gameBoard = document.querySelector('.gameboard__gamefield')
+    const shuffleBtn = document.querySelector('.shuffle__btn')
+    const loadBtn = document.querySelector('.load__btn')
+
+    gameBoard.removeEventListener('click', this.boardClickHandler)
+    shuffleBtn.removeEventListener('click', this.shuffle)
+    loadBtn.removeEventListener('click', this.loadGame)
+  }
+
+  addEventListeners = () => {
+    const gameBoard = document.querySelector('.gameboard__gamefield')
+    const shuffleBtn = document.querySelector('.shuffle__btn')
+    const loadBtn = document.querySelector('.load__btn')
+
+    gameBoard.addEventListener('click', this.boardClickHandler)
+    shuffleBtn.addEventListener('click', this.shuffle)
+    loadBtn.addEventListener('click', this.loadGame)
   }
 }
 

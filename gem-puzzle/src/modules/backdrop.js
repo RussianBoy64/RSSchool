@@ -25,9 +25,12 @@ class Backdrop {
   }
 
   backdropHide = () => {
-    this.backdrop.classList.remove('show')
-    Settings.settingsMenuHide()
-    PopUp.popUpHide()
+    const winInput = document.querySelector('.win__input')
+    if (!winInput || (winInput && winInput.value !== '')) {
+      this.backdrop.classList.remove('show')
+      Settings.settingsMenuHide()
+      PopUp.popUpHide()
+    }
   }
 }
 
