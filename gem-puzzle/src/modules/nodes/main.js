@@ -90,6 +90,10 @@ export default async function createMainNode() {
   saveBtn.addEventListener('click', Game.saveGame)
   loadBtn.addEventListener('click', Game.loadGame)
   gamefield.addEventListener('click', Game.boardClickHandler)
+  gamefield.addEventListener('mousemove', (e) => {
+    const isLeftButtonHold = e.buttons === 1
+    if (isLeftButtonHold) console.log(isLeftButtonHold)
+  })
 
   return main
 }
