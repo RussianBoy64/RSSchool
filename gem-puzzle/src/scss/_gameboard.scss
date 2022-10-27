@@ -34,6 +34,7 @@
     border-radius: 10px;
 
     .gamefield__tile {
+      position: relative;
       @extend %flex-centered;
       width: 33.3%;
       height: 33.3%;
@@ -43,17 +44,27 @@
       opacity: 0;
       cursor: pointer;
 
-      @extend %transitionSlow;
+      transform: translate(0px, 0px);
+
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      // @extend %transitionSlow;
 
       @for $i from 0 to 65 {
         &:nth-child(#{$i}) {
-          transition-delay: #{$i * 50}ms;
+          transition: opacity 600ms ease #{$i * 50}ms, transform 600ms ease;
         }
       }
 
       &:hover {
         background: $accent;
         border: 2px solid $accent;
+        cursor: grab;
       }
 
       &.empty {
@@ -77,6 +88,10 @@
       &.moveRight {
         animation: moveRight 800ms ease;
       }
+
+      &.grab {
+        cursor: grabbing;
+      }
     }
 
     &.show {
@@ -88,36 +103,24 @@
 }
 
 @keyframes moveTop {
-  from {
-    transform: translateY(0);
-  }
   to {
     transform: translateY(-100%);
   }
 }
 
 @keyframes moveDown {
-  from {
-    transform: translateY(0);
-  }
   to {
     transform: translateY(100%);
   }
 }
 
 @keyframes moveLeft {
-  from {
-    transform: translateX(0);
-  }
   to {
     transform: translateX(-100%);
   }
 }
 
 @keyframes moveRight {
-  from {
-    transform: translateX(0);
-  }
   to {
     transform: translateX(100%);
   }

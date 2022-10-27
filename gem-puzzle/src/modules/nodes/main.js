@@ -90,10 +90,22 @@ export default async function createMainNode() {
   saveBtn.addEventListener('click', Game.saveGame)
   loadBtn.addEventListener('click', Game.loadGame)
   gamefield.addEventListener('click', Game.boardClickHandler)
-  gamefield.addEventListener('mousemove', (e) => {
-    const isLeftButtonHold = e.buttons === 1
-    if (isLeftButtonHold) console.log(isLeftButtonHold)
-  })
+  gamefield.addEventListener('mousedown', Game.mouseDownHandler)
+
+  // gamefield.addEventListener('mousedown', (event) => {
+  //   const tile = event.target
+  //   const gameBoard = event.currentTarget
+  //   const tileIdx = Game.currentGameState.currentState.indexOf(+tile.innerText)
+  //   const nullIdx = Game.currentGameState.currentState.indexOf(null)
+
+  //   console.log(tileIdx)
+  //   console.log(nullIdx)
+  //   console.log(event)
+
+  //   tile.style.cursor = 'grabbing'
+
+  //   gameBoard.addEventListener('mousemove', (e) => {})
+  // })
 
   return main
 }
