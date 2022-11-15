@@ -1,0 +1,3 @@
+function renderApp() {}
+
+export { renderApp }
