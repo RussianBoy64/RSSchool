@@ -1,4 +1,49 @@
 .header {
   width: 100%;
   height: 70px;
+
+  &__inner {
+    @extend %flex-sb;
+    height: 100%;
+  }
+}
+
+.logo {
+  @extend %flex;
+
+  &__img {
+    width: 3em;
+    height: 3em;
+  }
+
+  &__text {
+    font-family: 'Caveat', cursive;
+    font-size: 1.5em;
+    font-weight: 800;
+    @extend %transition;
+  }
+
+  &:hover {
+    .logo__text {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.nav {
+  &__list {
+    @extend %flex;
+    gap: 0.5em;
+  }
+
+  &__link {
+    display: inline-block;
+    padding: 0.3em 0.7em;
+
+    @extend %transition;
+
+    &:hover {
+      color: $accent-blue;
+    }
+  }
 }
