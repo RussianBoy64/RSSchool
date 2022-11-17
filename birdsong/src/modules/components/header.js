@@ -1,18 +1,19 @@
 import createWrapper from './wrapper'
 import createLogo from './logo'
+import createNav from './UI/nav'
 
-export default async function createHeader() {
+export default async function createHeader(lang) {
   const header = document.createElement('header')
   const wrapper = await createWrapper()
-  const headerInner = document.createElement('div')
   const logo = await createLogo()
+  const nav = await createNav(lang)
 
   header.classList.add('header')
-  headerInner.classList.add('header__inner')
+  wrapper.classList.add('header__inner')
 
   header.append(wrapper)
-  wrapper.append(headerInner)
-  headerInner.append(logo)
+  wrapper.append(logo)
+  wrapper.append(nav)
 
   return header
 }
