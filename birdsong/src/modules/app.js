@@ -1,3 +1,0 @@
-function renderApp() {}
-
-export { renderApp }
