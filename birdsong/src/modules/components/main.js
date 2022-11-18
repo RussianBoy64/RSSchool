@@ -26,7 +26,7 @@ async function loadMainPage() {
 
   mainInner.classList.add('main__inner')
   title.classList.add('main__title')
-  title.textContent = 'Guess the birds by their song'
+  title.innerHTML = 'Guess the birds</br>by their song'
 
   mainInner.append(title)
   mainInner.append(startLink)

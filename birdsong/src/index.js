@@ -1,6 +1,6 @@
 import './scss/styles.scss'
 
-import Quiz from './modules/Quiz'
+import quiz from './modules/Quiz'
 
 import createHeader from './modules/components/header'
 import createMain from './modules/components/main'
@@ -9,13 +9,11 @@ import createVideoBg from './modules/components/videoBg'
 
 const app = document.querySelector('.app')
 
-async function renderApp() {
-  const quiz = new Quiz()
 
-  await quiz.loadQuiz()
+async function renderApp() {
 
   const headerNode = await createHeader(quiz.lang)
-  const mainNode = await createMain()
+  const mainNode = await createMain(quiz.lang)
   const footerNode = await createFooter()
   const videoBg = await createVideoBg()
 

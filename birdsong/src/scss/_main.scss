@@ -1,9 +1,37 @@
 .main {
   width: 100%;
-  flex: 1;
+  height: 200px;
+  flex-grow: 1;
 
   &__inner {
     @extend %flex-centered;
+    flex-direction: column;
     height: 100%;
+    gap: 1em;
   }
+
+  &__title {
+    font-family: 'Caveat', cursive;
+    font-size: 3em;
+    font-weight: 800;
+    line-height: 1em;
+    text-align: center;
+  }
+}
+
+.link {
+  display: inline-block;
+  padding: 0.3em 1em;
+  border: 2px solid $accent-blue;
+  border-radius: 1em;
+  @extend %transition;
+
+  &:hover {
+    box-shadow: 0 0 0.7em $accent-blue;
+
+    &:active {
+      background-color: $accent-blue;
+    }
+  }
+  
 }

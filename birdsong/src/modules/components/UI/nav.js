@@ -5,7 +5,6 @@ export default async function createNav(lang) {
   const nav = document.createElement('nav')
   const navList = document.createElement('ul')
   const linksData = quizData[lang]['links']
-  console.log(linksData)
 
   nav.classList.add('nav')
   navList.classList.add('nav__list')

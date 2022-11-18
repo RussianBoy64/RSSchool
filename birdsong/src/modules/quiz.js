@@ -1,6 +1,6 @@
-export default class Quiz {
+ class Quiz {
   constructor() {
-    this.lang = 'ru'
+    this.lang = 'en'
   }
 
   loadQuiz = async () => {
@@ -13,13 +13,10 @@ export default class Quiz {
     localStorage.setItem('lang', this.lang)
   }
 
-  setLanguage = () => {
-    const textsNodes = document.querySelectorAll('[data-text]')
-    console.log(textsNodes)
-
-    textsNodes.forEach((textNode) => {
-      const text = textNode.dataset.text
-      textNode.textContent = data[this.lang]
-    })
-  }
 }
+
+
+const quiz = new Quiz()
+quiz.loadQuiz()
+
+export default quiz

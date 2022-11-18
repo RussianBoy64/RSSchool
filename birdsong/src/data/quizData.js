@@ -13,7 +13,7 @@ const quizData = {
       },
       gallary: {
         href: '/gallery',
-        text: 'Gallary',
+        text: 'Gallery',
         className: 'nav__link',
       },
     },

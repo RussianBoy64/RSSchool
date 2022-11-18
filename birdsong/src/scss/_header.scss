@@ -47,3 +47,58 @@
     }
   }
 }
+
+.lang {
+  &__wrapper {
+    position: relative;
+    @extend %flex-centered;
+    gap: 0.2em;
+    text-transform: capitalize;
+  }
+
+  &__radio {
+    position: absolute;
+    top:0;
+    left: 0;
+    display: none;
+    visibility:hidden;
+
+    &:checked + .lang__label {
+      color: $accent-blue;
+    }
+  }
+
+  &__label {
+    cursor: pointer;
+    @extend %transition;
+
+    &:hover {
+      color: $accent-blue;
+    }
+
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    height: 100px;
+
+    &__inner {
+      justify-content: center !important;
+      flex-wrap: wrap;
+    }
+  }
+
+  .logo {
+    order: 1;
+    margin-right: auto;
+  }
+
+  .nav {
+    order: 3;
+  }
+
+  .lang__wrapper {
+    order: 2;
+  }
+}
