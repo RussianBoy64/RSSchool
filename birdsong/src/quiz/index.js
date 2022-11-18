@@ -1,23 +1,27 @@
-import '../scss/styles.scss'
-import quiz from '../modules/Quiz'
+// import '../scss/styles.scss'
+// import quiz from '../modules/Quiz'
 
-import createHeader from '../modules/components/header'
-import createMain from '../modules/components/main'
-import createFooter from '../modules/components/footer'
+// import createHeader from '../modules/components/header'
+// import createMain from '../modules/components/main'
+// import createFooter from '../modules/components/footer'
 
-const app = document.querySelector('.app')
+// const app = document.querySelector('.app')
 
-async function renderApp() {
+// async function renderApp() {
 
-  const headerNode = await createHeader(quiz.lang)
-  const mainNode = await createMain()
-  const footerNode = await createFooter()
+//   const headerNode = await createHeader(quiz.lang)
+//   const mainNode = await createMain(quiz.lang)
+//   const footerNode = await createFooter()
 
-  app.append(headerNode)
-  app.append(mainNode)
-  app.append(footerNode)
+//   app.append(headerNode)
+//   app.append(mainNode)
+//   app.append(footerNode)
 
-  window.addEventListener('beforeunload', quiz.saveQuiz)
-}
+//   window.addEventListener('beforeunload', quiz.saveQuiz)
+// }
 
-renderApp()
+// renderApp()
+
+import renderApp from "..";
+
+// renderApp()

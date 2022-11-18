@@ -1,16 +1,18 @@
 import createWrapper from './wrapper'
 import createLink from './UI/link'
 
-export default async function createMain() {
+export default async function createMain(lang, path) {
   const main = document.createElement('main')
   const wrapper = await createWrapper()
-  const path = window.location.pathname
-
+  
   main.classList.add('main')
 
   // add content
   if (path === '/') {
-    const content = await loadMainPage()
+    const content = await loadMainPage(lang)
+    wrapper.append(content)
+  } else if (path === '/quiz') {
+    const content = await loadQuizPage(lang)
     wrapper.append(content)
   }
 
@@ -19,17 +21,28 @@ export default async function createMain() {
   return main
 }
 
-async function loadMainPage() {
+async function loadMainPage(lang) {
   const mainInner = document.createElement('div')
   const title = document.createElement('h1')
-  const startLink = await createLink('/quiz', 'Start Quiz', 'link')
+  const startLink = await createLink('/quiz', lang === 'en' ? 'Start Quiz' : 'Начать викторину', 'link')
 
   mainInner.classList.add('main__inner')
   title.classList.add('main__title')
-  title.innerHTML = 'Guess the birds</br>by their song'
+  title.innerHTML = lang === 'en' ? 'Guess the birds</br>by their song' : 'Угадай птицу</br>по ее пению'
 
   mainInner.append(title)
   mainInner.append(startLink)
+
+  return mainInner
+}
+
+
+async function loadQuizPage(lang) {
+  const mainInner = document.createElement('div')
+  const questions = document.createElement('section')
+
+  mainInner.classList.add('main__inner')
+  mainInner.classList.add('quiz')
 
   return mainInner
 }

@@ -1,6 +1,7 @@
 import quiz from '../../Quiz'
 
 import createHeader from '../header';
+import createMain from '../main';
 
 export default async function createLangControl(lang) {
     const langContolWrapper = document.createElement('form');
@@ -51,20 +52,16 @@ async function createLabel(id, text) {
 async function setLanguage(event) {
     event.preventDefault()
 
-
     const lang = event.target.value
+    const path = window.location.pathname
+
     quiz.lang = lang
 
     const headerCurrent = document.querySelector('.header');
     const headerTranslated = await createHeader(quiz.lang)
+    const mainCurrent = document.querySelector('.main');
+    const mainTranslated = await createMain(quiz.lang, path)
     
     headerCurrent.replaceWith(headerTranslated)
-
-    // const textsNodes = document.querySelectorAll('[data-text]')
-    // console.log(textsNodes)
-
-    // textsNodes.forEach((textNode) => {
-    //   const text = textNode.dataset.text
-    //   textNode.textContent = data[this.lang]
-    // })
+    mainCurrent.replaceWith(mainTranslated)
   }

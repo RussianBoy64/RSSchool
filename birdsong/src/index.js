@@ -8,21 +8,29 @@ import createFooter from './modules/components/footer'
 import createVideoBg from './modules/components/videoBg'
 
 const app = document.querySelector('.app')
+const path = window.location.pathname
 
 
 async function renderApp() {
 
   const headerNode = await createHeader(quiz.lang)
-  const mainNode = await createMain(quiz.lang)
+  const mainNode = await createMain(quiz.lang, path)
   const footerNode = await createFooter()
-  const videoBg = await createVideoBg()
+  
 
   app.append(headerNode)
   app.append(mainNode)
   app.append(footerNode)
-  app.append(videoBg)
+
+  if (path === '/') {
+    const videoBg = await createVideoBg()
+    app.append(videoBg)
+  }
+  
 
   window.addEventListener('beforeunload', quiz.saveQuiz)
 }
 
 renderApp()
+
+export default renderApp
