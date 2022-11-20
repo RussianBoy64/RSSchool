@@ -60,12 +60,7 @@ async function setLanguage(event) {
   const headerCurrent = document.querySelector('.header')
   const headerTranslated = await createHeader(quiz.lang)
   const mainCurrent = document.querySelector('.main')
-  const mainTranslated = await createMain(
-    quiz.lang,
-    quiz.question,
-    quiz.score,
-    path
-  )
+  const mainTranslated = await createMain(path)
 
   headerCurrent.replaceWith(headerTranslated)
   mainCurrent.replaceWith(mainTranslated)

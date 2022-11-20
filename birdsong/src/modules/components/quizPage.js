@@ -1,17 +1,23 @@
 import quizData from '../../data/quizData'
+import quiz from '../Quiz'
 
-export default async function createQuizPage(lang, question, score) {
+import createPlayer from './UI/player'
+
+export default async function createQuizPage() {
+  const {lang, currentQuestion, score, answers} = quiz
   const mainInner = document.createElement('div')
-  const questions = await createQuestions(lang, question, score)
+  const questions = await createQuestions(lang, currentQuestion, score)
+  const currentQuestionNode = await createCurrentQuestion(lang, currentQuestion, answers)
 
   mainInner.classList.add('main__inner')
 
   mainInner.append(questions)
+  mainInner.append(currentQuestionNode)
 
   return mainInner
 }
 
-async function createQuestions(lang, question, score) {
+async function createQuestions(lang, currentQuestion, score) {
   const questions = document.createElement('section')
   const questionsWrapper = document.createElement('div')
   const scoreNode = document.createElement('span')
@@ -33,7 +39,7 @@ async function createQuestions(lang, question, score) {
     questionNode.textContent = questionsData[questionIdx]
 
     questionNode.classList.add('questions__question')
-    if(questionIdx==question) questionNode.classList.add('active')
+    if (questionIdx == currentQuestion) questionNode.classList.add('active')
 
     questionsWrapper.append(questionNode)
   }
@@ -41,13 +47,20 @@ async function createQuestions(lang, question, score) {
   return questions
 }
 
-async function createCurrentQuestion(lang, question) {
-  const currentQuestion = document.createElement('section')
+async function createCurrentQuestion(lang, currentQuestion, answers) {
+  const currentQuestionNode = document.createElement('section')
   const currentImg  = document.createElement('div')
   const currentBird  = document.createElement('span')
+  const player = await createPlayer(lang, currentQuestion, answers)
   
 
-  currentQuestion.classList.add('quiz__current-question')
+  currentQuestionNode.classList.add('quiz__current-question')
   currentImg.classList.add('current-question__img')
   currentBird.classList.add('current-question__bird')
+
+  currentQuestionNode.append(currentImg)
+  currentQuestionNode.append(currentBird)
+  currentQuestionNode.append(player)
+
+  return currentQuestionNode
 }
