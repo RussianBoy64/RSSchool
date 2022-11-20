@@ -10,13 +10,11 @@ import createVideoBg from './modules/components/videoBg'
 const app = document.querySelector('.app')
 const path = window.location.pathname
 
-
 async function renderApp() {
-
+  console.log(quiz)
   const headerNode = await createHeader(quiz.lang)
-  const mainNode = await createMain(quiz.lang, path)
+  const mainNode = await createMain(quiz.lang, quiz.question, quiz.score, path)
   const footerNode = await createFooter()
-  
 
   app.append(headerNode)
   app.append(mainNode)
@@ -26,7 +24,6 @@ async function renderApp() {
     const videoBg = await createVideoBg()
     app.append(videoBg)
   }
-  
 
   window.addEventListener('beforeunload', quiz.saveQuiz)
 }

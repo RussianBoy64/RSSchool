@@ -424,6 +424,14 @@ const quizData = {
         },
       ],
     ],
+    questions: [
+      'warm-up',
+      'passerines',
+      'forest birds',
+      'songbirds',
+      'predator birds',
+      'sea birds',
+    ],
   },
   ru: {
     links: {
@@ -852,6 +860,14 @@ const quizData = {
             'https://www.xeno-canto.org/sounds/uploaded/VOLIQOYWKG/XC501190-190801_06.50h_zilvermeeuw_duinen%20van%20goeree_roep_2ex_overvliegend_gezien_.mp3',
         },
       ],
+    ],
+    questions: [
+      'разминка',
+      'воробьиные',
+      'лесные птицы',
+      'певчие птицы',
+      'хищные птицы',
+      'морские птицы',
     ],
   },
 }
