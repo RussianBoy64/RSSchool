@@ -32,7 +32,7 @@
 
 .nav {
   &__list {
-    @extend %flex;
+    @extend %flex-centered;
     gap: 0.5em;
   }
 
@@ -53,6 +53,7 @@
     position: relative;
     @extend %flex-centered;
     gap: 0.2em;
+    margin: 0;
     text-transform: capitalize;
   }
 
@@ -96,6 +97,7 @@
 
   .nav {
     order: 3;
+    width: 100%;
   }
 
   .lang__wrapper {

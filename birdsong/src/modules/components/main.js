@@ -12,7 +12,8 @@ export default async function createMain(lang, question, score, path) {
   if (path === '/') {
     const content = await loadMainPage(lang)
     wrapper.append(content)
-  } else if (path === '/quiz/') {
+  } else if (path.includes('quiz')) {
+    
     const content = await createQuizPage(lang, question, score)
     wrapper.append(content)
   }
@@ -40,16 +41,6 @@ async function loadMainPage(lang) {
 
   mainInner.append(title)
   mainInner.append(startLink)
-
-  return mainInner
-}
-
-async function loadQuizPage(lang, question, score) {
-  const mainInner = document.createElement('div')
-  const questions = document.createElement('section')
-
-  mainInner.classList.add('main__inner')
-  mainInner.classList.add('quiz')
 
   return mainInner
 }

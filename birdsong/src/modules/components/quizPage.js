@@ -13,6 +13,7 @@ export default async function createQuizPage(lang, question, score) {
 
 async function createQuestions(lang, question, score) {
   const questions = document.createElement('section')
+  const questionsWrapper = document.createElement('div')
   const scoreNode = document.createElement('span')
   const questionsData = quizData[lang].questions
 
@@ -20,13 +21,33 @@ async function createQuestions(lang, question, score) {
   scoreNode.textContent += score
 
   questions.classList.add('quiz__questions')
+  questionsWrapper.classList.add('questions__wrapper')
   scoreNode.classList.add('questions__score')
-  console.log(score)
-  questions.append(scoreNode)
 
-  for (let questionData of questionsData) {
-    console.log(questionData)
+  questions.append(scoreNode)
+  questions.append(questionsWrapper)
+
+  for (let questionIdx in questionsData) {
+    const questionNode = document.createElement('span') 
+    
+    questionNode.textContent = questionsData[questionIdx]
+
+    questionNode.classList.add('questions__question')
+    if(questionIdx==question) questionNode.classList.add('active')
+
+    questionsWrapper.append(questionNode)
   }
 
   return questions
+}
+
+async function createCurrentQuestion(lang, question) {
+  const currentQuestion = document.createElement('section')
+  const currentImg  = document.createElement('div')
+  const currentBird  = document.createElement('span')
+  
+
+  currentQuestion.classList.add('quiz__current-question')
+  currentImg.classList.add('current-question__img')
+  currentBird.classList.add('current-question__bird')
 }

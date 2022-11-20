@@ -35,3 +35,64 @@
   }
   
 }
+
+.quiz {
+  
+  &__questions {
+    text-align: center;
+    text-transform: capitalize;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .questions {
+      &__score {
+        grid-column: 1 / span 6;
+        font-family: 'Caveat', cursive;
+        font-size: 2em;
+        font-weight: 600;
+      }
+
+      &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(6, auto);
+        align-items: center;
+        justify-content: center;
+        border: 2px solid $accent-blue;
+        border-radius: 1em;
+        overflow: hidden;
+      }
+
+      &__question {
+        padding: 0.3em 0.7em;
+        font-size: 0.7em;
+      
+        &.active {
+          border-radius: 0.7em;
+          background-color: $accent-blue;
+        }
+      }
+    }
+
+    
+  }
+}
+
+@media (max-width: 767px) {
+  .quiz {
+  
+    &__questions {
+  
+      .questions {
+        &__wrapper {
+          grid-template-columns: repeat(3, auto);
+        }
+
+        &__question {
+          font-size: 0.6em; 
+        }
+      } 
+    }
+  }
+}
