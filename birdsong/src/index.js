@@ -11,9 +11,8 @@ const app = document.querySelector('.app')
 const path = window.location.pathname
 
 async function renderApp() {
-  console.log(quiz)
   const headerNode = await createHeader(quiz.lang)
-  const mainNode = await createMain(quiz.lang, quiz.question, quiz.score, path)
+  const mainNode = await createMain(quiz.lang, quiz.currentQuestion, quiz.score, path)
   const footerNode = await createFooter()
 
   app.append(headerNode)

@@ -1,5 +1,6 @@
 import createLink from './link'
 import quizData from '../../../data/quizData'
+import quiz from '../../Quiz'
 
 export default async function createNav(lang) {
   const nav = document.createElement('nav')
@@ -18,6 +19,10 @@ export default async function createNav(lang) {
     li.classList.add('list__item')
     li.append(link)
     navList.append(li)
+
+    if (linkName === 'quiz') {
+      link.addEventListener('click', quiz.startQuiz)
+    }
   }
 
   nav.append(navList)

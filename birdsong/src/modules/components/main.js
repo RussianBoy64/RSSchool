@@ -1,3 +1,5 @@
+import quiz from '../Quiz'
+
 import createWrapper from './wrapper'
 import createLink from './UI/link'
 import createQuizPage from './quizPage'
@@ -41,6 +43,8 @@ async function loadMainPage(lang) {
 
   mainInner.append(title)
   mainInner.append(startLink)
+
+  startLink.addEventListener('click', quiz.startQuiz)
 
   return mainInner
 }
