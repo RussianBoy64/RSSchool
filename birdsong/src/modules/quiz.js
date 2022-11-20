@@ -6,13 +6,14 @@ class Quiz {
     this.currentQuestion = 0
     this.score = 0
     this.answers = []
-    this.isStarted = false
   }
 
   loadQuiz = () => {
     const lang = localStorage.getItem('lang')
     const answers = localStorage.getItem('answers')
-    const data = {lang, answers}
+    const currentQuestion = localStorage.getItem('currentQuestion')
+    const score = localStorage.getItem('score')
+    const data = {lang, answers, currentQuestion, score}
 
     return data
   }
@@ -20,6 +21,8 @@ class Quiz {
   saveQuiz = () => {
     localStorage.setItem('lang', this.lang)
     localStorage.setItem('answers', this.answers.join(''))
+    localStorage.setItem('currentQuestion', this.currentQuestion)
+    localStorage.setItem('score', this.score)
   }
 
   shuffleQuestions = () => {
@@ -34,16 +37,19 @@ class Quiz {
   }
 
   startQuiz = () => {
-    this.isStarted = true
+    this.score = 0
+    this.currentQuestion = 0
     this.shuffleQuestions()
   }
 }
 
 
 const quiz = new Quiz()
-const {lang, answers} = quiz.loadQuiz()
+const {lang, answers, currentQuestion, score} = quiz.loadQuiz()
 if (lang) quiz.lang = lang
 if (answers) quiz.answers = answers.split('')
+if (+currentQuestion !== 0) quiz.currentQuestion = +currentQuestion
+if (+score !== 0) quiz.score = +score
 console.log(quiz)
 
 
