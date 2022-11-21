@@ -22,6 +22,9 @@ async function renderApp() {
   if (path === '/') {
     const videoBg = await createVideoBg()
     app.append(videoBg)
+    alert(
+      'Доброго времени суток! Если есть такая возможность, проверьте мою работу в среду! Я постараюсь успеть все доделать. Заранее благодарю'
+    )
   }
 
   window.addEventListener('beforeunload', quiz.saveQuiz)
