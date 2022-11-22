@@ -4,10 +4,10 @@ import quiz from '../Quiz'
 import createPlayer from './UI/player'
 
 export default async function createQuizPage() {
-  const {lang, currentQuestion, score, answers} = quiz
+  const {lang, currentQuestion, score, answers, isAnswered} = quiz
   const mainInner = document.createElement('div')
   const questions = await createQuestions(lang, currentQuestion, score)
-  const currentQuestionNode = await createCurrentQuestion(lang, currentQuestion, answers)
+  const currentQuestionNode = await createCurrentQuestion(lang, currentQuestion, answers, isAnswered)
 
   mainInner.classList.add('main__inner')
 
@@ -47,16 +47,25 @@ async function createQuestions(lang, currentQuestion, score) {
   return questions
 }
 
-async function createCurrentQuestion(lang, currentQuestion, answers) {
+async function createCurrentQuestion(lang, currentQuestion, answers, isAnswered) {
   const currentQuestionNode = document.createElement('section')
   const currentImg  = document.createElement('div')
   const currentBird  = document.createElement('span')
+  const answerImgSrc = quizData[lang]['birds'][currentQuestion][answers[currentQuestion] - 1].image
+  const answerName = quizData[lang]['birds'][currentQuestion][answers[currentQuestion] - 1].name
   const player = await createPlayer(lang, currentQuestion, answers)
-  
 
   currentQuestionNode.classList.add('quiz__current-question')
   currentImg.classList.add('current-question__img')
   currentBird.classList.add('current-question__bird')
+
+  if (isAnswered) {
+    currentImg.style.backgroundImage = `url('${answerImgSrc}')`
+    currentBird.textContent = answerName
+  } else {
+    currentImg.style.backgroundImage = 'url(https://birds-quiz.netlify.app/static/media/bird.06a46938.jpg)'
+    currentBird.textContent = '******'
+  }
 
   currentQuestionNode.append(currentImg)
   currentQuestionNode.append(currentBird)

@@ -6,6 +6,7 @@ class Quiz {
     this.currentQuestion = 0
     this.score = 0
     this.answers = []
+    this.isAnswered = true
   }
 
   loadQuiz = () => {

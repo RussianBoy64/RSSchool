@@ -39,6 +39,7 @@
 .quiz {
   
   &__questions {
+    width: 100%;
     text-align: center;
     text-transform: capitalize;
     white-space: nowrap;
@@ -58,7 +59,7 @@
         display: grid;
         grid-template-columns: repeat(6, auto);
         align-items: center;
-        justify-content: center;
+        width: 100%;
         border: 2px solid $accent-blue;
         border-radius: 1em;
         overflow: hidden;
@@ -76,6 +77,110 @@
     }
 
     
+  }
+
+  &__current-question {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 'img answer' 'img player';
+    gap: 1em;
+    width: 100%;
+    padding: 1em;;
+    border-radius: 1em;
+    background-image: linear-gradient(240deg, $bg-green 0%, $bg-blue 100%);
+
+    .current-question {
+      &__img {
+        grid-area: img;
+        width: 200px;
+        height: 155px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 1em;
+      }
+
+      &__bird {
+        grid-area: answer;
+        font-weight: 600;
+        border-bottom: 1px solid $accent-blue;
+      }
+
+      .player {
+        grid-area: player;
+      }
+    }
+  }
+}
+
+.player {
+  display: grid;
+  grid-template-columns: auto 2fr 6fr;
+  grid-template-areas: 'play-btn volume song-info';
+  align-items: center;
+  gap: 0.5em;
+
+  &__play-btn {
+    grid-area: play-btn;
+    width: 2.5em;
+    height: 2.5em;
+    color: $accent-blue;
+    background-color: transparent;
+    border: 2px solid $accent-blue;
+    border-radius: 50%;
+    @extend %transition;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 0.2em $accent-blue;
+
+      &:active {
+        box-shadow: 0 0 0.5em $accent-blue;
+      }
+    }
+  }
+
+  &__volume {
+    grid-area: volume;
+    @extend %flex;
+
+    .volume {
+
+      &__btn {
+        color: $accent-blue;
+        border: none;
+        background-color: transparent;
+        @extend %transition;
+
+        &:hover {
+          cursor: pointer;
+          text-shadow: 0 0 0.2em $accent-blue;
+    
+          &:active {
+            text-shadow: 0 0 0.5em $accent-blue;
+          }
+        }
+      }
+
+      &__levelBar {
+        width: auto;
+        flex-grow: 1;
+        height: 0.3em;
+        border-radius: 5px;
+        background-color: $bg-blue;
+      }
+
+      &__level {
+        width: 75%;
+        height: 100%;
+        border-radius: 5px;
+        background-color: $accent-blue;
+      }
+
+    }
+  }
+
+  &__song {
+    grid-area: song-info;
   }
 }
 
