@@ -3,7 +3,6 @@ import quiz from '../Quiz'
 
 import createPlayer from './UI/player'
 import createButton from './UI/button'
-import createMain from './main'
 
 export default async function createQuizPage() {
   const { lang, currentQuestion, score, answers, isAnswered } = quiz
@@ -15,14 +14,15 @@ export default async function createQuizPage() {
     answers,
     isAnswered
   )
-
   const answersNode = await createAnswers(lang, currentQuestion)
+  const descriptionNode = await createDescription(lang)
 
   mainInner.classList.add('main__inner')
 
   mainInner.append(questions)
   mainInner.append(currentQuestionNode)
   mainInner.append(answersNode)
+  mainInner.append(descriptionNode)
 
   return mainInner
 }
@@ -109,8 +109,18 @@ async function createAnswers(lang, currentQuestion) {
   return answersNode
 }
 
+async function createDescription(lang) {
+  const descriptionNode = document.createElement('section')
+
+  descriptionNode.classList.add('quiz__description')
+
+  descriptionNode.textContent = quizData[lang].description
+
+  return descriptionNode
+}
+
 async function answersNodeClickHandler(event) {
-  let { lang, currentQuestion, score, answers, isAnswered, points } = quiz
+  let { lang, currentQuestion, answers, isAnswered, points } = quiz
   const choosenAnswer = event.target.id
   const currectAnswer =
     quizData[lang]['birds'][currentQuestion][answers[currentQuestion] - 1].id
@@ -153,3 +163,5 @@ async function updateQuizPage() {
 
   mainInnerCurrent.replaceWith(mainInnerUpdated)
 }
+
+async function updateDescription() {}

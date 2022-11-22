@@ -432,6 +432,8 @@ const quizData = {
       'predator birds',
       'sea birds',
     ],
+
+    description: 'Listen audio and choose bird from the list.',
   },
   ru: {
     links: {
@@ -869,6 +871,8 @@ const quizData = {
       'хищные птицы',
       'морские птицы',
     ],
+
+    description: 'Послушайте плеер и выберите птицу из списка.',
   },
 }
 

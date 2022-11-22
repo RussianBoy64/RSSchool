@@ -8,7 +8,7 @@ class Quiz {
     this.points = 5
     this.answers = []
     this.isAnswered = false
-    this.pushedBtns = []
+    this.pushedBtns = ''
   }
 
   loadQuiz = () => {
@@ -39,7 +39,7 @@ class Quiz {
     localStorage.setItem('score', this.score)
     localStorage.setItem('points', this.points)
     localStorage.setItem('isAnswered', this.isAnswered)
-    localStorage.setItem('pushedBtns', this.pushedBtns.join(''))
+    localStorage.setItem('pushedBtns', this.pushedBtns)
   }
 
   shuffleQuestions = () => {
@@ -58,7 +58,7 @@ class Quiz {
     this.points = 5
     this.currentQuestion = 0
     this.isAnswered = false
-    this.pushedBtns = []
+    this.pushedBtns = ''
     this.shuffleQuestions()
   }
 }
@@ -80,7 +80,8 @@ if (+currentQuestion !== 0) quiz.currentQuestion = +currentQuestion
 if (+score !== 0) quiz.score = +score
 if (+points !== 0) quiz.points = +points
 if (isAnswered) quiz.isAnswered = isAnswered === 'true' ? true : false
-if (pushedBtns) quiz.pushedBtns = pushedBtns.split('')
+console.log(pushedBtns || pushedBtns === '')
+if (pushedBtns) quiz.pushedBtns = pushedBtns
 
 console.log(quiz)
 
