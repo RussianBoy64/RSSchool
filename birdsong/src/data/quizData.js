@@ -2,17 +2,17 @@ const quizData = {
   en: {
     links: {
       main: {
-        href: './',
+        href: '/',
         text: 'Main',
         className: 'nav__link',
       },
       quiz: {
-        href: './quiz',
+        href: '/quiz',
         text: 'Quiz',
         className: 'nav__link',
       },
       gallary: {
-        href: './gallery',
+        href: '/gallery',
         text: 'Gallery',
         className: 'nav__link',
       },
@@ -436,19 +436,19 @@ const quizData = {
   ru: {
     links: {
       main: {
-        href: './',
+        href: '/',
         target: '_blank',
         text: 'Главная',
         className: 'nav__link',
       },
       quiz: {
-        href: './quiz',
+        href: '/quiz',
         target: '_blank',
         text: 'Викторина',
         className: 'nav__link',
       },
       gallary: {
-        href: './gallеry',
+        href: '/gallеry',
         target: '_blank',
         text: 'Галерея',
         className: 'nav__link',

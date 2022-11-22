@@ -7,7 +7,7 @@ export default async function createLogo() {
   logoImg.classList.add('logo__img')
   logoText.classList.add('logo__text')
 
-  logo.href = './'
+  logo.href = '/'
   logoImg.src = '../../assets/logo.png'
   logoImg.alt = 'application logo'
   logoText.textContent = 'Birdsong'

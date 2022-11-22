@@ -1,12 +1,14 @@
-import quizData from "../data/quizData"
+import quizData from '../data/quizData'
 
 class Quiz {
   constructor() {
     this.lang = 'en'
     this.currentQuestion = 0
     this.score = 0
+    this.points = 5
     this.answers = []
-    this.isAnswered = true
+    this.isAnswered = false
+    this.pushedBtns = []
   }
 
   loadQuiz = () => {
@@ -14,7 +16,18 @@ class Quiz {
     const answers = localStorage.getItem('answers')
     const currentQuestion = localStorage.getItem('currentQuestion')
     const score = localStorage.getItem('score')
-    const data = {lang, answers, currentQuestion, score}
+    const points = localStorage.getItem('points')
+    const isAnswered = localStorage.getItem('isAnswered')
+    const pushedBtns = localStorage.getItem('pushedBtns')
+    const data = {
+      lang,
+      answers,
+      currentQuestion,
+      score,
+      points,
+      isAnswered,
+      pushedBtns,
+    }
 
     return data
   }
@@ -24,12 +37,15 @@ class Quiz {
     localStorage.setItem('answers', this.answers.join(''))
     localStorage.setItem('currentQuestion', this.currentQuestion)
     localStorage.setItem('score', this.score)
+    localStorage.setItem('points', this.points)
+    localStorage.setItem('isAnswered', this.isAnswered)
+    localStorage.setItem('pushedBtns', this.pushedBtns.join(''))
   }
 
   shuffleQuestions = () => {
     const birdsData = quizData[this.lang].birds
     const answersArr = []
-    birdsData.forEach(birdsArr => {
+    birdsData.forEach((birdsArr) => {
       const randomIndex = Math.floor(Math.random() * birdsArr.length)
       answersArr.push(birdsArr[randomIndex].id)
     })
@@ -39,19 +55,33 @@ class Quiz {
 
   startQuiz = () => {
     this.score = 0
+    this.points = 5
     this.currentQuestion = 0
+    this.isAnswered = false
+    this.pushedBtns = []
     this.shuffleQuestions()
   }
 }
 
-
 const quiz = new Quiz()
-const {lang, answers, currentQuestion, score} = quiz.loadQuiz()
+const {
+  lang,
+  answers,
+  currentQuestion,
+  score,
+  points,
+  isAnswered,
+  pushedBtns,
+} = quiz.loadQuiz()
+
 if (lang) quiz.lang = lang
 if (answers) quiz.answers = answers.split('')
 if (+currentQuestion !== 0) quiz.currentQuestion = +currentQuestion
 if (+score !== 0) quiz.score = +score
-console.log(quiz)
+if (+points !== 0) quiz.points = +points
+if (isAnswered) quiz.isAnswered = isAnswered === 'true' ? true : false
+if (pushedBtns) quiz.pushedBtns = pushedBtns.split('')
 
+console.log(quiz)
 
 export default quiz

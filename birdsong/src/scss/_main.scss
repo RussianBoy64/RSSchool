@@ -5,12 +5,14 @@
 
   &__inner {
     @extend %flex-centered;
-    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
     height: 100%;
     gap: 1em;
   }
 
   &__title {
+    width: 100%;
     font-family: 'Caveat', cursive;
     font-size: 3em;
     font-weight: 800;
@@ -33,11 +35,9 @@
       background-color: $accent-blue;
     }
   }
-  
 }
 
 .quiz {
-  
   &__questions {
     width: 100%;
     text-align: center;
@@ -68,15 +68,14 @@
       &__question {
         padding: 0.3em 0.7em;
         font-size: 0.7em;
-      
+        @extend %transition;
+
         &.active {
-          border-radius: 0.7em;
+          border-radius: 1em;
           background-color: $accent-blue;
         }
       }
     }
-
-    
   }
 
   &__current-question {
@@ -85,7 +84,7 @@
     grid-template-areas: 'img answer' 'img player';
     gap: 1em;
     width: 100%;
-    padding: 1em;;
+    padding: 1em;
     border-radius: 1em;
     background-image: linear-gradient(240deg, $bg-green 0%, $bg-blue 100%);
 
@@ -96,6 +95,7 @@
         height: 155px;
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center;
         border-radius: 1em;
       }
 
@@ -107,6 +107,43 @@
 
       .player {
         grid-area: player;
+      }
+    }
+  }
+
+  &__answers {
+    @extend %flex-centered;
+    flex-direction: column;
+    flex-grow: 1;
+    border: 1px solid $accent-blue;
+    border-radius: 1em;
+    background-image: linear-gradient(240deg, $bg-green 0%, $bg-blue 100%);
+    overflow: hidden;
+
+    .answers__btn {
+      width: 100%;
+      padding: 0.5em;
+      font-size: 0.8em;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      @extend %transition;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $accent-blue;
+      }
+
+      &:hover {
+        background: $accent-blue;
+        opacity: 0.8;
+      }
+
+      &.correct {
+        background: $accent-green;
+      }
+
+      &.incorrect {
+        background: $accent-red;
       }
     }
   }
@@ -144,7 +181,6 @@
     @extend %flex;
 
     .volume {
-
       &__btn {
         color: $accent-blue;
         border: none;
@@ -154,7 +190,7 @@
         &:hover {
           cursor: pointer;
           text-shadow: 0 0 0.2em $accent-blue;
-    
+
           &:active {
             text-shadow: 0 0 0.5em $accent-blue;
           }
@@ -167,6 +203,17 @@
         height: 0.3em;
         border-radius: 5px;
         background-color: $bg-blue;
+        box-shadow: 0 0 0.2em $accent-blue;
+        @extend %transition;
+
+        &:hover {
+          cursor: pointer;
+          box-shadow: 0 0 0.5em $accent-blue;
+
+          &:active {
+            box-shadow: 0 0 0.7em $accent-blue;
+          }
+        }
       }
 
       &__level {
@@ -175,29 +222,78 @@
         border-radius: 5px;
         background-color: $accent-blue;
       }
-
     }
   }
 
   &__song {
     grid-area: song-info;
+    @extend %flex;
+    gap: 0.5em;
+
+    .song {
+      &__progressbar {
+        width: auto;
+        flex-grow: 1;
+        height: 0.3em;
+        border-radius: 5px;
+        background-color: $bg-blue;
+        box-shadow: 0 0 0.2em $accent-blue;
+        @extend %transition;
+
+        &:hover {
+          cursor: pointer;
+          box-shadow: 0 0 0.5em $accent-blue;
+
+          &:active {
+            box-shadow: 0 0 0.7em $accent-blue;
+          }
+        }
+      }
+
+      &__progress {
+        width: 0%;
+        height: 100%;
+        border-radius: 5px;
+        background-color: $accent-blue;
+      }
+    }
   }
 }
 
 @media (max-width: 767px) {
   .quiz {
-  
     &__questions {
-  
       .questions {
         &__wrapper {
           grid-template-columns: repeat(3, auto);
         }
 
         &__question {
-          font-size: 0.6em; 
+          font-size: 0.6em;
         }
-      } 
+      }
+    }
+
+    &__current-question {
+      grid-template-columns: 1fr;
+      grid-template-areas: 'img' 'answer' 'player';
+      text-align: center;
+
+      .current-question {
+        &__img {
+          justify-self: center;
+        }
+      }
+
+      .player {
+        grid-template-columns: auto 1fr;
+        grid-template-areas: 'play-btn song-info' 'volume volume';
+
+        &__volume {
+          justify-self: center;
+          width: 200px;
+        }
+      }
     }
   }
 }

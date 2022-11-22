@@ -1,7 +1,11 @@
-import quizData from "../../../data/quizData"
+import quizData from '../../../data/quizData'
 import getTime from '../helpers/timeFormatter'
 
-export default async function createPlayer(lang, currentQuestion, answers) {
+export default async function createPlayer(
+  lang,
+  currentQuestion,
+  currentBirdData
+) {
   const playerWrapper = document.createElement('div')
   const playPauseBtn = document.createElement('button')
   const volumeWrapper = document.createElement('div')
@@ -16,8 +20,8 @@ export default async function createPlayer(lang, currentQuestion, answers) {
   let volume = 0.75
   let volumeLevelWidth = volume * 100
 
-  song.src = quizData[lang]['birds'][currentQuestion][answers[currentQuestion] - 1].audio
-  
+  song.src = quizData[lang]['birds'][currentQuestion][currentBirdData].audio
+
   playerWrapper.classList.add('player')
   playPauseBtn.classList.add('player__play-btn')
   volumeWrapper.classList.add('player__volume')
@@ -28,15 +32,16 @@ export default async function createPlayer(lang, currentQuestion, answers) {
   songProgressBar.classList.add('song__progressbar')
   songProgress.classList.add('song__progress')
   songInfo.classList.add('song__info')
+  song.classList.add('question__song')
 
   playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>'
   volumeBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>'
-  // songInfo.textContent = 
-  
+  // songInfo.textContent =
 
   playerWrapper.append(playPauseBtn)
   playerWrapper.append(volumeWrapper)
   playerWrapper.append(songProgressWrapper)
+  playerWrapper.append(song)
 
   volumeWrapper.append(volumeBtn)
   volumeWrapper.append(volumeLevelBar)
@@ -55,21 +60,15 @@ export default async function createPlayer(lang, currentQuestion, answers) {
   // functions for player
 
   function initPlayer() {
-    showSongTime()
-    
+    songPlayingHandler()
+
     playPauseBtn.addEventListener('click', playPauseHandler)
     volumeBtn.addEventListener('click', volumeToggle)
     volumeLevelBar.addEventListener('click', volumeLevelHandler)
-  
-    song.addEventListener('timeupdate', showSongTime)
+    songProgressBar.addEventListener('click', progressBarClickHandler)
+
+    song.addEventListener('timeupdate', songPlayingHandler)
     song.addEventListener('ended', audioEndHandler)
-  }
-  
-  function showSongTime() {
-    const currentTime = getTime(song.currentTime)
-    const duration = getTime(song.duration)
-  
-    songInfo.innerText = `${currentTime} / ${duration}`
   }
 
   // play/pause handlers
@@ -125,5 +124,23 @@ export default async function createPlayer(lang, currentQuestion, answers) {
   // progress handlers
   function audioEndHandler() {
     playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>'
+  }
+
+  function songPlayingHandler() {
+    const currentTime = getTime(song.currentTime)
+    const duration = getTime(song.duration)
+    const songProgressWidth = Math.round(
+      (song.currentTime / song.duration) * 100
+    )
+
+    songInfo.innerText = `${currentTime} / ${duration}`
+    songProgress.style.width = `${songProgressWidth}%`
+  }
+
+  function progressBarClickHandler(event) {
+    const sliderWidth = songProgressBar.offsetWidth
+    const newTime = (event.offsetX / sliderWidth) * song.duration
+
+    song.currentTime = newTime
   }
 }

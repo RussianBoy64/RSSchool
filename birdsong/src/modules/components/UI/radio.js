@@ -54,8 +54,10 @@ async function setLanguage(event) {
 
   const lang = event.target.value
   const path = window.location.pathname
+  const questionSong = document.querySelector('.question__song')
 
   quiz.lang = lang
+  if (questionSong) questionSong.pause()
 
   const headerCurrent = document.querySelector('.header')
   const headerTranslated = await createHeader(quiz.lang)
