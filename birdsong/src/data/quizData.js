@@ -7,12 +7,12 @@ const quizData = {
         className: 'nav__link',
       },
       quiz: {
-        href: '/quiz',
+        href: '/quiz.html',
         text: 'Quiz',
         className: 'nav__link',
       },
       gallary: {
-        href: '/gallery',
+        href: '/gallery.html',
         text: 'Gallery',
         className: 'nav__link',
       },
@@ -444,13 +444,13 @@ const quizData = {
         className: 'nav__link',
       },
       quiz: {
-        href: '/quiz',
+        href: '/quiz.html',
         target: '_blank',
         text: 'Викторина',
         className: 'nav__link',
       },
       gallary: {
-        href: '/gallery',
+        href: '/gallery.html',
         target: '_blank',
         text: 'Галерея',
         className: 'nav__link',

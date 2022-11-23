@@ -37,7 +37,7 @@ async function loadMainPage() {
   const mainInner = document.createElement('div')
   const title = document.createElement('h1')
   const startLink = await createLink(
-    '/quiz',
+    '/quiz.html',
     lang === 'en' ? 'Start Quiz' : 'Начать викторину',
     'link'
   )
@@ -63,7 +63,7 @@ async function loadResultsPage() {
   const title = document.createElement('h1')
   const subtitle = document.createElement('p')
   const startLink = await createLink(
-    '/quiz',
+    '/quiz.html',
     lang === 'en' ? 'Start over' : 'Начать заново',
     'link'
   )
