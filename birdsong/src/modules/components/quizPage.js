@@ -145,7 +145,7 @@ async function createDescription(lang, currentQuestion, choosenBirdData) {
 }
 
 async function answersNodeClickHandler(event) {
-  let { lang, currentQuestion, answers, isAnswered, points } = quiz
+  let { lang, currentQuestion, answers, isAnswered, points, pushedBtns } = quiz
   const choosenAnswer = event.target.id
   const choosenBirdData = quizData[lang]['birds'][currentQuestion][choosenAnswer - 1]
   const currectAnswer =
@@ -181,12 +181,12 @@ async function answersNodeClickHandler(event) {
 
       failSound.play()
 
-      event.target.classList.add('incorrect')
+      if (!pushedBtns.includes(choosenAnswer)) {
+        event.target.classList.add('incorrect')
 
-      quiz.points = points <= 0 ? 0 : --points
-      quiz.pushedBtns += choosenAnswer
-
-      
+        quiz.points = points <= 0 ? 0 : --points
+        quiz.pushedBtns += choosenAnswer
+      }
     }
   }
 
