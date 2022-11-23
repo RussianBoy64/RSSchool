@@ -4,7 +4,7 @@ import quiz from '../Quiz'
 import createPlayer from './UI/player'
 import createButton from './UI/button'
 
-export default async function createQuizPage() {
+export default async function createQuizPage(choosenBirdData = null) {
   const { lang, currentQuestion, score, answers, isAnswered } = quiz
   const mainInner = document.createElement('div')
   const questions = await createQuestions(lang, currentQuestion, score)
@@ -15,7 +15,7 @@ export default async function createQuizPage() {
     isAnswered
   )
   const answersNode = await createAnswers(lang, currentQuestion)
-  const descriptionNode = await createDescription(lang)
+  const descriptionNode = await createDescription(lang, currentQuestion, choosenBirdData)
 
   mainInner.classList.add('main__inner')
 
@@ -109,12 +109,36 @@ async function createAnswers(lang, currentQuestion) {
   return answersNode
 }
 
-async function createDescription(lang) {
+async function createDescription(lang, currentQuestion, choosenBirdData) {
   const descriptionNode = document.createElement('section')
-
   descriptionNode.classList.add('quiz__description')
 
-  descriptionNode.textContent = quizData[lang].description
+  if (choosenBirdData === null) {
+    descriptionNode.textContent = quizData[lang].description
+  } else {
+    const descriprionImg = document.createElement('div')
+    const descriprionBirdName = document.createElement('span')
+    const descriprionBirdSpecies = document.createElement('span')
+    const descriprionBirdInfo = document.createElement('p')
+    const descriptionPlayer = await createPlayer(lang, currentQuestion, choosenBirdData.id - 1)
+
+    descriprionImg.classList.add('description__img')
+    descriprionBirdName.classList.add('description__bird-name')
+    descriprionBirdSpecies.classList.add('description__bird-species')
+    descriprionBirdInfo.classList.add('description__info')
+
+    console.log(choosenBirdData)
+    descriprionImg.style.backgroundImage = `url('${choosenBirdData.image}')`
+    descriprionBirdName.textContent = choosenBirdData.name
+    descriprionBirdSpecies.textContent = choosenBirdData.species
+    descriprionBirdInfo.textContent = choosenBirdData.description
+
+    descriptionNode.append(descriprionImg)
+    descriptionNode.append(descriprionBirdName)
+    descriptionNode.append(descriprionBirdSpecies)
+    descriptionNode.append(descriptionPlayer)
+    descriptionNode.append(descriprionBirdInfo)
+  }
 
   return descriptionNode
 }
@@ -122,6 +146,7 @@ async function createDescription(lang) {
 async function answersNodeClickHandler(event) {
   let { lang, currentQuestion, answers, isAnswered, points } = quiz
   const choosenAnswer = event.target.id
+  const choosenBirdData = quizData[lang]['birds'][currentQuestion][choosenAnswer - 1]
   const currectAnswer =
     quizData[lang]['birds'][currentQuestion][answers[currentQuestion] - 1].id
 
@@ -140,7 +165,7 @@ async function answersNodeClickHandler(event) {
       quiz.isAnswered = true
       quiz.pushedBtns += choosenAnswer
 
-      await updateQuizPage()
+      
     }
   } else {
     console.log('fail')
@@ -155,13 +180,13 @@ async function answersNodeClickHandler(event) {
       quiz.pushedBtns += choosenAnswer
     }
   }
+
+  await updateQuizPage(choosenBirdData)
 }
 
-async function updateQuizPage() {
+async function updateQuizPage(choosenBirdData) {
   const mainInnerCurrent = document.querySelector('.main__inner')
-  const mainInnerUpdated = await createQuizPage()
+  const mainInnerUpdated = await createQuizPage(choosenBirdData)
 
   mainInnerCurrent.replaceWith(mainInnerUpdated)
 }
-
-async function updateDescription() {}
