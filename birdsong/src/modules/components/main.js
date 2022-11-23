@@ -96,7 +96,6 @@ async function loadGalleryPage() {
   const birdsData = quizData[lang].birds
 
   for (let currentClass in birdsData) {
-    console.log(currentClass)
     const birdsClass = birdsData[currentClass]
     
     birdsClass.forEach(async birdData => {

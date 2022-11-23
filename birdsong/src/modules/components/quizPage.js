@@ -129,7 +129,6 @@ async function createDescription(lang, currentQuestion, choosenBirdData) {
     descriprionBirdSpecies.classList.add('description__bird-species')
     descriprionBirdInfo.classList.add('description__info')
 
-    console.log(choosenBirdData)
     descriprionImg.style.backgroundImage = `url('${choosenBirdData.image}')`
     descriprionBirdName.textContent = choosenBirdData.name
     descriprionBirdSpecies.textContent = choosenBirdData.species
@@ -211,7 +210,6 @@ async function createNextButton(lang) {
   }
 
   nextButton.addEventListener('click', async () => {
-    console.log('click')
 
     quiz.changeQuestion()
 

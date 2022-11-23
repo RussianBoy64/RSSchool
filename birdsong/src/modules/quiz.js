@@ -87,9 +87,6 @@ if (+currentQuestion !== 0) quiz.currentQuestion = +currentQuestion
 if (+score !== 0) quiz.score = +score
 if (+points !== 0) quiz.points = +points
 if (isAnswered) quiz.isAnswered = isAnswered === 'true' ? true : false
-console.log(pushedBtns || pushedBtns === '')
 if (pushedBtns) quiz.pushedBtns = pushedBtns
-
-console.log(quiz)
 
 export default quiz
