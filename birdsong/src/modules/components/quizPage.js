@@ -150,6 +150,8 @@ async function answersNodeClickHandler(event) {
   const choosenBirdData = quizData[lang]['birds'][currentQuestion][choosenAnswer - 1]
   const currectAnswer =
     quizData[lang]['birds'][currentQuestion][answers[currentQuestion] - 1].id
+  const newDescription = await createDescription(lang, currentQuestion, choosenBirdData)
+  const currentDescription = document.querySelector('.quiz__description')
 
   if (choosenAnswer == currectAnswer) {
     if (!isAnswered) {
@@ -170,11 +172,12 @@ async function answersNodeClickHandler(event) {
       quiz.isAnswered = true
       quiz.pushedBtns += choosenAnswer
 
-      
+      await updateQuizPage(choosenBirdData)
     }
   } else {
     if (!isAnswered) {
       const failSound = new Audio('../../../assets/failSound.mp3')
+      
 
       failSound.play()
 
@@ -182,10 +185,12 @@ async function answersNodeClickHandler(event) {
 
       quiz.points = points <= 0 ? 0 : --points
       quiz.pushedBtns += choosenAnswer
+
+      
     }
   }
 
-  await updateQuizPage(choosenBirdData)
+  currentDescription.replaceWith(newDescription)
 }
 
 async function updateQuizPage(choosenBirdData) {
