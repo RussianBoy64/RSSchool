@@ -61,6 +61,13 @@ class Quiz {
     this.pushedBtns = ''
     this.shuffleQuestions()
   }
+
+  changeQuestion = () => {
+    this.currentQuestion++
+    this.isAnswered = false
+    this.points = 5
+    this.pushedBtns = ''
+  }
 }
 
 const quiz = new Quiz()

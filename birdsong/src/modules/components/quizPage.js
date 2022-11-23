@@ -16,6 +16,7 @@ export default async function createQuizPage(choosenBirdData = null) {
   )
   const answersNode = await createAnswers(lang, currentQuestion)
   const descriptionNode = await createDescription(lang, currentQuestion, choosenBirdData)
+  const nextButton = await createNextButton(lang)
 
   mainInner.classList.add('main__inner')
 
@@ -23,6 +24,7 @@ export default async function createQuizPage(choosenBirdData = null) {
   mainInner.append(currentQuestionNode)
   mainInner.append(answersNode)
   mainInner.append(descriptionNode)
+  mainInner.append(nextButton)
 
   return mainInner
 }
@@ -151,9 +153,8 @@ async function answersNodeClickHandler(event) {
     quizData[lang]['birds'][currentQuestion][answers[currentQuestion] - 1].id
 
   if (choosenAnswer == currectAnswer) {
-    console.log('success')
     if (!isAnswered) {
-      const successSound = new Audio('../../../assets/successSound.wav')
+      const successSound = new Audio('../../../assets/successSound.mp3')
       const questionSong = document.querySelector('.question__song')
 
       if (questionSong) questionSong.pause()
@@ -162,15 +163,19 @@ async function answersNodeClickHandler(event) {
       event.target.classList.add('incorrect')
 
       quiz.score += points
+
+      if (currentQuestion === 5) {
+        window.location.href = window.location.href.replace('quiz', 'results')
+      }
+
       quiz.isAnswered = true
       quiz.pushedBtns += choosenAnswer
 
       
     }
   } else {
-    console.log('fail')
     if (!isAnswered) {
-      const failSound = new Audio('../../../assets/failSound.wav')
+      const failSound = new Audio('../../../assets/failSound.mp3')
 
       failSound.play()
 
@@ -190,3 +195,30 @@ async function updateQuizPage(choosenBirdData) {
 
   mainInnerCurrent.replaceWith(mainInnerUpdated)
 }
+
+async function createNextButton(lang) {
+  const nextButton = document.createElement('button')
+  const isAnswered = quiz.isAnswered
+
+  nextButton.classList.add('next__btn')
+
+  nextButton.textContent = lang === 'en' ? 'Next level' : 'Следующий уровень'
+
+  if (isAnswered) {
+    nextButton.disabled = false
+  } else {
+    nextButton.disabled = true
+  }
+
+  nextButton.addEventListener('click', async () => {
+    console.log('click')
+
+    quiz.changeQuestion()
+
+    await updateQuizPage()
+  })
+
+  return nextButton
+}
+
+export {createDescription}

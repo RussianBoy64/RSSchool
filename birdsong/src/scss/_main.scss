@@ -9,6 +9,29 @@
     flex-wrap: wrap;
     height: 100%;
     gap: 1em;
+
+    .next__btn {
+      display: inline-block;
+      padding: 0.3em 1em;
+      border: 2px solid $accent-blue;
+      border-radius: 1em;
+      background-color: transparent;
+      @extend %transition;
+
+      &:enabled {
+        cursor: pointer;
+
+        &:hover {
+          box-shadow: 0 0 0.7em $accent-blue;
+  
+          &:active {
+            background-color: $accent-blue;
+          }
+        }
+      }
+
+      
+    }
   }
 
   &__title {
@@ -17,6 +40,11 @@
     font-size: 3em;
     font-weight: 800;
     line-height: 1em;
+    text-align: center;
+  }
+
+  &__subtitle {
+    width: 100%;
     text-align: center;
   }
 }
@@ -114,6 +142,8 @@
   &__answers {
     @extend %flex-centered;
     flex-direction: column;
+    align-items: space-between;
+    align-self: stretch;
     width: 30%;
     border: 1px solid $accent-blue;
     border-radius: 1em;
@@ -122,6 +152,7 @@
 
     .answers__btn {
       width: 100%;
+      flex-grow: 1;
       padding: 0.5em;
       font-size: 0.8em;
       border: none;
@@ -168,8 +199,8 @@
 
       &__img {
         grid-area: img;
-        width: 200px;
-        height: 155px;
+        width: 170px;
+        height: 118px;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -383,6 +414,7 @@
         "player player"
         "decs decs";
     }
+
   }
 }
 

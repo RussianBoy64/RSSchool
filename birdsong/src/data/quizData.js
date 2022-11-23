@@ -450,7 +450,7 @@ const quizData = {
         className: 'nav__link',
       },
       gallary: {
-        href: '/gallеry',
+        href: '/gallery',
         target: '_blank',
         text: 'Галерея',
         className: 'nav__link',
