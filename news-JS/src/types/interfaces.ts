@@ -1,5 +1,9 @@
 // API data
 
+interface APIkey {
+  apiKey: string;
+}
+
 interface IArticle {
   source: IArticleSouce;
   author: string | null;
@@ -43,4 +47,4 @@ interface IResponseError {
   message: string;
 }
 
-export { IArticle, IArticleSouce, IResponseNews, IResponseSources, IResponseError };
+export { APIkey, IArticle, IArticleSouce, IResponseNews, IResponseSources, IResponseError };
