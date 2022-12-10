@@ -1,5 +1,4 @@
 import AppLoader from './appLoader';
-import { IArticle, IArticleSouce, callBack } from '../../types/interfaces';
 
 class AppController extends AppLoader {
   getSources(callback: () => void): void {
