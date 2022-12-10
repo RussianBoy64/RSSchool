@@ -1,16 +1,16 @@
-import { APIkey } from '../../types/interfaces';
+import { IOptions, callBack, IArticle, IArticleSouce } from '../../types/interfaces';
 
 class Loader {
   public baseLink: string;
-  public options: APIkey;
+  public options: IOptions;
 
-  constructor(baseLink: string, options: APIkey) {
+  constructor(baseLink: string, options: IOptions) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
   public getResp(
-    { endpoint, options = {} },
+    { endpoint, options = {} }: { endpoint: 'sources' | 'everything'; options?: IOptions },
     callback = () => {
       console.error('No callback for GET response');
     }
@@ -28,7 +28,7 @@ class Loader {
     return res;
   }
 
-  private makeUrl(options: { sources?: string }, endpoint: 'sources' | 'everything'): string {
+  private makeUrl(options: IOptions, endpoint: 'sources' | 'everything'): string {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
@@ -42,10 +42,9 @@ class Loader {
   public load(
     method: string,
     endpoint: 'sources' | 'everything',
-    callback: <T>(data: T) => void,
-    options: { sources?: string } = {}
+    callback: callBack<IArticle | IArticleSouce>,
+    options: IOptions
   ) {
-    console.log(callback);
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())

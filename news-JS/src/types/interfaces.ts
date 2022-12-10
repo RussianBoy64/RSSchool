@@ -1,7 +1,7 @@
 // API data
 
-interface APIkey {
-  apiKey: string;
+interface IOptions {
+  [key: string]: string;
 }
 
 interface IArticle {
@@ -51,4 +51,4 @@ interface callBack<T> {
   (data: T): void;
 }
 
-export { APIkey, IArticle, IArticleSouce, IResponseNews, IResponseSources, IResponseError, callBack };
+export { IOptions, IArticle, IArticleSouce, IResponseNews, IResponseSources, IResponseError, callBack };
