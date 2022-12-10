@@ -47,4 +47,8 @@ interface IResponseError {
   message: string;
 }
 
-export { APIkey, IArticle, IArticleSouce, IResponseNews, IResponseSources, IResponseError };
+interface callBack<T> {
+  (data: T): void;
+}
+
+export { APIkey, IArticle, IArticleSouce, IResponseNews, IResponseSources, IResponseError, callBack };
