@@ -12,8 +12,8 @@ interface IArticle {
 }
 
 interface IArticleSouce {
-  id: string | null;
-  name: string | null;
+  id: string;
+  name: string;
 }
 
 interface ISource {
