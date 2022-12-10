@@ -1,3 +1,5 @@
+/* eslint-disable  @typescript-eslint/no-non-null-assertion */
+
 import './sources.css';
 import { IArticleSouce } from '../../../types/interfaces';
 
@@ -10,12 +12,12 @@ class Sources {
       const sourceClone = sourceItemTemp!.content.cloneNode(true) as Element;
 
       sourceClone.querySelector('.source__item-name')!.textContent = item.name;
-      sourceClone.querySelector('.source__item')!.setAttribute('data-source-id', item.id);
+      sourceClone.querySelector('.source__item')?.setAttribute('data-source-id', item.id);
 
       fragment.append(sourceClone);
     });
 
-    document.querySelector('.sources')!.append(fragment);
+    document.querySelector('.sources')?.append(fragment);
   }
 }
 

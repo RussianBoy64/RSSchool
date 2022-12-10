@@ -1,3 +1,5 @@
+/* eslint-disable  @typescript-eslint/no-non-null-assertion */
+
 import './news.css';
 import { IArticle } from '../../../types/interfaces';
 

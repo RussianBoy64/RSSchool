@@ -1,4 +1,4 @@
-import { IOptions, callBack, IArticle, IArticleSouce } from '../../types/interfaces';
+import { IOptions, callBack, IResponseNews, IResponseSources } from '../../types/interfaces';
 
 class Loader {
   public baseLink: string;
@@ -11,7 +11,7 @@ class Loader {
 
   public getResp(
     { endpoint, options = {} }: { endpoint: 'sources' | 'everything'; options?: IOptions },
-    callback = () => {
+    callback: callBack<IResponseNews> | callBack<IResponseSources> = () => {
       console.error('No callback for GET response');
     }
   ) {
@@ -42,7 +42,7 @@ class Loader {
   public load(
     method: string,
     endpoint: 'sources' | 'everything',
-    callback: callBack<IArticle | IArticleSouce>,
+    callback: callBack<IResponseNews> | callBack<IResponseSources>,
     options: IOptions
   ) {
     fetch(this.makeUrl(options, endpoint), { method })
