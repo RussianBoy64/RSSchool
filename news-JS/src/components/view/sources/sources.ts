@@ -1,6 +1,5 @@
 /* eslint-disable  @typescript-eslint/no-non-null-assertion */
 
-import './sources.css';
 import { IArticleSouce } from '../../../types/interfaces';
 
 class Sources {

@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>NewsPortal</title>
-    </head>
-    <body>
-        <header>
-            <h1>News Portal</h1>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <script src="https://kit.fontawesome.com/7413ca59d2.js" crossorigin="anonymous"></script>
+    <title>NewsPortal</title>
+</head>
+
+<body class="body">
+    <div class="wrapper">
+        <header class="header">
+            <h1 class="header__title">NewsPortal</h1>
+            <p class="header__copyright">
+                Copyright <br><a class="header__copyright__link" href="https://newsapi.org">NewsAPI</a>
+            </p>
         </header>
-        <main>
+        <main class="main">
             <div class="sources buttons"></div>
             <div class="news"></div>
         </main>
-        <footer>
-            <p class="copyright">
-                Copyright <a href="https://newsapi.org">NewsAPI</a>
-            </p>
+        <footer class="footer">
+            <div class="author-info">
+                <div class="author-info__item">
+                    <a href="https://rs.school/js/"><img src="https://rs.school/images/rs_school_js.svg"
+                            alt="RS School" /></a>
+                </div>
+                <div class="author-info__item">
+                    <span>2022</span>
+                </div>
+                <div class="author-info__item">
+                    <div class="github-link">
+                        <a href="https://github.com/RussianBoy64"><i
+                                class="fa-brands fa-github github-icon"></i>RussianBoy64</a>
+                    </div>
+                </div>
+            </div>
         </footer>
 
         <template id="sourceItemTemp">
@@ -45,7 +65,7 @@
                 </div>
             </div>
         </template>
+    </div>
+</body>
 
-        <script src="./index.js"></script>
-    </body>
 </html>

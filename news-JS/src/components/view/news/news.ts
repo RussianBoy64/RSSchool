@@ -1,6 +1,5 @@
 /* eslint-disable  @typescript-eslint/no-non-null-assertion */
 
-import './news.css';
 import { IArticle } from '../../../types/interfaces';
 
 class News {
@@ -16,7 +15,7 @@ class News {
       if (idx % 2) newsClone.querySelector('.news__item')!.classList.add('alt');
 
       newsClone.querySelector<HTMLElement>('.news__meta-photo')!.style.backgroundImage = `url(${
-        item.urlToImage || 'img/news_placeholder.jpg'
+        item.urlToImage || 'images/newsplaceholder.jpg'
       })`;
       newsClone.querySelector('.news__meta-author')!.textContent = item.author || item.source.name;
       newsClone.querySelector('.news__meta-date')!.textContent = item.publishedAt
