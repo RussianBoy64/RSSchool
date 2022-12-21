@@ -1,16 +1,15 @@
 /* eslint-disable  @typescript-eslint/no-non-null-assertion */
 
-import { IArticle } from '../../../types/interfaces';
+import { Article } from '../../../types/interfaces';
 
 class News {
-  public draw(data: Array<IArticle>) {
-    const news: Array<IArticle> =
-      data.length >= 10 ? data.filter((_item: IArticle, index: number) => index < 10) : data;
+  public draw(data: Array<Article>) {
+    const news: Array<Article> = data.length >= 10 ? data.filter((_item: Article, index: number) => index < 10) : data;
 
     const fragment: DocumentFragment = document.createDocumentFragment();
     const newsItemTemp: HTMLTemplateElement = document.querySelector('#newsItemTemp')!;
 
-    news.forEach((item: IArticle, index: number) => {
+    news.forEach((item: Article, index: number) => {
       const newsClone: HTMLElement = newsItemTemp!.content.cloneNode(true) as HTMLElement;
 
       if (index % 2) {

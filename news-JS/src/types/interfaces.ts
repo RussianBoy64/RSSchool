@@ -1,11 +1,22 @@
 // API data
 
-interface IOptions {
+type Endpoint = 'sources' | 'everything';
+
+enum RequestMethod {
+  get = 'GET',
+}
+
+interface Options {
   [key: string]: string;
 }
 
-interface IArticle {
-  source: IArticleSouce;
+interface ResponceSettings {
+  endpoint: Endpoint;
+  options?: Options;
+}
+
+interface Article {
+  source: ArticleSource;
   author: string | null;
   title: string | null;
   description: string | null;
@@ -15,12 +26,12 @@ interface IArticle {
   content: string | null;
 }
 
-interface IArticleSouce {
+interface ArticleSource {
   id: string;
   name: string;
 }
 
-interface ISource {
+interface Source {
   category: string;
   country: string;
   description: string;
@@ -30,25 +41,31 @@ interface ISource {
   url: string;
 }
 
-interface IResponseNews {
+interface ResponseNews {
   status: string;
   totalResults: number;
-  articles: IArticle[];
+  articles: Article[];
 }
 
-interface IResponseSources {
+interface ResponseSources {
   status: string;
-  sources: ISource[];
+  sources: Source[];
 }
 
-interface IResponseError {
+interface ResponseError {
   status: string;
   code: string;
   message: string;
 }
 
-interface callBack<T> {
-  (data: T): void;
-}
-
-export { IOptions, IArticle, IArticleSouce, IResponseNews, IResponseSources, IResponseError, callBack };
+export {
+  Endpoint,
+  RequestMethod,
+  Options,
+  ResponceSettings,
+  Article,
+  ArticleSource,
+  ResponseNews,
+  ResponseSources,
+  ResponseError,
+};

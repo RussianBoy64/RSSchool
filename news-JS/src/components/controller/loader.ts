@@ -1,21 +1,21 @@
-import { IOptions, callBack, IResponseNews, IResponseSources } from '../../types/interfaces';
+import { Options, Endpoint, RequestMethod, ResponceSettings } from '../../types/interfaces';
 
 class Loader {
   public baseLink: string;
-  public options: IOptions;
+  public options: Options;
 
-  constructor(baseLink: string, options: IOptions) {
+  constructor(baseLink: string, options: Options) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
-  public getResp(
-    { endpoint, options = {} }: { endpoint: 'sources' | 'everything'; options?: IOptions },
-    callback: callBack<IResponseNews> | callBack<IResponseSources> = () => {
+  public getResp<T>(
+    { endpoint, options = {} }: ResponceSettings,
+    callback: (data: T) => void = () => {
       console.error('No callback for GET response');
     }
   ) {
-    this.load('GET', endpoint, callback, options);
+    this.load<T>(RequestMethod.get, endpoint, callback, options);
   }
 
   public errorHandler(res: Response): Response {
@@ -28,7 +28,7 @@ class Loader {
     return res;
   }
 
-  private makeUrl(options: IOptions, endpoint: 'sources' | 'everything'): string {
+  private makeUrl(options: Options, endpoint: Endpoint): string {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
@@ -39,12 +39,7 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  public load(
-    method: string,
-    endpoint: 'sources' | 'everything',
-    callback: callBack<IResponseNews> | callBack<IResponseSources>,
-    options: IOptions
-  ) {
+  public load<T>(method: RequestMethod, endpoint: Endpoint, callback: (data: T) => void, options: Options) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())

@@ -1,11 +1,10 @@
 /* eslint-disable  @typescript-eslint/no-non-null-assertion */
 
 import AppLoader from './appLoader';
-import { IResponseNews, IResponseSources, callBack } from '../../types/interfaces';
 
 class AppController extends AppLoader {
-  getSources(callback: callBack<IResponseSources>): void {
-    super.getResp(
+  getSources<T>(callback: (data: T) => void): void {
+    super.getResp<T>(
       {
         endpoint: 'sources',
       },
@@ -13,7 +12,7 @@ class AppController extends AppLoader {
     );
   }
 
-  getNews(event: Event, callback: callBack<IResponseNews>) {
+  getNews<T>(event: Event, callback: (data: T) => void) {
     let target = event.target as HTMLElement;
     const newsContainer = event.currentTarget as HTMLElement;
 
