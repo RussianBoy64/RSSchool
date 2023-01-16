@@ -1,0 +1,17 @@
+@import "./styles/normalize";
+@import "./styles/colors";
+
+body {
+  position: relative;
+  color: $primary-dark;
+  background-color: $primary-light;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0 1em;
+  max-width: 1440px;
+  min-height: 100vh;
+}

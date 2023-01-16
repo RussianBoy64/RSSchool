@@ -1,0 +1,87 @@
+@import "../../styles/colors";
+
+footer {
+  display: flex;
+  align-items: center;
+  height: 60px;
+
+  .authorInfo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    width: 100%;
+
+    &__item {
+      display: flex;
+      justify-content: center;
+    }
+
+    .github {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      transition: 300ms ease-in-out;
+
+      &:hover {
+        .github__icon {
+          color: $accent-red;
+        }
+      }
+
+      &__icon {
+        position: relative;
+        display: inline-block;
+        padding-right: 10px;
+        margin-right: 5px;
+        transition: 300ms ease-in-out;
+
+        &:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: 4px;
+          border-radius: 4px;
+          background-color: $accent-iris;
+        }
+      }
+
+      &__link {
+        font-size: 0.8em;
+
+        &:hover {
+          color: $accent-red;
+          animation: bounce 300ms linear;
+        }
+      }
+    }
+
+    img {
+      width: 80px;
+      transition: 300ms ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+        animation: bounce 300ms linear;
+      }
+    }
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
