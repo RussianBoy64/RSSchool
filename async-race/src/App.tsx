@@ -1,5 +1,7 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
+import routes from "./routes";
+
 import styles from "./App.module.scss";
 
 function App() {
@@ -7,7 +9,15 @@ function App() {
     <BrowserRouter>
       <div className={styles.wrapper}>
         <MainLayout>
-          <div>Hello</div>
+          <Routes>
+            {routes.map((route) => (
+              <Route
+                key={route.id}
+                path={route.path}
+                element={<route.element />}
+              />
+            ))}
+          </Routes>
         </MainLayout>
       </div>
     </BrowserRouter>

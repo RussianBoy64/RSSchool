@@ -1,12 +1,14 @@
-import { FC } from "react";
+import { NavLink } from "react-router-dom";
+import routes from "../../routes";
 
-const Header: FC = function header() {
+function Header() {
   return (
     <header>
-      <span>Garage</span>
-      <span>Winners</span>
+      {routes.map((route) => (
+        <NavLink to={route.path}>{route.page}</NavLink>
+      ))}
     </header>
   );
-};
+}
 
 export default Header;
