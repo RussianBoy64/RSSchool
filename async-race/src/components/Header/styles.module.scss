@@ -1,0 +1,53 @@
+@import "../../styles/colors";
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  height: 60px;
+}
+
+.link {
+  position: relative;
+  padding: 0.5em 1em;
+  color: $accent-iris;
+  font-weight: 600;
+  transition: 300ms ease-in-out;
+  overflow: hidden;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    width: 120%;
+    height: 150%;
+    background-color: $accent-iris;
+    transform: skewX(-15deg);
+    transition: 300ms ease-in-out;
+  }
+
+  &:before {
+    left: -130%;
+  }
+
+  &:after {
+    right: -130%;
+  }
+
+  &:hover {
+    color: $primary-light;
+
+    &:before {
+      left: -20px;
+    }
+    &:after {
+      right: -20px;
+    }
+  }
+
+  &:active {
+    opacity: 0.9;
+  }
+}
