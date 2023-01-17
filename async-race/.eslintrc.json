@@ -27,6 +27,19 @@
     "react/jsx-uses-react": ["off"],
     "react/jsx-props-no-spreading": ["warn"],
     "react/no-unescaped-entities": ["off"],
-    "eslint-disable-next-line": ["off"]
+    "eslint-disable-next-line": ["off"],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "test.{ts,tsx}",
+          "test-*.{ts,tsx}",
+          "**/*{.,_}{test,spec}.{ts,tsx}",
+          "**/jest.config.ts",
+          "**/jest.setup.ts"
+        ],
+        "optionalDependencies": false
+      }
+    ]
   }
 }
