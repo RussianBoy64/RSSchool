@@ -7,6 +7,7 @@ interface InitialState {
   page: number;
   limit: number;
   create: CreateInput;
+  carToUpdate: number;
 }
 
 interface CreateInput {
@@ -20,8 +21,9 @@ const initialState: InitialState = {
   limit: 7,
   create: {
     name: "",
-    color: "",
+    color: "#ffffff",
   },
+  carToUpdate: 2,
 };
 
 export const garageSlice = createSlice({
