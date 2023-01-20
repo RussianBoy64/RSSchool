@@ -19,6 +19,13 @@ export default function Garage() {
       {cars.map((car) => (
         <Car key={car.id} name={car.name} color={car.color} />
       ))}
+      <div className={styles.garage__info}>
+        <span>Cars {`${cars.length}`}</span>
+        <span>Page {`${page}`}</span>
+      </div>
+      {cars.map((car) => (
+        <Car key={car.id} name={car.name} color={car.color} />
+      ))}
     </main>
   );
 }
