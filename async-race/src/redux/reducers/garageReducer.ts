@@ -23,7 +23,7 @@ const initialState: InitialState = {
     name: "",
     color: "#ffffff",
   },
-  carToUpdate: 2,
+  carToUpdate: 4,
 };
 
 export const garageSlice = createSlice({
