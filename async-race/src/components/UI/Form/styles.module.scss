@@ -1,0 +1,21 @@
+@import "../../../styles/colors";
+
+.form {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+
+  &__inputText {
+    padding: 0 0.5em;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid $accent-iris;
+  }
+
+  &__inputColor {
+    padding: 0;
+    outline: none;
+    border: 2px solid $accent-iris;
+    background: transparent;
+  }
+}

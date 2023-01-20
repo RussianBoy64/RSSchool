@@ -1,0 +1,74 @@
+@import "../../../styles/colors";
+
+.button {
+  position: relative;
+  padding: 0.5em 1em;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  transition: 300ms ease-in-out;
+
+  &_primary {
+    color: $accent-iris;
+    &:before,
+    &:after {
+      background-color: $accent-iris;
+    }
+  }
+
+  &_secondary {
+    color: $accent-orange;
+    &:before,
+    &:after {
+      background-color: $accent-orange;
+    }
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    width: 120%;
+    height: 150%;
+    transform: skewX(-15deg);
+    transition: 300ms ease-in-out;
+  }
+
+  &:before {
+    left: -150%;
+  }
+
+  &:after {
+    right: -150%;
+  }
+
+  &:hover {
+    color: $primary-light;
+
+    &:before {
+      left: -20px;
+    }
+    &:after {
+      right: -20px;
+    }
+  }
+
+  &:active {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    cursor: initial;
+    color: gray;
+
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+}
