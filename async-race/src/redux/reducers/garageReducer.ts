@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Car } from "../../classes/Car";
 import { getCars } from "./garageActions";
 
@@ -6,30 +6,52 @@ interface InitialState {
   cars: Car[];
   page: number;
   limit: number;
+  create: CreateInput;
+}
+
+interface CreateInput {
+  name: string;
+  color: string;
 }
 
 const initialState: InitialState = {
   cars: [],
   page: 1,
   limit: 7,
+  create: {
+    name: "",
+    color: "",
+  },
 };
 
 export const garageSlice = createSlice({
   name: "garage",
   initialState,
   reducers: {
-    // garageReducer(
-    //   state: InitialState,
-    //   action: PayloadAction<{ payload: Car[]; type: GarageActions }>,
-    // ): InitialState {
-    //   console.log(action.payload.type);
-    //   switch (action.type) {
-    //     case GarageActions.getCars:
-    //       return { ...state, cars: [...action.payload.payload] };
-    //     default:
-    //       return state;
-    //   }
-    // },
+    setCarName(
+      state: InitialState,
+      action: PayloadAction<string>,
+    ): InitialState {
+      return {
+        ...state,
+        create: {
+          ...state.create,
+          name: action.payload,
+        },
+      };
+    },
+    setCarColor(
+      state: InitialState,
+      action: PayloadAction<string>,
+    ): InitialState {
+      return {
+        ...state,
+        create: {
+          ...state.create,
+          color: action.payload,
+        },
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getCars.fulfilled, (state, action) => ({
@@ -39,6 +61,6 @@ export const garageSlice = createSlice({
   },
 });
 
-// export const { garageReducer } = garageSlice.actions;
+export const { setCarName, setCarColor } = garageSlice.actions;
 
 export default garageSlice.reducer;

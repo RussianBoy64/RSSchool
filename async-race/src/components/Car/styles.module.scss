@@ -1,0 +1,29 @@
+@import "../../styles/colors";
+
+.car {
+  padding: 0.2em 0;
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+  }
+
+  &__name {
+    font-weight: 600;
+  }
+
+  &__track {
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+    border-bottom: 2px solid $accent-iris;
+
+    &__inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+    }
+  }
+}
