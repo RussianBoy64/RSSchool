@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import ENDPOINT from "../../endpoint";
+import ENDPOINT, { FetchMethods } from "../../endpoint";
 import { CarProps } from "../../classes/Car";
 
 export enum GarageActions {
@@ -11,7 +11,24 @@ export enum GarageActions {
 }
 
 export const getCars = createAsyncThunk(GarageActions.getCars, async () => {
-  const responce = await fetch(`${ENDPOINT}/garage`);
+  const responce = await fetch(`${ENDPOINT}/garage`, {
+    method: FetchMethods.get,
+  });
   const carsData: CarProps[] = await responce.json();
   return carsData;
 });
+
+export const createCar = createAsyncThunk(
+  GarageActions.createCar,
+  async (carData: { name: string; color: string }) => {
+    const responce = await fetch(`${ENDPOINT}/garage`, {
+      method: FetchMethods.post,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(carData),
+    });
+    const newCar = await responce.json();
+    return newCar;
+  },
+);

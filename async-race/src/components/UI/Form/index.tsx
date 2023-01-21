@@ -1,5 +1,6 @@
 import { useAppSelector, useAppDispatch } from "../../../hooks/reduxHooks";
 import { setCarName, setCarColor } from "../../../redux/reducers/garageReducer";
+import { createCar } from "../../../redux/reducers/garageActions";
 import Button, { ButtonStyle } from "../Button";
 import styles from "./styles.module.scss";
 
@@ -16,6 +17,10 @@ interface FormInputChangeHadler {
   (event: React.ChangeEvent<HTMLInputElement>): void;
 }
 
+interface FormSubmitHandler {
+  (event: React.FormEvent): void;
+}
+
 interface FormSettings {
   carNameChangeHandler: FormInputChangeHadler | undefined;
   carNameValue: string;
@@ -23,6 +28,7 @@ interface FormSettings {
   carColorValue: string;
   buttonText: FormTypes;
   isDisabled: boolean;
+  submitHadler: FormSubmitHandler | undefined;
 }
 
 export default function Form({ formType }: FormProps) {
@@ -39,6 +45,7 @@ export default function Form({ formType }: FormProps) {
     carColorValue: carData.color,
     buttonText: FormTypes.create,
     isDisabled: false,
+    submitHadler: undefined,
   };
 
   switch (formType) {
@@ -53,6 +60,10 @@ export default function Form({ formType }: FormProps) {
       formSettings.carColorValue = create.color;
       formSettings.buttonText = FormTypes.create;
       formSettings.isDisabled = false;
+      formSettings.submitHadler = (event) => {
+        event.preventDefault();
+        dispatch(createCar(create));
+      };
       break;
     case FormTypes.update:
       formSettings.carNameChangeHandler = (event) => {
@@ -71,7 +82,7 @@ export default function Form({ formType }: FormProps) {
   }
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={formSettings.submitHadler}>
       <input
         className={styles.form__inputText}
         type="text"
