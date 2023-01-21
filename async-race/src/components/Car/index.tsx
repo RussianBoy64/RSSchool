@@ -1,21 +1,40 @@
 import CarImg from "../CarImg";
 import Finish from "../Finish";
 import Button, { ButtonStyle } from "../UI/Button";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { setCarToUpdate } from "../../redux/reducers/garageReducer";
+import { getCars, deleteCar } from "../../redux/reducers/garageActions";
 import styles from "./styles.module.scss";
 
 interface CarProps {
   name: string;
   color: string;
+  id: number;
 }
 
-export default function Car({ name, color }: CarProps) {
+export default function Car({ name, color, id }: CarProps) {
+  const dispatch = useAppDispatch();
+
   return (
     <div className={styles.car}>
       <div className={styles.car__controls}>
-        <Button style={ButtonStyle.primary} type="button" isDisabled>
+        <Button
+          style={ButtonStyle.primary}
+          type="button"
+          onClickHandler={() => dispatch(setCarToUpdate({ id, name, color }))}
+          isDisabled={false}
+        >
           Select
         </Button>
-        <Button style={ButtonStyle.primary} type="button" isDisabled={false}>
+        <Button
+          style={ButtonStyle.primary}
+          type="button"
+          onClickHandler={async () => {
+            await dispatch(deleteCar(id));
+            await dispatch(getCars());
+          }}
+          isDisabled={false}
+        >
           Remove
         </Button>
         <span className={styles.car__name}>{name}</span>

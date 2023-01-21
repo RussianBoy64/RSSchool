@@ -11,6 +11,7 @@ export enum ButtonStyle {
 interface ButtonProps {
   style: ButtonStyle;
   type: "button" | "submit";
+  onClickHandler?: () => void;
   isDisabled: boolean;
   children: ReactNode;
 }
@@ -18,6 +19,7 @@ interface ButtonProps {
 export default function Button({
   style,
   type = "button",
+  onClickHandler = undefined,
   isDisabled = false,
   children,
 }: ButtonProps) {
@@ -37,6 +39,7 @@ export default function Button({
   return (
     <button
       className={buttonStyle.join(" ")}
+      onClick={onClickHandler}
       disabled={isDisabled}
       type={type === "button" ? "button" : "submit"}
     >
@@ -44,3 +47,7 @@ export default function Button({
     </button>
   );
 }
+
+Button.defaultProps = {
+  onClickHandler: undefined,
+};

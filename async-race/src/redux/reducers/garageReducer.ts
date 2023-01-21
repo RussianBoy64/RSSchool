@@ -1,29 +1,36 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Car } from "../../classes/Car";
-import { getCars, createCar } from "./garageActions";
+import { getCars, createCar, deleteCar, updateCar } from "./garageActions";
 
-interface InitialState {
-  cars: Car[];
-  page: number;
-  limit: number;
+export interface InitialState {
+  garage: { cars: Car[]; carsInGarage: number };
+  page: Page;
   create: CreateInput;
-  carToUpdate: number;
+  carToUpdate: Car;
 }
 
-interface CreateInput {
+export interface CreateInput {
   name: string;
   color: string;
 }
 
+export interface Page {
+  number: number;
+  limit: number;
+}
+
 const initialState: InitialState = {
-  cars: [],
-  page: 1,
-  limit: 7,
+  garage: { cars: [], carsInGarage: 0 },
+  page: { number: 1, limit: 7 },
   create: {
     name: "",
     color: "#ffffff",
   },
-  carToUpdate: 0,
+  carToUpdate: {
+    id: 0,
+    name: "",
+    color: "#ffffff",
+  },
 };
 
 export const garageSlice = createSlice({
@@ -54,16 +61,70 @@ export const garageSlice = createSlice({
         },
       };
     },
+    setCarToUpdate(
+      state: InitialState,
+      action: PayloadAction<Car>,
+    ): InitialState {
+      return {
+        ...state,
+        carToUpdate: action.payload,
+      };
+    },
+    setUpdatedCarName(
+      state: InitialState,
+      action: PayloadAction<string>,
+    ): InitialState {
+      return {
+        ...state,
+        carToUpdate: {
+          ...state.carToUpdate,
+          name: action.payload,
+        },
+      };
+    },
+    setUpdatedCarColor(
+      state: InitialState,
+      action: PayloadAction<string>,
+    ): InitialState {
+      return {
+        ...state,
+        carToUpdate: {
+          ...state.carToUpdate,
+          color: action.payload,
+        },
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getCars.fulfilled, (state, action) => ({
       ...state,
-      cars: action.payload,
+      garage: {
+        cars: action.payload.carsData,
+        carsInGarage: action.payload.carsInGarage,
+      },
     }));
-    builder.addCase(createCar.fulfilled, (state, action) => ({
+    builder.addCase(createCar.fulfilled, (state) => ({
       ...state,
-      cars: [...state.cars, action.payload],
       create: {
+        ...state.create,
+        name: "",
+      },
+    }));
+    builder.addCase(deleteCar.fulfilled, (state) => ({
+      ...state,
+      page: {
+        ...state.page,
+        number:
+          ((state.page.number - 1) * state.page.limit ===
+          state.garage.carsInGarage - 1
+            ? state.page.number - 1
+            : state.page.number) || 1,
+      },
+    }));
+    builder.addCase(updateCar.fulfilled, (state) => ({
+      ...state,
+      carToUpdate: {
+        id: 0,
         name: "",
         color: "#ffffff",
       },
@@ -71,6 +132,12 @@ export const garageSlice = createSlice({
   },
 });
 
-export const { setCarName, setCarColor } = garageSlice.actions;
+export const {
+  setCarName,
+  setCarColor,
+  setCarToUpdate,
+  setUpdatedCarName,
+  setUpdatedCarColor,
+} = garageSlice.actions;
 
 export default garageSlice.reducer;

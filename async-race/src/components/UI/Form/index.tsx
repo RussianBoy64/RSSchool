@@ -1,6 +1,15 @@
 import { useAppSelector, useAppDispatch } from "../../../hooks/reduxHooks";
-import { setCarName, setCarColor } from "../../../redux/reducers/garageReducer";
-import { createCar } from "../../../redux/reducers/garageActions";
+import {
+  setCarName,
+  setCarColor,
+  setUpdatedCarName,
+  setUpdatedCarColor,
+} from "../../../redux/reducers/garageReducer";
+import {
+  getCars,
+  createCar,
+  updateCar,
+} from "../../../redux/reducers/garageActions";
 import Button, { ButtonStyle } from "../Button";
 import styles from "./styles.module.scss";
 
@@ -32,12 +41,15 @@ interface FormSettings {
 }
 
 export default function Form({ formType }: FormProps) {
-  const { cars, create, carToUpdate } = useAppSelector((state) => state.garage);
+  const { garage, create, carToUpdate } = useAppSelector(
+    (state) => state.garage,
+  );
   const dispatch = useAppDispatch();
-  const carData = cars.find((car) => car.id === carToUpdate) || {
+  const carData = garage.cars.find((car) => car.id === carToUpdate.id) || {
     name: "",
     color: "#ffffff",
   };
+
   const formSettings: FormSettings = {
     carNameChangeHandler: undefined,
     carNameValue: carData.name,
@@ -60,22 +72,28 @@ export default function Form({ formType }: FormProps) {
       formSettings.carColorValue = create.color;
       formSettings.buttonText = FormTypes.create;
       formSettings.isDisabled = false;
-      formSettings.submitHadler = (event) => {
+      formSettings.submitHadler = async (event) => {
         event.preventDefault();
-        dispatch(createCar(create));
+        await dispatch(createCar(create));
+        await dispatch(getCars());
       };
       break;
     case FormTypes.update:
       formSettings.carNameChangeHandler = (event) => {
-        dispatch(setCarName(event.target.value));
+        dispatch(setUpdatedCarName(event.target.value));
       };
-      formSettings.carNameValue = carData.name;
+      formSettings.carNameValue = carToUpdate.name;
       formSettings.carColorChangeHandler = (event) => {
-        dispatch(setCarColor(event.target.value));
+        dispatch(setUpdatedCarColor(event.target.value));
       };
-      formSettings.carColorValue = carData.color;
+      formSettings.carColorValue = carToUpdate.color;
       formSettings.buttonText = FormTypes.update;
-      formSettings.isDisabled = carToUpdate === 0;
+      formSettings.isDisabled = carToUpdate.id === 0;
+      formSettings.submitHadler = async (event) => {
+        event.preventDefault();
+        await dispatch(updateCar());
+        await dispatch(getCars());
+      };
       break;
     default:
       break;
