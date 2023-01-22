@@ -1,4 +1,6 @@
 .garage {
+  flex-grow: 1;
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -10,10 +12,14 @@
     flex-grow: 1;
   }
 
-  flex-grow: 1;
-
   &__info {
     display: flex;
     gap: 0.5em;
+  }
+
+  &__raceControls {
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
   }
 }

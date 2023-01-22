@@ -71,7 +71,7 @@ export default function Form({ formType }: FormProps) {
       };
       formSettings.carColorValue = create.color;
       formSettings.buttonText = FormTypes.create;
-      formSettings.isDisabled = false;
+      formSettings.isDisabled = !create.name.length;
       formSettings.submitHadler = async (event) => {
         event.preventDefault();
         await dispatch(createCar(create));
@@ -106,19 +106,22 @@ export default function Form({ formType }: FormProps) {
         type="text"
         value={formSettings.carNameValue}
         onChange={formSettings.carNameChangeHandler}
-        disabled={formSettings.isDisabled}
+        disabled={formType === FormTypes.update && formSettings.isDisabled}
       />
       <input
         className={styles.form__inputColor}
         type="color"
         value={formSettings.carColorValue}
         onChange={formSettings.carColorChangeHandler}
-        disabled={formSettings.isDisabled}
+        disabled={formType === FormTypes.update && formSettings.isDisabled}
       />
       <Button
         style={ButtonStyle.primary}
         type="submit"
-        isDisabled={formSettings.isDisabled}
+        isDisabled={
+          formSettings.isDisabled ||
+          (formType === FormTypes.update && !carToUpdate.name.length)
+        }
       >
         {formSettings.buttonText}
       </Button>

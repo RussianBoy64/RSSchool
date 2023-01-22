@@ -3,7 +3,8 @@ import Car from "../../components/Car";
 import Form, { FormTypes } from "../../components/UI/Form";
 import Button, { ButtonStyle } from "../../components/UI/Button";
 import { setPrevPage, setNextPage } from "../../redux/reducers/garageReducer";
-import { getCars } from "../../redux/reducers/garageActions";
+import { getCars, createCar } from "../../redux/reducers/garageActions";
+import generate100Cars from "../../carNames";
 
 import styles from "./styles.module.scss";
 
@@ -11,6 +12,14 @@ export default function Garage() {
   const { garage, page } = useAppSelector((state) => state.garage);
   const dispatch = useAppDispatch();
   const totalPages = Math.ceil(garage.carsInGarage / page.limit) || 1;
+  const createCarsHandler = () => {
+    const carsTocreate = generate100Cars();
+    Promise.all(
+      carsTocreate.map((car) => {
+        return dispatch(createCar(car));
+      }),
+    ).then(() => dispatch(getCars()));
+  };
 
   return (
     <main className={styles.garage}>
@@ -49,6 +58,16 @@ export default function Garage() {
         <div>
           <Form formType={FormTypes.create} />
           <Form formType={FormTypes.update} />
+          <div className={styles.garage__raceControls}>
+            <Button
+              style={ButtonStyle.secondary}
+              type="button"
+              onClickHandler={createCarsHandler}
+              isDisabled={false}
+            >
+              Generate Cars
+            </Button>
+          </div>
         </div>
       </header>
 
