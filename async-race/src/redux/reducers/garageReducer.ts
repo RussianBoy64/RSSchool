@@ -94,15 +94,35 @@ export const garageSlice = createSlice({
         },
       };
     },
+    setNextPage(state: InitialState): InitialState {
+      return {
+        ...state,
+        page: {
+          ...state.page,
+          number: state.page.number + 1,
+        },
+      };
+    },
+    setPrevPage(state: InitialState): InitialState {
+      return {
+        ...state,
+        page: {
+          ...state.page,
+          number: state.page.number - 1,
+        },
+      };
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(getCars.fulfilled, (state, action) => ({
-      ...state,
-      garage: {
-        cars: action.payload.carsData,
-        carsInGarage: action.payload.carsInGarage,
-      },
-    }));
+    builder.addCase(getCars.fulfilled, (state, action) => {
+      return {
+        ...state,
+        garage: {
+          cars: action.payload.carsData,
+          carsInGarage: action.payload.carsInGarage,
+        },
+      };
+    });
     builder.addCase(createCar.fulfilled, (state) => ({
       ...state,
       create: {
@@ -138,6 +158,8 @@ export const {
   setCarToUpdate,
   setUpdatedCarName,
   setUpdatedCarColor,
+  setNextPage,
+  setPrevPage,
 } = garageSlice.actions;
 
 export default garageSlice.reducer;

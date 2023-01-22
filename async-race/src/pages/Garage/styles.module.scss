@@ -1,4 +1,15 @@
 .garage {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5em;
+  }
+
+  &__cars {
+    width: 100%;
+    flex-grow: 1;
+  }
+
   flex-grow: 1;
 
   &__info {
