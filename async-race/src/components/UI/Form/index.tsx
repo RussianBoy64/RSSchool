@@ -12,6 +12,7 @@ import {
 } from "../../../redux/reducers/garage/garageActions";
 import Button, { ButtonStyle } from "../Button";
 import styles from "./styles.module.scss";
+import { getWinnersCars } from "../../../redux/reducers/winners/winnersActions";
 
 interface FormProps {
   formType: FormTypes;
@@ -93,6 +94,7 @@ export default function Form({ formType }: FormProps) {
         event.preventDefault();
         await dispatch(updateCar());
         await dispatch(getCars());
+        await dispatch(getWinnersCars());
       };
       break;
     default:
