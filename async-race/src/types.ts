@@ -80,4 +80,5 @@ export interface GetWinnersPayload {
 export enum WinnersActions {
   getWinners = "GET_WINNERS",
   getWinnersCars = "GET_WINNERSCARS",
+  deleteWinner = "DELETE_WINNER",
 }

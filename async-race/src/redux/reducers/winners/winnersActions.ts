@@ -51,3 +51,12 @@ export const getWinnersCars = createAsyncThunk<Car[], void, ThunkAPI>(
     return winnersCars;
   },
 );
+
+export const deleteWinner = createAsyncThunk<void, number, ThunkAPI>(
+  WinnersActions.deleteWinner,
+  async (id) => {
+    await fetch(`${ENDPOINT}/winners/${id}`, {
+      method: FetchMethods.delete,
+    });
+  },
+);

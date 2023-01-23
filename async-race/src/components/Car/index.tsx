@@ -4,6 +4,10 @@ import Button, { ButtonStyle } from "../UI/Button";
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { setCarToUpdate } from "../../redux/reducers/garage/garageReducer";
 import { getCars, deleteCar } from "../../redux/reducers/garage/garageActions";
+import {
+  deleteWinner,
+  getWinners,
+} from "../../redux/reducers/winners/winnersActions";
 import styles from "./styles.module.scss";
 
 interface CarProps {
@@ -32,7 +36,9 @@ export default function Car({ name, color, id, isDrive }: CarProps) {
           type="button"
           onClickHandler={async () => {
             await dispatch(deleteCar(id));
+            await dispatch(deleteWinner(id));
             await dispatch(getCars());
+            await dispatch(getWinners());
           }}
           isDisabled={false}
         >
