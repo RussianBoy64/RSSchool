@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import ENDPOINT, { FetchMethods } from "../../../endpoint";
 import {
+  Car,
   Page,
   GetWinnersPayload,
   WinnersActions,
@@ -24,7 +25,7 @@ export const getWinners = createAsyncThunk<GetWinnersPayload, void, ThunkAPI>(
       winners: { page },
     } = thunkAPI.getState();
     const responceWinners = await fetch(
-      `${ENDPOINT}/winners?_page=${page.number}&_limit=${page.limit}`,
+      `${ENDPOINT}/winners?_page=${page.number}&_limit=${page.limit}&_sort=${page.sort}&_order=${page.order}`,
       {
         method: FetchMethods.get,
       },
@@ -35,30 +36,22 @@ export const getWinners = createAsyncThunk<GetWinnersPayload, void, ThunkAPI>(
     );
     const winners: Winner[] = await responceWinners.json();
 
-    // const winners: Winner[] = [];
-    // // winnersData.map((winnerItem) => ({
-    // //   ...winnerItem,
-    // //   name: "",
-    // //   color: "",
-    // // }));
-
-    // console.log(winners);
-
-    // winnersData.forEach(async (winnersItem) => {
-    //   const reponceCar = await fetch(`${ENDPOINT}/garage/${winnersItem.id}`, {
-    //     method: FetchMethods.get,
-    //   });
-    //   const carData = await reponceCar.json();
-    //   console.log(carData);
-    //   const win: Winner = {
-    //     ...winnersItem,
-    //     name: carData.name,
-    //     color: carData.color,
-    //   };
-
-    //   winners.push(win);
-    // });
-
     return { winners, totalCountOfWinners };
+  },
+);
+
+export const getWinnersCars = createAsyncThunk<Car[], void, ThunkAPI>(
+  WinnersActions.getWinnersCars,
+  async (_, thunkAPI) => {
+    const {
+      winners: { winners },
+    } = thunkAPI.getState();
+    const responce = await fetch(`${ENDPOINT}/garage`, {
+      method: FetchMethods.get,
+    });
+    const cars: Car[] = await responce.json();
+    const winnersIds = winners.map((winner) => winner.id);
+    const winnersCars = cars.filter((car) => winnersIds.includes(car.id));
+    return winnersCars;
   },
 );

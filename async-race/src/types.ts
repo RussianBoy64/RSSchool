@@ -13,7 +13,7 @@ export interface Car {
   name: string;
   color: string;
   id: number;
-  isDrive: boolean;
+  isDrive?: boolean;
 }
 
 export interface InitialGarageState {
@@ -57,6 +57,7 @@ export interface Winner {
 
 export interface InitialWinnersState {
   winners: Winner[];
+  winnersCars: Car[];
   totalCountOfWinners: number;
   page: Page;
 }
@@ -68,4 +69,5 @@ export interface GetWinnersPayload {
 
 export enum WinnersActions {
   getWinners = "GET_WINNERS",
+  getWinnersCars = "GET_WINNERSCARS",
 }

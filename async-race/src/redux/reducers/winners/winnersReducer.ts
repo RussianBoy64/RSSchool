@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { InitialWinnersState } from "../../../types";
-import { getWinners } from "./winnersActions";
+import { getWinners, getWinnersCars } from "./winnersActions";
 
 const initialState: InitialWinnersState = {
   winners: [],
+  winnersCars: [],
   totalCountOfWinners: 0,
-  page: { number: 1, limit: 10, sort: "id", order: "ASC" },
+  page: { number: 1, limit: 10, sort: "time", order: "ASC" },
 };
 
 export const winnersSlice = createSlice({
@@ -32,14 +33,15 @@ export const winnersSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getWinners.fulfilled, (state, action) => {
-      console.log(...action.payload.winners);
-      return {
-        ...state,
-        winners: action.payload.winners,
-        totalCountOfWinners: action.payload.totalCountOfWinners,
-      };
-    });
+    builder.addCase(getWinners.fulfilled, (state, action) => ({
+      ...state,
+      winners: action.payload.winners,
+      totalCountOfWinners: action.payload.totalCountOfWinners,
+    }));
+    builder.addCase(getWinnersCars.fulfilled, (state, action) => ({
+      ...state,
+      winnersCars: action.payload,
+    }));
   },
 });
 

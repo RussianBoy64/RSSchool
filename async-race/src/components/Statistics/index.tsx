@@ -4,7 +4,11 @@ import Winner from "../Winner";
 import styles from "./styles.module.scss";
 
 export default function Statistics() {
-  const { winners } = useAppSelector((state) => state.winners);
+  const { winners, winnersCars, page } = useAppSelector(
+    (state) => state.winners,
+  );
+  const firstPositionAtPage = (page.number - 1) * page.limit;
+
   return (
     <div className={styles.statistics}>
       <div
@@ -12,19 +16,21 @@ export default function Statistics() {
           " ",
         )}
       >
-        <span className={styles.statistics__head}>Number</span>
-        <span className={styles.statistics__head}>Car</span>
-        <span className={styles.statistics__head}>Name</span>
-        <span className={styles.statistics__head}>Wins</span>
-        <span className={styles.statistics__head}>BestTime (sec)</span>
+        <span>Number</span>
+        <span>Car</span>
+        <span>Name</span>
+        <span>Wins</span>
+        <span>BestTime (sec)</span>
       </div>
-      {winners.map((winner) => {
+      {winners.map((winner, index) => {
+        const position = firstPositionAtPage + index + 1;
+        const winnerCar = winnersCars.find((car) => winner.id === car.id);
         return (
           <div className={styles.statistics__row} key={winner.id}>
             <Winner
-              position={1}
-              color="red"
-              name="Ferrary"
+              position={position}
+              color={winnerCar!.color}
+              name={winnerCar!.name}
               wins={winner.wins}
               time={winner.time}
             />

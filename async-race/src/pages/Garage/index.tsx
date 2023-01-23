@@ -97,7 +97,7 @@ export default function Garage() {
             name={car.name}
             color={car.color}
             id={car.id}
-            isDrive={car.isDrive}
+            isDrive={car.isDrive!}
           />
         ))}
       </div>
