@@ -1,7 +1,18 @@
 @import "../../styles/colors";
 
 .carImg {
-  position: relative;
+  position: absolute;
   width: 100px;
   height: 50px;
+  left: 0;
+  animation-name: drive;
+}
+
+@keyframes drive {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: calc(100% - 100px);
+  }
 }

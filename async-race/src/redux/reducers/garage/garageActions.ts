@@ -38,8 +38,8 @@ export const getCars = createAsyncThunk<GetCarsPayload, void, ThunkAPI>(
       },
     );
     const carsInGarage = Number(responce.headers.get("X-Total-Count"));
-    const data: Car[] = await responce.json();
-    const carsData = data.map((itemData) => ({
+    const cars: Car[] = await responce.json();
+    const carsData = cars.map((itemData) => ({
       ...itemData,
       engineStatus: EngineStatus.stopped,
     }));
@@ -97,7 +97,7 @@ export const startStopEngine = createAsyncThunk<
       : EngineStatus.started;
   const carToUpdateIndex = cars.findIndex((car) => car.id === id);
   const responce = await fetch(
-    `${ENDPOINT}/engine?id=${id}&status=${engineStatus}`,
+    `${ENDPOINT}/engine?id=${id}&status=${newEngineStatus}`,
     {
       method: FetchMethods.patch,
     },
@@ -112,3 +112,26 @@ export const startStopEngine = createAsyncThunk<
 
   return cars;
 });
+
+export const switchEngineToDrive = createAsyncThunk<Car[], number, ThunkAPI>(
+  GarageActions.switchEngineToDrive,
+  async (id, thunkAPI) => {
+    const { garage } = thunkAPI.getState();
+    const cars = [...garage.garage.cars];
+    const carToUpdateIndex = cars.findIndex((car) => car.id === id);
+    cars[carToUpdateIndex] = {
+      ...cars[carToUpdateIndex],
+      isDrive: false,
+    };
+
+    try {
+      await fetch(`${ENDPOINT}/engine?id=${id}&status=drive`, {
+        method: FetchMethods.patch,
+      });
+    } catch (err) {
+      return cars;
+    }
+
+    return cars;
+  },
+);

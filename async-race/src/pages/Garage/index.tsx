@@ -92,13 +92,7 @@ export default function Garage() {
 
       <div className={styles.garage__cars}>
         {garage.cars.map((car) => (
-          <Car
-            key={car.id}
-            name={car.name}
-            color={car.color}
-            id={car.id}
-            engineStatus={car.engineStatus}
-          />
+          <Car key={car.id} id={car.id} />
         ))}
       </div>
     </main>

@@ -6,6 +6,7 @@ import {
   deleteCar,
   updateCar,
   startStopEngine,
+  switchEngineToDrive,
 } from "./garageActions";
 
 const initialState: InitialGarageState = {
@@ -145,6 +146,36 @@ export const garageSlice = createSlice({
         cars: [...action.payload],
       },
     }));
+    builder.addCase(switchEngineToDrive.pending, (state, action) => {
+      const cars = [...state.garage.cars];
+      const carToUpdateIndex = cars.findIndex(
+        (car) => car.id === action.meta.arg,
+      );
+      cars[carToUpdateIndex] = {
+        ...cars[carToUpdateIndex],
+        isDrive: true,
+      };
+
+      console.log(cars[carToUpdateIndex].engineStatus);
+
+      return {
+        ...state,
+        garage: {
+          ...state.garage,
+          cars: [...cars],
+        },
+      };
+    });
+    builder.addCase(switchEngineToDrive.fulfilled, (state, action) => {
+      console.log(action.payload);
+      return {
+        ...state,
+        garage: {
+          ...state.garage,
+          cars: [...action.payload],
+        },
+      };
+    });
   },
 });
 

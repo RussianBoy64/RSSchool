@@ -1,10 +1,14 @@
+// import { EngineStatus } from "../../types";
 import styles from "./styles.module.scss";
 
 interface CarImgProp {
   color: string;
+  // engineStatus?: EngineStatus;
+  isDrive?: boolean;
+  animationTime?: number;
 }
 
-export default function CarImg({ color }: CarImgProp) {
+export default function CarImg({ color, isDrive, animationTime }: CarImgProp) {
   return (
     <svg
       version="1.0"
@@ -12,6 +16,10 @@ export default function CarImg({ color }: CarImgProp) {
       viewBox="0 0 1280.000000 640.000000"
       preserveAspectRatio="xMidYMid meet"
       className={styles.carImg}
+      style={{
+        animationDuration: `${animationTime}s`,
+        animationPlayState: isDrive ? "running" : "pause",
+      }}
     >
       <metadata>
         Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -65,3 +73,9 @@ export default function CarImg({ color }: CarImgProp) {
     </svg>
   );
 }
+
+CarImg.defaultProps = {
+  isDrive: false,
+  animationTime: 0,
+  // engineStatus: EngineStatus.stopped,
+};

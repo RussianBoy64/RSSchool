@@ -20,7 +20,9 @@ export default function Winner({
   return (
     <>
       <span className={styles.winnerInfo}>{position}</span>
-      <CarImg color={color} />
+      <span className={styles.winnerInfo__carWrapper}>
+        <CarImg color={color} />
+      </span>
       <span className={styles.winnerInfo}>{name}</span>
       <span className={styles.winnerInfo}>{wins}</span>
       <span className={styles.winnerInfo}>{time}</span>

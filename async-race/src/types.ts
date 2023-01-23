@@ -54,6 +54,7 @@ export enum GarageActions {
   deleteCar = "DELETE_CAR",
   updateCar = "UPDATE_CAR",
   startStopEngine = "START_STOP_ENGINE",
+  switchEngineToDrive = "SWITCH_ENGINE_TO_DRIVE",
 }
 
 export interface GetCarsPayload {
