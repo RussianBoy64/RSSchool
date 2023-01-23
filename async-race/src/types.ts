@@ -23,7 +23,10 @@ export interface Car {
   name: string;
   color: string;
   id: number;
+  engineStatus: EngineStatus;
   isDrive?: boolean;
+  velocity?: number;
+  distance?: number;
 }
 
 export interface InitialGarageState {
@@ -50,12 +53,27 @@ export enum GarageActions {
   createCar = "CREATE_CAR",
   deleteCar = "DELETE_CAR",
   updateCar = "UPDATE_CAR",
+  startStopEngine = "START_STOP_ENGINE",
 }
 
 export interface GetCarsPayload {
   carsData: Car[];
   carsInGarage: number;
 }
+
+// ========================  ENGINE
+
+export interface StartStopEngineArgs {
+  id: number;
+  engineStatus: EngineStatus;
+}
+
+export enum EngineStatus {
+  started = "started",
+  stopped = "stopped",
+}
+
+export type StartStopEnginePayload = Pick<Car, "velocity" | "distance">;
 
 // ========================  WINNERS
 

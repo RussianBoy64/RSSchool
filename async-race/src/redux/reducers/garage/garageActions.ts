@@ -6,6 +6,9 @@ import {
   CreateInput,
   UpdateInput,
   GetCarsPayload,
+  StartStopEngineArgs,
+  StartStopEnginePayload,
+  EngineStatus,
 } from "../../../types";
 
 interface ThunkAPI {
@@ -36,7 +39,10 @@ export const getCars = createAsyncThunk<GetCarsPayload, void, ThunkAPI>(
     );
     const carsInGarage = Number(responce.headers.get("X-Total-Count"));
     const data: Car[] = await responce.json();
-    const carsData = data.map((itemData) => ({ ...itemData, isDrive: false }));
+    const carsData = data.map((itemData) => ({
+      ...itemData,
+      engineStatus: EngineStatus.stopped,
+    }));
     return { carsData, carsInGarage };
   },
 );
@@ -68,7 +74,7 @@ export const updateCar = createAsyncThunk<void, void, ThunkAPI>(
   async (_, thunkAPI) => {
     const { garage } = thunkAPI.getState();
     const { id, name, color } = garage.carToUpdate;
-    await fetch(`${ENDPOINT}/garage/${id}`, {
+    await fetch(`${ENDPOINT}/engine/${id}`, {
       method: FetchMethods.put,
       headers: {
         "Content-Type": "application/json",
@@ -77,3 +83,32 @@ export const updateCar = createAsyncThunk<void, void, ThunkAPI>(
     });
   },
 );
+
+export const startStopEngine = createAsyncThunk<
+  Car[],
+  StartStopEngineArgs,
+  ThunkAPI
+>(GarageActions.startStopEngine, async ({ id, engineStatus }, thunkAPI) => {
+  const { garage } = thunkAPI.getState();
+  const cars = [...garage.garage.cars];
+  const newEngineStatus =
+    engineStatus === EngineStatus.started
+      ? EngineStatus.stopped
+      : EngineStatus.started;
+  const carToUpdateIndex = cars.findIndex((car) => car.id === id);
+  const responce = await fetch(
+    `${ENDPOINT}/engine?id=${id}&status=${engineStatus}`,
+    {
+      method: FetchMethods.patch,
+    },
+  );
+  const engineData: StartStopEnginePayload = await responce.json();
+  cars[carToUpdateIndex] = {
+    ...cars[carToUpdateIndex],
+    engineStatus: newEngineStatus,
+    velocity: engineData.velocity,
+    distance: engineData.distance,
+  };
+
+  return cars;
+});

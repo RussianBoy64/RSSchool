@@ -5,6 +5,7 @@ export enum FetchMethods {
   put = "PUT",
   post = "POST",
   delete = "DELETE",
+  patch = "PATCH",
 }
 
 export default ENDPOINT;

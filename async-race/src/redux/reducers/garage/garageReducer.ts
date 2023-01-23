@@ -1,6 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { InitialGarageState, UpdateInput } from "../../../types";
-import { getCars, createCar, deleteCar, updateCar } from "./garageActions";
+import {
+  getCars,
+  createCar,
+  deleteCar,
+  updateCar,
+  startStopEngine,
+} from "./garageActions";
 
 const initialState: InitialGarageState = {
   garage: { cars: [], carsInGarage: 0 },
@@ -130,6 +136,13 @@ export const garageSlice = createSlice({
         id: 0,
         name: "",
         color: "#ffffff",
+      },
+    }));
+    builder.addCase(startStopEngine.fulfilled, (state, action) => ({
+      ...state,
+      garage: {
+        ...state.garage,
+        cars: [...action.payload],
       },
     }));
   },

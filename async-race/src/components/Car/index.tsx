@@ -3,21 +3,26 @@ import Finish from "../Finish";
 import Button, { ButtonStyle } from "../UI/Button";
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { setCarToUpdate } from "../../redux/reducers/garage/garageReducer";
-import { getCars, deleteCar } from "../../redux/reducers/garage/garageActions";
+import {
+  getCars,
+  deleteCar,
+  startStopEngine,
+} from "../../redux/reducers/garage/garageActions";
 import {
   deleteWinner,
   getWinners,
 } from "../../redux/reducers/winners/winnersActions";
+import { EngineStatus } from "../../types";
 import styles from "./styles.module.scss";
 
 interface CarProps {
   name: string;
   color: string;
   id: number;
-  isDrive: boolean;
+  engineStatus: EngineStatus;
 }
 
-export default function Car({ name, color, id, isDrive }: CarProps) {
+export default function Car({ name, color, id, engineStatus }: CarProps) {
   const dispatch = useAppDispatch();
 
   return (
@@ -51,14 +56,20 @@ export default function Car({ name, color, id, isDrive }: CarProps) {
           <Button
             style={ButtonStyle.secondary}
             type="button"
-            isDisabled={isDrive}
+            onClickHandler={() =>
+              dispatch(startStopEngine({ id, engineStatus }))
+            }
+            isDisabled={engineStatus === EngineStatus.started}
           >
             A
           </Button>
           <Button
             style={ButtonStyle.secondary}
             type="button"
-            isDisabled={!isDrive}
+            onClickHandler={() =>
+              dispatch(startStopEngine({ id, engineStatus }))
+            }
+            isDisabled={engineStatus === EngineStatus.stopped}
           >
             B
           </Button>
