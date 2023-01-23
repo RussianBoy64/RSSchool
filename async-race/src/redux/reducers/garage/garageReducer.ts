@@ -1,25 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Car } from "../../classes/Car";
+import { InitialGarageState, UpdateInput } from "../../../types";
 import { getCars, createCar, deleteCar, updateCar } from "./garageActions";
 
-export interface InitialState {
-  garage: { cars: Car[]; carsInGarage: number };
-  page: Page;
-  create: CreateInput;
-  carToUpdate: Car;
-}
-
-export interface CreateInput {
-  name: string;
-  color: string;
-}
-
-export interface Page {
-  number: number;
-  limit: number;
-}
-
-const initialState: InitialState = {
+const initialState: InitialGarageState = {
   garage: { cars: [], carsInGarage: 0 },
   page: { number: 1, limit: 7 },
   create: {
@@ -38,9 +21,9 @@ export const garageSlice = createSlice({
   initialState,
   reducers: {
     setCarName(
-      state: InitialState,
+      state: InitialGarageState,
       action: PayloadAction<string>,
-    ): InitialState {
+    ): InitialGarageState {
       return {
         ...state,
         create: {
@@ -50,9 +33,9 @@ export const garageSlice = createSlice({
       };
     },
     setCarColor(
-      state: InitialState,
+      state: InitialGarageState,
       action: PayloadAction<string>,
-    ): InitialState {
+    ): InitialGarageState {
       return {
         ...state,
         create: {
@@ -62,18 +45,18 @@ export const garageSlice = createSlice({
       };
     },
     setCarToUpdate(
-      state: InitialState,
-      action: PayloadAction<Car>,
-    ): InitialState {
+      state: InitialGarageState,
+      action: PayloadAction<UpdateInput>,
+    ): InitialGarageState {
       return {
         ...state,
         carToUpdate: action.payload,
       };
     },
     setUpdatedCarName(
-      state: InitialState,
+      state: InitialGarageState,
       action: PayloadAction<string>,
-    ): InitialState {
+    ): InitialGarageState {
       return {
         ...state,
         carToUpdate: {
@@ -83,9 +66,9 @@ export const garageSlice = createSlice({
       };
     },
     setUpdatedCarColor(
-      state: InitialState,
+      state: InitialGarageState,
       action: PayloadAction<string>,
-    ): InitialState {
+    ): InitialGarageState {
       return {
         ...state,
         carToUpdate: {
@@ -94,7 +77,7 @@ export const garageSlice = createSlice({
         },
       };
     },
-    setNextPage(state: InitialState): InitialState {
+    setNextPage(state: InitialGarageState): InitialGarageState {
       return {
         ...state,
         page: {
@@ -103,7 +86,7 @@ export const garageSlice = createSlice({
         },
       };
     },
-    setPrevPage(state: InitialState): InitialState {
+    setPrevPage(state: InitialGarageState): InitialGarageState {
       return {
         ...state,
         page: {

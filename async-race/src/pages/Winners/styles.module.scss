@@ -1,4 +1,8 @@
 .winners {
   flex-grow: 1;
-  height: 300px;
+
+  &__info {
+    display: flex;
+    gap: 0.5em;
+  }
 }

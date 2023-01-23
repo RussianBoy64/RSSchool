@@ -4,12 +4,12 @@ import {
   setCarColor,
   setUpdatedCarName,
   setUpdatedCarColor,
-} from "../../../redux/reducers/garageReducer";
+} from "../../../redux/reducers/garage/garageReducer";
 import {
   getCars,
   createCar,
   updateCar,
-} from "../../../redux/reducers/garageActions";
+} from "../../../redux/reducers/garage/garageActions";
 import Button, { ButtonStyle } from "../Button";
 import styles from "./styles.module.scss";
 

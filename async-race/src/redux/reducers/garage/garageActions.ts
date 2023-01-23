@@ -1,24 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import ENDPOINT, { FetchMethods } from "../../endpoint";
-import { Car, CarProps } from "../../classes/Car";
-
-export enum GarageActions {
-  getCars = "GET_CARS",
-  getCar = "GET_CAR",
-  createCar = "CREATE_CAR",
-  deleteCar = "DELETE_CAR",
-  updateCar = "UPDATE_CAR",
-}
-
-interface GetCarsPayload {
-  carsData: CarProps[];
-  carsInGarage: number;
-}
-
-interface CreateInput {
-  name: string;
-  color: string;
-}
+import ENDPOINT, { FetchMethods } from "../../../endpoint";
+import {
+  Car,
+  GarageActions,
+  CreateInput,
+  UpdateInput,
+  GetCarsPayload,
+} from "../../../types";
 
 interface ThunkAPI {
   state: {
@@ -29,7 +17,7 @@ interface ThunkAPI {
         limit: number;
       };
       create: CreateInput;
-      carToUpdate: Car;
+      carToUpdate: UpdateInput;
     };
   };
 }
@@ -47,7 +35,8 @@ export const getCars = createAsyncThunk<GetCarsPayload, void, ThunkAPI>(
       },
     );
     const carsInGarage = Number(responce.headers.get("X-Total-Count"));
-    const carsData: CarProps[] = await responce.json();
+    const data: Car[] = await responce.json();
+    const carsData = data.map((itemData) => ({ ...itemData, isDrive: false }));
     return { carsData, carsInGarage };
   },
 );

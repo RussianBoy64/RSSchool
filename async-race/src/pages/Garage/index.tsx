@@ -2,8 +2,11 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import Car from "../../components/Car";
 import Form, { FormTypes } from "../../components/UI/Form";
 import Button, { ButtonStyle } from "../../components/UI/Button";
-import { setPrevPage, setNextPage } from "../../redux/reducers/garageReducer";
-import { getCars, createCar } from "../../redux/reducers/garageActions";
+import {
+  setPrevPage,
+  setNextPage,
+} from "../../redux/reducers/garage/garageReducer";
+import { getCars, createCar } from "../../redux/reducers/garage/garageActions";
 import generate100Cars from "../../carNames";
 
 import styles from "./styles.module.scss";
@@ -65,6 +68,22 @@ export default function Garage() {
               onClickHandler={createCarsHandler}
               isDisabled={false}
             >
+              Race
+            </Button>
+            <Button
+              style={ButtonStyle.secondary}
+              type="button"
+              onClickHandler={createCarsHandler}
+              isDisabled={false}
+            >
+              Reset
+            </Button>
+            <Button
+              style={ButtonStyle.secondary}
+              type="button"
+              onClickHandler={createCarsHandler}
+              isDisabled={false}
+            >
               Generate Cars
             </Button>
           </div>
@@ -73,7 +92,13 @@ export default function Garage() {
 
       <div className={styles.garage__cars}>
         {garage.cars.map((car) => (
-          <Car key={car.id} name={car.name} color={car.color} id={car.id} />
+          <Car
+            key={car.id}
+            name={car.name}
+            color={car.color}
+            id={car.id}
+            isDrive={car.isDrive}
+          />
         ))}
       </div>
     </main>

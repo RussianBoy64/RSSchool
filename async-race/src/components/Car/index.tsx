@@ -2,17 +2,18 @@ import CarImg from "../CarImg";
 import Finish from "../Finish";
 import Button, { ButtonStyle } from "../UI/Button";
 import { useAppDispatch } from "../../hooks/reduxHooks";
-import { setCarToUpdate } from "../../redux/reducers/garageReducer";
-import { getCars, deleteCar } from "../../redux/reducers/garageActions";
+import { setCarToUpdate } from "../../redux/reducers/garage/garageReducer";
+import { getCars, deleteCar } from "../../redux/reducers/garage/garageActions";
 import styles from "./styles.module.scss";
 
 interface CarProps {
   name: string;
   color: string;
   id: number;
+  isDrive: boolean;
 }
 
-export default function Car({ name, color, id }: CarProps) {
+export default function Car({ name, color, id, isDrive }: CarProps) {
   const dispatch = useAppDispatch();
 
   return (
@@ -41,10 +42,18 @@ export default function Car({ name, color, id }: CarProps) {
       </div>
       <div className={styles.car__track}>
         <div className={styles.car__engineControls}>
-          <Button style={ButtonStyle.secondary} type="button" isDisabled>
+          <Button
+            style={ButtonStyle.secondary}
+            type="button"
+            isDisabled={isDrive}
+          >
             A
           </Button>
-          <Button style={ButtonStyle.secondary} type="button" isDisabled>
+          <Button
+            style={ButtonStyle.secondary}
+            type="button"
+            isDisabled={!isDrive}
+          >
             B
           </Button>
         </div>

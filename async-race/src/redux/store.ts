@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import garageReducer from "./reducers/garageReducer";
+import garageReducer from "./reducers/garage/garageReducer";
+import winnersReducer from "./reducers/winners/winnersReducer";
 
 const store = configureStore({
   reducer: {
     garage: garageReducer,
+    winners: winnersReducer,
   },
 });
 

@@ -11,7 +11,7 @@ const carBrand = [
   "Honda",
   "Bentley",
   "Geely",
-  "Shkoda",
+  "Skoda",
   "Wolksvagen",
   "Toyota",
   "Lexus",
