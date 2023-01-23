@@ -3,8 +3,18 @@
 export interface Page {
   number: number;
   limit: number;
-  sort?: "id" | "wins" | "time";
-  order?: "ASC" | "DESC";
+  sort?: SortBy;
+  order?: OrderBy;
+}
+
+export enum SortBy {
+  wins = "wins",
+  time = "time",
+}
+
+export enum OrderBy {
+  asc = "ASC",
+  desc = "DESC",
 }
 
 // ========================  GARAGE

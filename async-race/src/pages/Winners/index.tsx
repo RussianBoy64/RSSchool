@@ -4,7 +4,11 @@ import Statistics from "../../components/Statistics";
 import {
   setPrevPage,
   setNextPage,
-} from "../../redux/reducers/garage/garageReducer";
+} from "../../redux/reducers/winners/winnersReducer";
+import {
+  getWinners,
+  getWinnersCars,
+} from "../../redux/reducers/winners/winnersActions";
 
 import styles from "./styles.module.scss";
 
@@ -26,9 +30,9 @@ export default function Winners() {
         <Button
           style={ButtonStyle.secondary}
           type="button"
-          onClickHandler={() => {
+          onClickHandler={async () => {
             dispatch(setPrevPage());
-            // dispatch(getCars());
+            await dispatch(getWinners());
           }}
           isDisabled={!(page.number > 1)}
         >
@@ -37,9 +41,10 @@ export default function Winners() {
         <Button
           style={ButtonStyle.secondary}
           type="button"
-          onClickHandler={() => {
+          onClickHandler={async () => {
             dispatch(setNextPage());
-            // dispatch(getCars());
+            await dispatch(getWinners());
+            await dispatch(getWinnersCars());
           }}
           isDisabled={totalPages === page.number}
         >

@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 export enum ButtonStyle {
   primary,
   secondary,
-  engine,
+  none,
 }
 
 interface ButtonProps {
@@ -31,6 +31,9 @@ export default function Button({
       break;
     case ButtonStyle.secondary:
       buttonStyle.push(styles.button_secondary);
+      break;
+    case ButtonStyle.none:
+      buttonStyle.push(styles.button_none);
       break;
     default:
       break;

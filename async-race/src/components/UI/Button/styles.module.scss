@@ -11,6 +11,16 @@
   overflow: hidden;
   transition: 300ms ease-in-out;
 
+  &_none {
+    padding: 0;
+    color: $accent-iris;
+
+    &:hover {
+      color: $accent-iris !important;
+      opacity: 0.8;
+    }
+  }
+
   &_primary {
     color: $accent-iris;
     &:before,

@@ -42,16 +42,12 @@ export const getWinners = createAsyncThunk<GetWinnersPayload, void, ThunkAPI>(
 
 export const getWinnersCars = createAsyncThunk<Car[], void, ThunkAPI>(
   WinnersActions.getWinnersCars,
-  async (_, thunkAPI) => {
-    const {
-      winners: { winners },
-    } = thunkAPI.getState();
+  async () => {
     const responce = await fetch(`${ENDPOINT}/garage`, {
       method: FetchMethods.get,
     });
-    const cars: Car[] = await responce.json();
-    const winnersIds = winners.map((winner) => winner.id);
-    const winnersCars = cars.filter((car) => winnersIds.includes(car.id));
+    const winnersCars: Car[] = await responce.json();
+
     return winnersCars;
   },
 );

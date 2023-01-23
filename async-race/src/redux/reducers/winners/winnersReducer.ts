@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { InitialWinnersState } from "../../../types";
+import { InitialWinnersState, SortBy, OrderBy } from "../../../types";
 import { getWinners, getWinnersCars } from "./winnersActions";
 
 const initialState: InitialWinnersState = {
   winners: [],
   winnersCars: [],
   totalCountOfWinners: 0,
-  page: { number: 1, limit: 10, sort: "time", order: "ASC" },
+  page: { number: 1, limit: 10, sort: SortBy.time, order: OrderBy.asc },
 };
 
 export const winnersSlice = createSlice({
@@ -31,6 +31,30 @@ export const winnersSlice = createSlice({
         },
       };
     },
+    toggleWinsSort(state: InitialWinnersState): InitialWinnersState {
+      const sortOrder =
+        state.page.order === OrderBy.asc ? OrderBy.desc : OrderBy.asc;
+      return {
+        ...state,
+        page: {
+          ...state.page,
+          sort: SortBy.wins,
+          order: sortOrder,
+        },
+      };
+    },
+    toggleTimeSort(state: InitialWinnersState): InitialWinnersState {
+      const sortOrder =
+        state.page.order === OrderBy.asc ? OrderBy.desc : OrderBy.asc;
+      return {
+        ...state,
+        page: {
+          ...state.page,
+          sort: SortBy.time,
+          order: sortOrder,
+        },
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getWinners.fulfilled, (state, action) => ({
@@ -45,6 +69,7 @@ export const winnersSlice = createSlice({
   },
 });
 
-export const { setNextPage, setPrevPage } = winnersSlice.actions;
+export const { setNextPage, setPrevPage, toggleWinsSort, toggleTimeSort } =
+  winnersSlice.actions;
 
 export default winnersSlice.reducer;
