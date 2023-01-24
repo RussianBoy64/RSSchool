@@ -34,6 +34,8 @@ export interface InitialGarageState {
   page: Page;
   create: CreateInput;
   carToUpdate: UpdateInput;
+  isRaceStarted: boolean;
+  carsFinished: Car[];
 }
 
 export interface CreateInput {
@@ -74,7 +76,15 @@ export enum EngineStatus {
   stopped = "stopped",
 }
 
-export type StartStopEnginePayload = Pick<Car, "velocity" | "distance">;
+export type StartStopEnginePayload = Pick<
+  Car,
+  "id" | "engineStatus" | "velocity" | "distance"
+>;
+
+export interface SwitchEngineToDrivePayload {
+  id: number;
+  signal: AbortSignal;
+}
 
 // ========================  WINNERS
 

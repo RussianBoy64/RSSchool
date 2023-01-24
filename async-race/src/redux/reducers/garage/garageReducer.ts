@@ -21,6 +21,8 @@ const initialState: InitialGarageState = {
     name: "",
     color: "#ffffff",
   },
+  isRaceStarted: false,
+  carsFinished: [],
 };
 
 export const garageSlice = createSlice({
@@ -102,6 +104,12 @@ export const garageSlice = createSlice({
         },
       };
     },
+    toggleRaceStarted(state: InitialGarageState): InitialGarageState {
+      return {
+        ...state,
+        isRaceStarted: !state.isRaceStarted,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getCars.fulfilled, (state, action) => {
@@ -139,63 +147,36 @@ export const garageSlice = createSlice({
         color: "#ffffff",
       },
     }));
-    builder.addCase(startStopEngine.fulfilled, (state, action) => ({
-      ...state,
-      garage: {
-        ...state.garage,
-        cars: [...action.payload],
-      },
-    }));
+    builder.addCase(startStopEngine.fulfilled, (state, action) => {
+      const carToUpdate = state.garage.cars.find(
+        (car) => car.id === action.payload.id,
+      )!;
+
+      carToUpdate.engineStatus = action.payload.engineStatus;
+      carToUpdate.velocity = action.payload.velocity;
+      carToUpdate.distance = action.payload.distance;
+    });
     builder.addCase(switchEngineToDrive.pending, (state, action) => {
-      const cars = [...state.garage.cars];
-      const carToUpdateIndex = cars.findIndex(
-        (car) => car.id === action.meta.arg,
-      );
-      cars[carToUpdateIndex] = {
-        ...cars[carToUpdateIndex],
-        isDrive: true,
-      };
+      const carToUpdate = state.garage.cars.find(
+        (car) => car.id === action.meta.arg.id,
+      )!;
 
-      console.log(cars[carToUpdateIndex].engineStatus);
-
-      return {
-        ...state,
-        garage: {
-          ...state.garage,
-          cars: [...cars],
-        },
-      };
+      carToUpdate.isDrive = true;
     });
     builder.addCase(switchEngineToDrive.rejected, (state, action) => {
-      console.log(action.error.message);
-      const cars = [...state.garage.cars];
-      const carToUpdateIndex = cars.findIndex(
-        (car) => car.id === action.meta.arg,
-      );
-      cars[carToUpdateIndex] = {
-        ...cars[carToUpdateIndex],
-        isDrive: true,
-      };
+      const carToUpdate = state.garage.cars.find(
+        (car) => car.id === action.meta.arg.id,
+      )!;
 
-      console.log(cars[carToUpdateIndex].engineStatus);
-
-      return {
-        ...state,
-        garage: {
-          ...state.garage,
-          cars: [...cars],
-        },
-      };
+      carToUpdate.isDrive = false;
     });
     builder.addCase(switchEngineToDrive.fulfilled, (state, action) => {
-      console.log(action.payload);
-      return {
-        ...state,
-        garage: {
-          ...state.garage,
-          cars: [...action.payload],
-        },
-      };
+      const carToUpdate = state.garage.cars.find(
+        (car) => car.id === action.payload,
+      )!;
+      const { carsFinished } = state;
+      carToUpdate.isDrive = false;
+      carsFinished.push(carToUpdate);
     });
   },
 });
@@ -208,6 +189,7 @@ export const {
   setUpdatedCarColor,
   setNextPage,
   setPrevPage,
+  toggleRaceStarted,
 } = garageSlice.actions;
 
 export default garageSlice.reducer;

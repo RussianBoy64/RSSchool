@@ -1,4 +1,4 @@
-import { unwrapResult } from "@reduxjs/toolkit";
+import { useRef } from "react";
 import CarImg from "../CarImg";
 import Finish from "../Finish";
 import Button, { ButtonStyle } from "../UI/Button";
@@ -27,6 +27,7 @@ export default function Car({ id }: CarProps) {
   const { name, color, engineStatus, isDrive, velocity, distance } =
     garage.cars.find((car) => car.id === id)!;
   const animationTime = distance! / (velocity! * 1000);
+  const controller = useRef<AbortController>();
 
   return (
     <div className={styles.car}>
@@ -61,14 +62,9 @@ export default function Car({ id }: CarProps) {
             type="button"
             onClickHandler={async () => {
               await dispatch(startStopEngine({ id, engineStatus }));
-              dispatch(switchEngineToDrive(id))
-                .then(unwrapResult)
-                .then((originalPromiseResult) => {
-                  console.log(originalPromiseResult);
-                })
-                .catch((rejectedValueOrSerializedError) => {
-                  console.log(rejectedValueOrSerializedError);
-                });
+              controller.current = new AbortController();
+              const { signal } = controller.current;
+              dispatch(switchEngineToDrive({ id, signal }));
             }}
             isDisabled={engineStatus === EngineStatus.started}
           >
@@ -77,9 +73,10 @@ export default function Car({ id }: CarProps) {
           <Button
             style={ButtonStyle.secondary}
             type="button"
-            onClickHandler={() =>
-              dispatch(startStopEngine({ id, engineStatus }))
-            }
+            onClickHandler={() => {
+              controller.current?.abort();
+              dispatch(startStopEngine({ id, engineStatus }));
+            }}
             isDisabled={engineStatus === EngineStatus.stopped}
           >
             B
@@ -88,7 +85,7 @@ export default function Car({ id }: CarProps) {
         <div className={styles.car__track__inner}>
           <CarImg
             color={color}
-            // engineStatus={engineStatus}
+            engineStatus={engineStatus}
             isDrive={isDrive!}
             animationTime={animationTime}
           />

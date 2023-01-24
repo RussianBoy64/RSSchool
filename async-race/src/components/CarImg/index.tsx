@@ -1,24 +1,33 @@
-// import { EngineStatus } from "../../types";
+import { EngineStatus } from "../../types";
 import styles from "./styles.module.scss";
 
 interface CarImgProp {
   color: string;
-  // engineStatus?: EngineStatus;
+  engineStatus?: EngineStatus;
   isDrive?: boolean;
   animationTime?: number;
 }
 
-export default function CarImg({ color, isDrive, animationTime }: CarImgProp) {
+export default function CarImg({
+  color,
+  isDrive,
+  engineStatus,
+  animationTime,
+}: CarImgProp) {
+  const style = [styles.carImg];
+  const isAnimationPlay = engineStatus === EngineStatus.started && isDrive;
+  if (engineStatus === EngineStatus.started) style.push(styles.carImg__drive);
+
   return (
     <svg
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1280.000000 640.000000"
       preserveAspectRatio="xMidYMid meet"
-      className={styles.carImg}
+      className={style.join(" ")}
       style={{
         animationDuration: `${animationTime}s`,
-        animationPlayState: isDrive ? "running" : "paused",
+        animationPlayState: isAnimationPlay ? "running" : "paused",
       }}
     >
       <metadata>
@@ -77,5 +86,5 @@ export default function CarImg({ color, isDrive, animationTime }: CarImgProp) {
 CarImg.defaultProps = {
   isDrive: false,
   animationTime: 0,
-  // engineStatus: EngineStatus.stopped,
+  engineStatus: EngineStatus.stopped,
 };

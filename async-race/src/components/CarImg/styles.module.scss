@@ -5,7 +5,11 @@
   width: 100px;
   height: 50px;
   left: 0;
-  animation-name: drive;
+
+  &__drive {
+    animation: drive linear;
+    animation-fill-mode: forwards;
+  }
 }
 
 @keyframes drive {

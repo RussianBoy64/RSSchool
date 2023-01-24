@@ -9,6 +9,7 @@ import {
   StartStopEngineArgs,
   StartStopEnginePayload,
   EngineStatus,
+  SwitchEngineToDrivePayload,
 } from "../../../types";
 
 interface ThunkAPI {
@@ -42,6 +43,7 @@ export const getCars = createAsyncThunk<GetCarsPayload, void, ThunkAPI>(
     const carsData = cars.map((itemData) => ({
       ...itemData,
       engineStatus: EngineStatus.stopped,
+      isDrive: false,
     }));
     return { carsData, carsInGarage };
   },
@@ -74,7 +76,7 @@ export const updateCar = createAsyncThunk<void, void, ThunkAPI>(
   async (_, thunkAPI) => {
     const { garage } = thunkAPI.getState();
     const { id, name, color } = garage.carToUpdate;
-    await fetch(`${ENDPOINT}/engine/${id}`, {
+    await fetch(`${ENDPOINT}/garage/${id}`, {
       method: FetchMethods.put,
       headers: {
         "Content-Type": "application/json",
@@ -85,17 +87,14 @@ export const updateCar = createAsyncThunk<void, void, ThunkAPI>(
 );
 
 export const startStopEngine = createAsyncThunk<
-  Car[],
+  StartStopEnginePayload,
   StartStopEngineArgs,
   ThunkAPI
->(GarageActions.startStopEngine, async ({ id, engineStatus }, thunkAPI) => {
-  const { garage } = thunkAPI.getState();
-  const cars = [...garage.garage.cars];
+>(GarageActions.startStopEngine, async ({ id, engineStatus }) => {
   const newEngineStatus =
     engineStatus === EngineStatus.started
       ? EngineStatus.stopped
       : EngineStatus.started;
-  const carToUpdateIndex = cars.findIndex((car) => car.id === id);
   const responce = await fetch(
     `${ENDPOINT}/engine?id=${id}&status=${newEngineStatus}`,
     {
@@ -103,30 +102,25 @@ export const startStopEngine = createAsyncThunk<
     },
   );
   const engineData: StartStopEnginePayload = await responce.json();
-  cars[carToUpdateIndex] = {
-    ...cars[carToUpdateIndex],
+
+  return {
+    id,
     engineStatus: newEngineStatus,
     velocity: engineData.velocity,
     distance: engineData.distance,
   };
-
-  return cars;
 });
 
-export const switchEngineToDrive = createAsyncThunk<Car[], number, ThunkAPI>(
-  GarageActions.switchEngineToDrive,
-  async (id, thunkAPI) => {
-    const { garage } = thunkAPI.getState();
-    const cars = [...garage.garage.cars];
-    const carToUpdateIndex = cars.findIndex((car) => car.id === id);
-    cars[carToUpdateIndex] = {
-      ...cars[carToUpdateIndex],
-      isDrive: false,
-    };
-    const responce = await fetch(`${ENDPOINT}/engine?id=${id}&status=drive`, {
-      method: FetchMethods.patch,
-    });
-    if (responce.status === 500) return thunkAPI.rejectWithValue(cars);
-    return cars;
-  },
-);
+export const switchEngineToDrive = createAsyncThunk<
+  number,
+  SwitchEngineToDrivePayload,
+  ThunkAPI
+>(GarageActions.switchEngineToDrive, async ({ id, signal }, thunkAPI) => {
+  const responce = await fetch(`${ENDPOINT}/engine?id=${id}&status=drive`, {
+    method: FetchMethods.patch,
+    signal,
+  });
+  if (responce.status === 500) return thunkAPI.rejectWithValue(id);
+  if (responce.status === 200) console.log("finish", id);
+  return id;
+});

@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import Car from "../../components/Car";
 import Form, { FormTypes } from "../../components/UI/Form";
@@ -5,16 +6,25 @@ import Button, { ButtonStyle } from "../../components/UI/Button";
 import {
   setPrevPage,
   setNextPage,
+  toggleRaceStarted,
 } from "../../redux/reducers/garage/garageReducer";
-import { getCars, createCar } from "../../redux/reducers/garage/garageActions";
+import {
+  getCars,
+  createCar,
+  startStopEngine,
+  switchEngineToDrive,
+} from "../../redux/reducers/garage/garageActions";
 import generate100Cars from "../../carNames";
 
 import styles from "./styles.module.scss";
 
 export default function Garage() {
-  const { garage, page } = useAppSelector((state) => state.garage);
+  const { garage, page, isRaceStarted } = useAppSelector(
+    (state) => state.garage,
+  );
   const dispatch = useAppDispatch();
   const totalPages = Math.ceil(garage.carsInGarage / page.limit) || 1;
+  const controller = useRef<AbortController>();
   const createCarsHandler = () => {
     const carsTocreate = generate100Cars();
     Promise.all(
@@ -65,16 +75,43 @@ export default function Garage() {
             <Button
               style={ButtonStyle.secondary}
               type="button"
-              onClickHandler={createCarsHandler}
-              isDisabled={false}
+              onClickHandler={async () => {
+                controller.current = new AbortController();
+                const { signal } = controller.current;
+                const startEnginePromisesArr = garage.cars.map((car) => {
+                  const { id, engineStatus } = car;
+                  return dispatch(startStopEngine({ id, engineStatus }));
+                });
+
+                dispatch(toggleRaceStarted());
+
+                Promise.all(startEnginePromisesArr).then(async () => {
+                  const switchEngineToDrivePromisesArr = garage.cars.map(
+                    (car) => {
+                      const { id } = car;
+                      return dispatch(switchEngineToDrive({ id, signal }));
+                    },
+                  );
+                  Promise.all(switchEngineToDrivePromisesArr);
+                });
+              }}
+              isDisabled={isRaceStarted}
             >
               Race
             </Button>
             <Button
               style={ButtonStyle.secondary}
               type="button"
-              onClickHandler={createCarsHandler}
-              isDisabled={false}
+              onClickHandler={async () => {
+                const startEnginePromisesArr = garage.cars.map((car) => {
+                  const { id, engineStatus } = car;
+                  return dispatch(startStopEngine({ id, engineStatus }));
+                });
+                dispatch(toggleRaceStarted());
+                controller.current?.abort();
+                await Promise.all(startEnginePromisesArr);
+              }}
+              isDisabled={!isRaceStarted}
             >
               Reset
             </Button>
