@@ -1,3 +1,4 @@
+import { unwrapResult } from "@reduxjs/toolkit";
 import CarImg from "../CarImg";
 import Finish from "../Finish";
 import Button, { ButtonStyle } from "../UI/Button";
@@ -60,7 +61,14 @@ export default function Car({ id }: CarProps) {
             type="button"
             onClickHandler={async () => {
               await dispatch(startStopEngine({ id, engineStatus }));
-              await dispatch(switchEngineToDrive(id));
+              dispatch(switchEngineToDrive(id))
+                .then(unwrapResult)
+                .then((originalPromiseResult) => {
+                  console.log(originalPromiseResult);
+                })
+                .catch((rejectedValueOrSerializedError) => {
+                  console.log(rejectedValueOrSerializedError);
+                });
             }}
             isDisabled={engineStatus === EngineStatus.started}
           >

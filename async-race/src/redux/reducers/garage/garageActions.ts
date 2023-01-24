@@ -123,15 +123,10 @@ export const switchEngineToDrive = createAsyncThunk<Car[], number, ThunkAPI>(
       ...cars[carToUpdateIndex],
       isDrive: false,
     };
-
-    try {
-      await fetch(`${ENDPOINT}/engine?id=${id}&status=drive`, {
-        method: FetchMethods.patch,
-      });
-    } catch (err) {
-      return cars;
-    }
-
+    const responce = await fetch(`${ENDPOINT}/engine?id=${id}&status=drive`, {
+      method: FetchMethods.patch,
+    });
+    if (responce.status === 500) return thunkAPI.rejectWithValue(cars);
     return cars;
   },
 );

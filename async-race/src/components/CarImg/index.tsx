@@ -18,7 +18,7 @@ export default function CarImg({ color, isDrive, animationTime }: CarImgProp) {
       className={styles.carImg}
       style={{
         animationDuration: `${animationTime}s`,
-        animationPlayState: isDrive ? "running" : "pause",
+        animationPlayState: isDrive ? "running" : "paused",
       }}
     >
       <metadata>

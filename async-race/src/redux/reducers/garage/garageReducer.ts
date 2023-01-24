@@ -166,6 +166,27 @@ export const garageSlice = createSlice({
         },
       };
     });
+    builder.addCase(switchEngineToDrive.rejected, (state, action) => {
+      console.log(action.error.message);
+      const cars = [...state.garage.cars];
+      const carToUpdateIndex = cars.findIndex(
+        (car) => car.id === action.meta.arg,
+      );
+      cars[carToUpdateIndex] = {
+        ...cars[carToUpdateIndex],
+        isDrive: true,
+      };
+
+      console.log(cars[carToUpdateIndex].engineStatus);
+
+      return {
+        ...state,
+        garage: {
+          ...state.garage,
+          cars: [...cars],
+        },
+      };
+    });
     builder.addCase(switchEngineToDrive.fulfilled, (state, action) => {
       console.log(action.payload);
       return {
