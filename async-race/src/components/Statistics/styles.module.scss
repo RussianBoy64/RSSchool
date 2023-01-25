@@ -1,18 +1,21 @@
 @import "../../styles/colors";
 
 .statistics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 1000px;
   &__header {
     border-bottom: 2px solid $accent-iris;
   }
 
   &__row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr) 2fr;
+    grid-template-columns: repeat(5, 1fr);
     align-content: center;
     justify-content: center;
-    height: max-content;
+    height: 2em;
 
     & svg {
       justify-self: center;

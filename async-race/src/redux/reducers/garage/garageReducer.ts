@@ -22,7 +22,7 @@ const initialState: InitialGarageState = {
     color: "#ffffff",
   },
   isRaceStarted: false,
-  carsFinished: [],
+  raceWinner: { id: 0, name: "", color: "", time: 0, isRecorded: false },
 };
 
 export const garageSlice = createSlice({
@@ -108,6 +108,13 @@ export const garageSlice = createSlice({
       return {
         ...state,
         isRaceStarted: !state.isRaceStarted,
+        raceWinner: { id: 0, name: "", color: "", time: 0, isRecorded: false },
+      };
+    },
+    setRaceRecorded(state: InitialGarageState): InitialGarageState {
+      return {
+        ...state,
+        raceWinner: { ...state.raceWinner, isRecorded: true },
       };
     },
   },
@@ -174,9 +181,19 @@ export const garageSlice = createSlice({
       const carToUpdate = state.garage.cars.find(
         (car) => car.id === action.payload,
       )!;
-      const { carsFinished } = state;
+      const { raceWinner } = state;
+      const time = Number(
+        (carToUpdate.distance! / carToUpdate.velocity! / 1000).toFixed(2),
+      );
+
+      if (raceWinner.id === 0) {
+        raceWinner.id = action.payload;
+        raceWinner.name = carToUpdate.name;
+        raceWinner.color = carToUpdate.color;
+        raceWinner.time = time;
+      }
+
       carToUpdate.isDrive = false;
-      carsFinished.push(carToUpdate);
     });
   },
 });
@@ -190,6 +207,7 @@ export const {
   setNextPage,
   setPrevPage,
   toggleRaceStarted,
+  setRaceRecorded,
 } = garageSlice.actions;
 
 export default garageSlice.reducer;

@@ -1,0 +1,20 @@
+@import "../../styles/colors";
+
+.raceResult {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 2em;
+  text-align: center;
+  transform: translate(-50%, -50%);
+
+  &__result {
+    color: $accent-red;
+    font-weight: 600;
+    text-shadow: 0 0 10px $accent-red;
+  }
+}

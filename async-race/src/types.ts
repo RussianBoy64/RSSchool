@@ -35,7 +35,13 @@ export interface InitialGarageState {
   create: CreateInput;
   carToUpdate: UpdateInput;
   isRaceStarted: boolean;
-  carsFinished: Car[];
+  raceWinner: {
+    id: number;
+    name: string;
+    color: string;
+    time: number;
+    isRecorded: boolean;
+  };
 }
 
 export interface CreateInput {
@@ -110,4 +116,6 @@ export enum WinnersActions {
   getWinners = "GET_WINNERS",
   getWinnersCars = "GET_WINNERSCARS",
   deleteWinner = "DELETE_WINNER",
+  updateWinner = "UPDATE_WINNER",
+  createWinner = "CREATE_WINNER",
 }

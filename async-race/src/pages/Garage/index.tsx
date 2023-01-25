@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import Car from "../../components/Car";
 import Form, { FormTypes } from "../../components/UI/Form";
 import Button, { ButtonStyle } from "../../components/UI/Button";
+import RaceResult from "../../components/RaceResult";
 import {
   setPrevPage,
   setNextPage,
@@ -19,7 +20,7 @@ import generate100Cars from "../../carNames";
 import styles from "./styles.module.scss";
 
 export default function Garage() {
-  const { garage, page, isRaceStarted } = useAppSelector(
+  const { garage, page, isRaceStarted, raceWinner } = useAppSelector(
     (state) => state.garage,
   );
   const dispatch = useAppDispatch();
@@ -36,6 +37,7 @@ export default function Garage() {
 
   return (
     <main className={styles.garage}>
+      {raceWinner.id !== 0 && <RaceResult />}
       <header className={styles.garage__header}>
         <div>
           <h1>Garage</h1>
@@ -92,7 +94,7 @@ export default function Garage() {
                       return dispatch(switchEngineToDrive({ id, signal }));
                     },
                   );
-                  Promise.all(switchEngineToDrivePromisesArr);
+                  Promise.any(switchEngineToDrivePromisesArr);
                 });
               }}
               isDisabled={isRaceStarted}
@@ -119,7 +121,7 @@ export default function Garage() {
               style={ButtonStyle.secondary}
               type="button"
               onClickHandler={createCarsHandler}
-              isDisabled={false}
+              isDisabled={isRaceStarted}
             >
               Generate Cars
             </Button>

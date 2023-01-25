@@ -60,3 +60,29 @@ export const deleteWinner = createAsyncThunk<void, number, ThunkAPI>(
     });
   },
 );
+
+export const updateWinner = createAsyncThunk<void, Winner, ThunkAPI>(
+  WinnersActions.updateWinner,
+  async ({ id, wins, time }) => {
+    await fetch(`${ENDPOINT}/winners/${id}`, {
+      method: FetchMethods.put,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ wins, time }),
+    });
+  },
+);
+
+export const createWinner = createAsyncThunk<void, Winner, ThunkAPI>(
+  WinnersActions.createWinner,
+  async ({ id, wins, time }) => {
+    await fetch(`${ENDPOINT}/winners`, {
+      method: FetchMethods.post,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id, wins, time }),
+    });
+  },
+);

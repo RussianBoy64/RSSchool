@@ -120,7 +120,8 @@ export const switchEngineToDrive = createAsyncThunk<
     method: FetchMethods.patch,
     signal,
   });
-  if (responce.status === 500) return thunkAPI.rejectWithValue(id);
-  if (responce.status === 200) console.log("finish", id);
+  if (responce.status === 500) {
+    return thunkAPI.rejectWithValue(id);
+  }
   return id;
 });
