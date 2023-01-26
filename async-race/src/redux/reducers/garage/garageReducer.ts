@@ -181,12 +181,12 @@ export const garageSlice = createSlice({
       const carToUpdate = state.garage.cars.find(
         (car) => car.id === action.payload,
       )!;
-      const { raceWinner } = state;
+      const { raceWinner, isRaceStarted } = state;
       const time = Number(
         (carToUpdate.distance! / carToUpdate.velocity! / 1000).toFixed(2),
       );
 
-      if (raceWinner.id === 0) {
+      if (raceWinner.id === 0 && isRaceStarted) {
         raceWinner.id = action.payload;
         raceWinner.name = carToUpdate.name;
         raceWinner.color = carToUpdate.color;
