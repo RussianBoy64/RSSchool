@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { InitialGarageState, UpdateInput } from "../../../types";
+import { InitialGarageState, UpdateInput, EngineStatus } from "../../../types";
 import {
   getCars,
   createCar,
@@ -117,6 +117,21 @@ export const garageSlice = createSlice({
         raceWinner: { ...state.raceWinner, isRecorded: true },
       };
     },
+    resetCars(state: InitialGarageState): InitialGarageState {
+      const cars = state.garage.cars.map((car) => ({
+        ...car,
+        isDrive: false,
+        engineStatus: EngineStatus.stopped,
+      }));
+
+      return {
+        ...state,
+        garage: {
+          ...state.garage,
+          cars: [...cars],
+        },
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getCars.fulfilled, (state, action) => {
@@ -208,6 +223,7 @@ export const {
   setPrevPage,
   toggleRaceStarted,
   setRaceRecorded,
+  resetCars,
 } = garageSlice.actions;
 
 export default garageSlice.reducer;

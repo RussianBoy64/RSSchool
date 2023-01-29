@@ -84,7 +84,6 @@ export default function Garage() {
                   const { id, engineStatus } = car;
                   return dispatch(startStopEngine({ id, engineStatus }));
                 });
-
                 dispatch(toggleRaceStarted());
 
                 Promise.all(startEnginePromisesArr).then(async () => {
