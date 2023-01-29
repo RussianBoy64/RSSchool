@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>JS testing</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h2 style="color:cornflowerblue">Introduction</h2>
+				<h2>to Javascript testing</h2>
+			</section>
+			<section>
+				<h2 style="color:cornflowerblue">What is a test?</h2>
+				<p class="fragment">A test is code that tests assumptions about how other code works.</p>
+				<p class="fragment">Tests make code more robust and durable.</p>
+			</section>
+			<section>
+				<section>
+					<h2 style="color:cornflowerblue">Jest</h2>
+					<p class="fragment">Delightful JavaScript testing framework with a focus
+						on simplicity.</p>
+				</section>
+				<section>
+					<h2 style="color:cornflowerblue">Benefits</h2>
+					<ol>
+						<li class="fragment">Simple start</li>
+						<li class="fragment">Easy to understand and use</li>
+						<li class="fragment">Good documentation</li>
+						<li class="fragment">Great for use with modern frameworks</li>
+					</ol>
+				</section>
+				<section>
+					<h2 style="color:cornflowerblue">Start using Jest</h2>
+					<pre class="fragment"><code>
+						npm install --save-dev jest
+					</code></pre>
+					<pre class="fragment">package.json<code>
+							“scripts” : {
+								“test”: “jest”
+					 		}
+						</code></pre>
+				</section>
+			</section>
+			<section>
+				<h2 style="color:cornflowerblue">First test</h2>
+				<pre class="fragment"><code data-line-numbers="1-7|1|2|3-5">					describe("When given 2 numbers", () => {
+						it("returns the sum of those 2 numbers", () => {
+							const result = add(10, 5)
+							const expected = 15
+							expect(result).toBe(expected)
+						})
+					})
+				</code></pre>
+			</section>
+			<section>
+				<h2 style="color:cornflowerblue">Test anatomy</h2>
+				<pre><code data-line-numbers="1-3|2|1|3|1-3">						const result = add(10, 5)
+						const expected = 15
+						expect(result).toEqual(expected)
+					</code></pre>
+
+				<p class="fragment">The ideal test consists of all three stages.</p>
+				<p class="fragment">Often - such a test even consists of 3 lines.</p>
+			</section>
+			<section>
+				<h2 style="color:cornflowerblue">Matching Methods</h2>
+				<div class="r-stack">
+					<span class="fragment fade-in-then-out">toBe()</span>
+					<span class="fragment fade-in-then-out">toEqual()</span>
+					<span class="fragment fade-in-then-out">toContain()</span>
+					<span class="fragment fade-in-then-out">toContainEqual()</span>
+					<span class="fragment fade-in-then-out">toHaveLength()</span>
+					<span class="fragment fade-in-then-out">toBeNull()</span>
+					<span class="fragment fade-in-then-out">toBeUndefined()</span>
+					<span class="fragment fade-in-then-out">toBeDefined()</span>
+					<span class="fragment fade-in-then-out">toBeTruthy()</span>
+					<span class="fragment fade-in-then-out">toBeFalsy()</span>
+					<span class="fragment fade-in-then-out">toBeGreaterThan() and toBeGreaterThanOrEqual()</span>
+					<span class="fragment fade-in-then-out">toBeLessThan() and toBeLessThanOrEqual()</span>
+					<span class="fragment fade-in-then-out">toBeCloseTo()</span>
+					<span class="fragment fade-in-then-out">toMatch()</span>
+					<span class="fragment fade-in-then-out">toThrow()</span>
+					<span class="fragment fade-in-then-out">not</span>
+				</div>
+			</section>
+			<section>
+				<h2 style="color:cornflowerblue">Benefits of tests</h2>
+				<span>Tests will save more time in future, because they will play the role of documentation, a development tool,
+					and verification of previously written code.</span>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
